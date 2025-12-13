@@ -7,6 +7,8 @@
     "paths": {
       "@app/*": ["src/app/*"],
       "@config/*": ["src/app/config/*"],
+      "@config-devices": ["src/app/config/devices/index.ts"],
+      "@config-inspections": ["src/app/config/inspections/index.ts"],
       "@features/*": ["src/app/features/*"],
       "@pages/*": ["src/app/pages/*"],
       "@shared/*": ["src/app/shared/*"],
