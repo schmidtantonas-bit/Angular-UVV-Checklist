@@ -1,17 +1,13 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CheckSectionComponent, CheckSectionModel } from '@features/sections/check-section/check-section';
-import { ChecklistOverviewComponent } from '@features/checklist-overview/checklist-overview';
+import {
+  ChecklistOverviewComponent,
+  ChecklistOverviewModel
+} from '@features/checklist-overview/checklist-overview';
 import {
   ChecklistCustomerDataComponent,
   ChecklistCustomerDataModel
 } from '@features/checklist-customer-data/checklist-customer-data';
-import {
-  DEVICE_TYPE_OPTIONS,
-  isDeviceType,
-  overviewForDevice,
-  sectionsForDevice,
-  type DeviceType
-} from '@config/devices';
 
 @Component({
   selector: 'app-checklist-page',
@@ -21,25 +17,46 @@ import {
   styleUrl: './checklist.page.scss'
 })
 export class ChecklistPageComponent {
-  readonly deviceType = signal<DeviceType>('l32');
+  overview: ChecklistOverviewModel = {
+    title: 'UVV-Drehleiter',
+    subtitle: 'L32',
+    imageSrc: '/assets/images/L32.png',
+    imageAlt: 'Drehleiter'
+  };
 
-  readonly overview = computed(() => overviewForDevice(this.deviceType()));
+  customerData: ChecklistCustomerDataModel = {
+    inspectionType: 'Inspektion Basic',
+    customerName: '',
+    address: '',
+    orderNumber: '',
+    licensePlate: '',
+    deviceType: 'L32',
+    bodyNumber: '',
+    mileageKm: '',
+    operatingHours: '',
+    serviceTechnician: '',
+    date: '',
+    location: ''
+  };
 
-  readonly customerData = computed<ChecklistCustomerDataModel>(() => ({
-    inspectionTypes: [
-      { value: 'basic', label: 'Inspektion Basic' },
-      { value: 'full', label: 'Inspektion Full' }
-    ],
-    inspectionType: 'basic',
-    deviceTypes: DEVICE_TYPE_OPTIONS,
-    deviceType: this.deviceType()
-  }));
-
-  readonly sections = computed<CheckSectionModel[]>(() => {
-    return sectionsForDevice(this.deviceType());
-  });
-
-  setDeviceType(value: string) {
-    if (isDeviceType(value)) this.deviceType.set(value);
-  }
+  sections: CheckSectionModel[] = [
+    {
+      id: 'sec-1',
+      title: 'Fahrerhaus Innen',
+      total: 11,
+      completed: 0,
+      items: [{ id: '1-01', title: 'Akustische und optische Warneinrichtungen', status: null }]
+    },
+    {
+      id: 'sec-2',
+      title: 'Fahrerhaus Außen',
+      total: 4,
+      completed: 0,
+      items: [
+        { id: '2-01', title: 'Beleuchtungseinrichtungen am Gesamtfahrzeug (Chassis + Aufbau)', status: null },
+        { id: '2-02', title: 'Abdeckkappen Ladeerhaltung', status: null },
+        { id: '2-03', title: 'Beschilderung am Fahrerhaus', status: null }
+      ]
+    }
+  ];
 }

@@ -11,11 +11,12 @@
   <form class="checklist-customer-data__grid" data-ui="checklist-customer-data-form">
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-inspection-type">
       <span class="checklist-customer-data__label">Inspektionsart</span>
-      <select class="checklist-customer-data__control" [value]="data.inspectionType ?? ''">
-        @for (opt of data.inspectionTypes ?? []; track opt.value) {
-          <option [value]="opt.value">{{ opt.label }}</option>
-        }
-      </select>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Inspektion"
+        [value]="data.inspectionType ?? ''"
+      />
     </label>
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-customer">
@@ -60,15 +61,12 @@
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-device-type">
       <span class="checklist-customer-data__label">Gerätetyp</span>
-      <select
+      <input
         class="checklist-customer-data__control"
+        type="text"
+        placeholder="Gerätetyp"
         [value]="data.deviceType ?? ''"
-        (change)="onDeviceTypeSelect($event)"
-      >
-        @for (opt of data.deviceTypes ?? []; track opt.value) {
-          <option [value]="opt.value">{{ opt.label }}</option>
-        }
-      </select>
+      />
     </label>
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-body-number">

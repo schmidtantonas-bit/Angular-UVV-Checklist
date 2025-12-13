@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export interface ChecklistCustomerDataInspectionType {
   value: string;
@@ -36,12 +36,4 @@ export interface ChecklistCustomerDataModel {
 })
 export class ChecklistCustomerDataComponent {
   model = input.required<ChecklistCustomerDataModel>();
-
-  @Output() deviceTypeChange = new EventEmitter<string>();
-
-  onDeviceTypeSelect(event: Event) {
-    const select = event.target as HTMLSelectElement | null;
-    if (!select) return;
-    this.deviceTypeChange.emit(select.value);
-  }
 }
