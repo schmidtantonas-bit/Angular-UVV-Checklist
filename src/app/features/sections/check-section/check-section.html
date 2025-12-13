@@ -1,0 +1,50 @@
+@let section = model();
+
+<section
+  class="check-section container"
+  data-ui="check-section"
+  [class.is-open]="isOpen"
+  [attr.aria-labelledby]="'check-section-title-' + section.id"
+>
+  <h2 class="check-section__heading" [id]="'check-section-title-' + section.id">
+    <button
+      class="check-section__toggle"
+      type="button"
+      [id]="'check-section-toggle-' + section.id"
+      (click)="toggle()"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-controls]="'check-section-panel-' + section.id"
+    >
+      <span class="check-section__title">
+        {{ section.title }}
+      </span>
+
+      <span class="check-section__count" aria-live="polite">
+        {{ section.completed }} von {{ section.total }} geprüft
+      </span>
+    </button>
+  </h2>
+
+  <div
+    class="check-section__content"
+    [id]="'check-section-panel-' + section.id"
+    role="region"
+    [attr.aria-labelledby]="'check-section-toggle-' + section.id"
+    [attr.aria-hidden]="!isOpen ? 'true' : null"
+    [attr.inert]="!isOpen ? '' : null"
+  >
+    @if (section.items.length === 0) {
+      <p class="check-section__empty" aria-live="polite">
+        Keine Einträge vorhanden.
+      </p>
+    } @else {
+      <ul class="check-section__items">
+        @for (item of section.items; track item.id) {
+          <li>
+            <app-check-item [model]="item"></app-check-item>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</section>

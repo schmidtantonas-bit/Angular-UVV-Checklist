@@ -1,0 +1,24 @@
+.layout-footer {
+  padding-block: var(--space-m);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--neo-outset);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .layout-footer__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

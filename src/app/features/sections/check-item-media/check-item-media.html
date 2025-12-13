@@ -1,0 +1,43 @@
+<!-- htmlhint spec-char-escape:false -->
+<div class="check-item-media" data-ui="check-item-media">
+  <button
+    type="button"
+    class="check-item-media__camera"
+    data-ui="check-item-photo"
+    aria-label="Foto hinzufügen"
+    (click)="openCamera()"
+  >
+    <img
+      class="check-item-media__camera-img"
+      src="/assets/images/camera-removebg-preview.png"
+      alt=""
+      aria-hidden="true"
+    />
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    capture="environment"
+    multiple
+    hidden
+    (change)="onFilesSelected($event)"
+  />
+
+  @if (photos.length > 0) {
+    <div class="check-item-media__thumbs" aria-label="Fotos">
+      @for (photo of photos; track photo; let i = $index) {
+        <button
+          class="check-item-media__thumb"
+          type="button"
+          (click)="removePhoto(i)"
+          [attr.aria-label]="'Foto entfernen ' + (i + 1)"
+          data-ui="check-item-thumb"
+        >
+          <img class="check-item-media__img" [src]="thumbUrl(photo)" alt="" />
+        </button>
+      }
+    </div>
+  }
+</div>

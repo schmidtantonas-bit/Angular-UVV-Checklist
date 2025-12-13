@@ -1,0 +1,29 @@
+@let overview = model();
+
+<section
+  class="checklist-overview container"
+  uiCard
+  padding="none"
+  variant="raised"
+  data-ui="checklist-overview"
+>
+  <div class="checklist-overview__media" data-ui="checklist-overview-media">
+    <img
+      class="checklist-overview__img"
+      [src]="overview.imageSrc"
+      [alt]="overview.imageAlt ?? ''"
+      data-ui="checklist-overview-image"
+    />
+    <div class="checklist-overview__overlay container" data-ui="checklist-overview-overlay">
+      <h1 class="checklist-overview__title" data-ui="checklist-overview-title">
+        {{ overview.title }}
+      </h1>
+      @if (overview.subtitle) {
+        <div class="checklist-overview__subtitle" data-ui="checklist-overview-subtitle">
+          {{ overview.subtitle }}
+        </div>
+      }
+    </div>
+  </div>
+</section>
+

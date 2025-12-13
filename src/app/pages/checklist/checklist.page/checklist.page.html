@@ -1,0 +1,8 @@
+<div class="checklist" data-ui="checklist">
+  <app-checklist-overview [model]="overview" />
+  <app-checklist-customer-data [model]="customerData" />
+
+  @for (section of sections; track section.id) {
+    <app-check-section [model]="section" />
+  }
+</div>

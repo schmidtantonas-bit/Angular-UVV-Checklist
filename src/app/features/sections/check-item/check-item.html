@@ -1,0 +1,84 @@
+<!-- htmlhint attr-lowercase:false -->
+@let item = model();
+
+<article
+  class="check-item"
+  uiCard
+  padding="m"
+  variant="raised"
+  data-ui="check-item"
+  [attr.aria-labelledby]="'check-item-title-' + item.id"
+  [ngClass]="{
+    'check-item--ok': status() === 'ok',
+    'check-item--na': status() === 'na',
+    'check-item--def': status() === 'nok'
+  }"
+>
+  <div class="check-item__row">
+    <div class="check-item__num">{{ item.id }}</div>
+    <h3 class="check-item__title" [id]="'check-item-title-' + item.id">
+      {{ item.title }}
+    </h3>
+    <div
+      class="check-item__actions"
+      data-ui="check-item-actions"
+      role="group"
+      [attr.aria-labelledby]="'check-item-title-' + item.id"
+    >
+      <button
+        uiButton
+        kind="success"
+        size="s"
+        icon
+        type="button"
+        aria-label="OK"
+        [attr.aria-pressed]="status() === 'ok'"
+        (click)="setStatus('ok')"
+      >
+        ✓
+      </button>
+      <button
+        uiButton
+        kind="warning"
+        size="s"
+        icon
+        type="button"
+        aria-label="N/A"
+        [attr.aria-pressed]="status() === 'na'"
+        (click)="setStatus('na')"
+      >
+        –
+      </button>
+      <button
+        uiButton
+        kind="danger"
+        size="s"
+        icon
+        type="button"
+        aria-label="NOK"
+        [attr.aria-pressed]="status() === 'nok'"
+        (click)="toggleNok()"
+      >
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <div class="check-item__acc" [class.is-open]="isNokOpen()">
+    @if (status() === 'nok' && isNokOpen()) {
+      <app-textarea
+        data-ui="check-item-note"
+        label="Mängelbeschreibung"
+        placeholder="Bitte Mangel beschreiben..."
+      ></app-textarea>
+
+      <div class="check-item__footer" data-ui="check-item-footer">
+        <app-check-item-media [photos]="photos()" (photosChange)="photos.set($event)"></app-check-item-media>
+
+        <button uiButton kind="success" size="m" type="button" disabled data-ui="check-item-save">
+          Speichern
+        </button>
+      </div>
+    }
+  </div>
+</article>

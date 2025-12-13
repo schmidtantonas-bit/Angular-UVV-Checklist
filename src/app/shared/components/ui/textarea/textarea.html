@@ -1,0 +1,12 @@
+<!-- htmlhint attr-lowercase:false -->
+<label class="textarea">
+  <span class="textarea__label" *ngIf="label">{{ label }}</span>
+  <textarea
+    class="textarea__input"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange.emit($event)"
+    [disabled]="disabled"
+    rows="4"
+  ></textarea>
+</label>

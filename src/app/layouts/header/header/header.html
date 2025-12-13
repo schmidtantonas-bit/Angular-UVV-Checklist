@@ -1,0 +1,12 @@
+<!-- htmlhint attr-lowercase:false, doctype-first:false -->
+<header class="header" data-ui="header">
+  <div class="container header__container" data-ui="header-container">
+    <div class="header__logo" data-ui="header-logo">
+      <img class="header__logo-img" src="/assets/svg/rosenbauer-logo.svg" alt="Rosenbauer Logo" />
+    </div>
+    <div class="header__actions" data-ui="header-actions"></div>
+  </div>
+  @if (progress() !== null) {
+    <app-progress-bar data-ui="header-progress" [value]="progress() ?? 0" />
+  }
+</header>

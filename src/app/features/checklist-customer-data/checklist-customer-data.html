@@ -1,0 +1,125 @@
+@let data = model();
+
+<section
+  class="checklist-customer-data container"
+  padding="none"
+  variant="raised"
+  data-ui="checklist-customer-data"
+>
+  <h2 class="checklist-customer-data__title" data-ui="checklist-customer-data-title">
+    Kundendaten
+  </h2>
+
+  <form class="checklist-customer-data__grid" data-ui="checklist-customer-data-form">
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-inspection-type">
+      <span class="checklist-customer-data__label">Inspektionsart</span>
+      <select class="checklist-customer-data__control" [value]="data.inspectionType ?? ''">
+        @for (opt of data.inspectionTypes ?? []; track opt.value) {
+          <option [value]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-customer">
+      <span class="checklist-customer-data__label">Kunde</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Kundenname"
+        [value]="data.customerName ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-address">
+      <span class="checklist-customer-data__label">Adresse</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Adresse"
+        [value]="data.address ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-order-number">
+      <span class="checklist-customer-data__label">Auftragsnummer</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Auftragsnummer"
+        [value]="data.orderNumber ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-license-plate">
+      <span class="checklist-customer-data__label">Kennzeichen</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Kennzeichen"
+        [value]="data.licensePlate ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-device-type">
+      <span class="checklist-customer-data__label">Gerätetyp</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Gerätetyp"
+        [value]="data.deviceType ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-body-number">
+      <span class="checklist-customer-data__label">Aufbaunummer</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Aufbaunummer"
+        [value]="data.bodyNumber ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-mileage">
+      <span class="checklist-customer-data__label">Kilometerstand</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        inputmode="numeric"
+        placeholder="km"
+        [value]="data.mileageKm ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-operating-hours">
+      <span class="checklist-customer-data__label">Betriebsstunden</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        inputmode="numeric"
+        placeholder="Bh"
+        [value]="data.operatingHours ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-service-technician">
+      <span class="checklist-customer-data__label">Servicetechniker</span>
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Name Servicetechniker"
+        [value]="data.serviceTechnician ?? ''"
+      />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-date">
+      <span class="checklist-customer-data__label">Datum</span>
+      <input class="checklist-customer-data__control" type="date" [value]="data.date ?? ''" />
+    </label>
+
+    <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-location">
+      <span class="checklist-customer-data__label">Ort</span>
+      <input class="checklist-customer-data__control" type="text" placeholder="Ort" [value]="data.location ?? ''" />
+    </label>
+  </form>
+</section>
