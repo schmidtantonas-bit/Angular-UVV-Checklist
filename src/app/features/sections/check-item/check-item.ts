@@ -1,4 +1,13 @@
-import { Component, effect, input, signal } from '@angular/core';
+import {
+  Component,
+  Injector,
+  OnInit,
+  effect,
+  inject,
+  input,
+  runInInjectionContext,
+  signal
+} from '@angular/core';
 import { NgClass } from '@angular/common';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
@@ -21,7 +30,7 @@ export interface CheckItemModel {
   templateUrl: './check-item.html',
   styleUrl: './check-item.scss'
 })
-export class CheckItemComponent {
+export class CheckItemComponent implements OnInit {
   model = input.required<CheckItemModel>();
 
   readonly status = signal<CheckStatus>(null);
@@ -29,18 +38,21 @@ export class CheckItemComponent {
   readonly photos = signal<File[]>([]);
 
   private currentItemId: string | null = null;
+  private readonly injector = inject(Injector);
 
-  constructor() {
-    effect(() => {
-      const nextModel = this.model();
-      if (nextModel.id !== this.currentItemId) {
-        this.currentItemId = nextModel.id;
-        this.photos.set([]);
-      }
+  ngOnInit(): void {
+    runInInjectionContext(this.injector, () => {
+      effect(() => {
+        const nextModel = this.model();
+        if (nextModel.id !== this.currentItemId) {
+          this.currentItemId = nextModel.id;
+          this.photos.set([]);
+        }
 
-      const nextStatus = nextModel.status;
-      this.status.set(nextStatus);
-      this.isNokOpen.set(nextStatus === 'nok');
+        const nextStatus = nextModel.status;
+        this.status.set(nextStatus);
+        this.isNokOpen.set(nextStatus === 'nok');
+      });
     });
   }
 

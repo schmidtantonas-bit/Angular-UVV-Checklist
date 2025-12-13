@@ -1,6 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 
 export interface ChecklistCustomerDataInspectionType {
+  value: string;
+  label: string;
+}
+
+export interface ChecklistCustomerDataDeviceTypeOption {
   value: string;
   label: string;
 }
@@ -8,6 +13,7 @@ export interface ChecklistCustomerDataInspectionType {
 export interface ChecklistCustomerDataModel {
   inspectionTypes?: ChecklistCustomerDataInspectionType[];
   inspectionType?: string;
+  deviceTypes?: ChecklistCustomerDataDeviceTypeOption[];
   customerName?: string;
   address?: string;
   orderNumber?: string;
@@ -30,5 +36,12 @@ export interface ChecklistCustomerDataModel {
 })
 export class ChecklistCustomerDataComponent {
   model = input.required<ChecklistCustomerDataModel>();
-}
 
+  @Output() deviceTypeChange = new EventEmitter<string>();
+
+  onDeviceTypeSelect(event: Event) {
+    const select = event.target as HTMLSelectElement | null;
+    if (!select) return;
+    this.deviceTypeChange.emit(select.value);
+  }
+}

@@ -2,8 +2,6 @@
 
 <section
   class="checklist-customer-data container"
-  padding="none"
-  variant="raised"
   data-ui="checklist-customer-data"
 >
   <h2 class="checklist-customer-data__title" data-ui="checklist-customer-data-title">
@@ -62,12 +60,15 @@
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-device-type">
       <span class="checklist-customer-data__label">Gerätetyp</span>
-      <input
+      <select
         class="checklist-customer-data__control"
-        type="text"
-        placeholder="Gerätetyp"
         [value]="data.deviceType ?? ''"
-      />
+        (change)="onDeviceTypeSelect($event)"
+      >
+        @for (opt of data.deviceTypes ?? []; track opt.value) {
+          <option [value]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
     </label>
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-body-number">

@@ -13,8 +13,13 @@ describe('CheckItem', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(CheckItemComponent);
+    fixture.componentRef.setInput('model', {
+      id: '1',
+      title: 'Item',
+      status: null
+    });
+    fixture.detectChanges();
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
   it('should create', () => {
