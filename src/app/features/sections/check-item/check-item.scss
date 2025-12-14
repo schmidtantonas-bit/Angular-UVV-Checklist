@@ -37,6 +37,26 @@
     line-height: 1.3;
   }
 
+  &__title-input {
+    flex: 1;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 0.4em 0.6em;
+    font-size: var(--text-label);
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.3;
+    background: var(--surface);
+    box-shadow: var(--neo-outset);
+  }
+
+  &__title-input:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--focus) 40%, white),
+      var(--neo-outset);
+  }
+
   &__actions {
     display: flex;
     align-items: center;

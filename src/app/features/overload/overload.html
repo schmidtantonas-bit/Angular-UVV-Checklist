@@ -1,0 +1,85 @@
+<!-- htmlhint doctype-first:false -->
+<article class="overload">
+  <header class="overload__header">
+    <div>
+      <h2 class="overload__title">Messwerte Überlastprüfung</h2>
+      <p class="overload__subtitle">Bitte die gemessenen Höhen in Millimeter eintragen.</p>
+    </div>
+  </header>
+
+  <div class="overload__grid">
+    <div uicard class="overload__card">
+      <h3 class="overload__cardtitle">Schritt 1: Nach der Vorbelastung</h3>
+      <label class="overload__label">
+        <span>Höhe</span>
+        <input
+          class="overload__input"
+          type="number"
+          inputmode="numeric"
+          placeholder="mm"
+          (input)="setMm('preloadMm', ($any($event.target).value))"
+        />
+      </label>
+    </div>
+
+    <div uicard class="overload__card">
+      <h3 class="overload__cardtitle">Schritt 2: Belastet – Beginn</h3>
+      <label class="overload__label">
+        <span>Höhe</span>
+        <input
+          class="overload__input"
+          type="number"
+          inputmode="numeric"
+          placeholder="mm"
+          (input)="setMm('loadStartMm', ($any($event.target).value))"
+        />
+      </label>
+    </div>
+
+    <div uicard class="overload__card">
+      <h3 class="overload__cardtitle">Schritt 3: Belastet – nach 10 Minuten</h3>
+      <label class="overload__label">
+        <span>Höhe</span>
+        <input
+          class="overload__input"
+          type="number"
+          inputmode="numeric"
+          placeholder="mm"
+          (input)="setMm('load10MinMm', ($any($event.target).value))"
+        />
+      </label>
+    </div>
+
+    <div uicard class="overload__card">
+      <h3 class="overload__cardtitle">Schritt 4: Nach Belastung</h3>
+      <label class="overload__label">
+        <span>Höhe</span>
+        <input
+          class="overload__input"
+          type="number"
+          inputmode="numeric"
+          placeholder="mm"
+          (input)="setMm('afterLoadMm', ($any($event.target).value))"
+        />
+      </label>
+    </div>
+
+    <div uicard class="overload__card overload__card--result">
+      <h3 class="overload__cardtitle">Differenz Vorbelastung - Nach Belastung</h3>
+      <div class="overload__result">{{ diffPreloadAfter() ?? '—' }}</div>
+      <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
+    </div>
+
+    <div uicard class="overload__card overload__card--result">
+      <h3 class="overload__cardtitle">Differenz Belastet (Beginn) - Belastet (nach 10 Minuten)</h3>
+      <div class="overload__result">{{ diffLoadStart10() ?? '—' }}</div>
+      <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
+    </div>
+  </div>
+
+  <footer class="overload__footer">
+    <button uibutton class="overload__save" kind="success" type="button" (click)="save()">Speichern</button>
+    <button uibutton kind="ghost" type="button" (click)="reset()">Löschen</button>
+    <span class="overload__note">Noch nicht gespeichert – erscheint nicht im Report</span>
+  </footer>
+</article>

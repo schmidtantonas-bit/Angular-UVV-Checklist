@@ -7,13 +7,14 @@ export const OVERLOAD_INSPECTION_CONFIG: InspectionConfig = {
     {
       id: 'sec-overload-1',
       title: 'Überlastprüfung',
-      total: 2,
+      total: 4,
       completed: 0,
       items: [
-        { id: 'OVL-01', title: 'Grenzwertprüfung', status: null },
-        { id: 'OVL-02', title: 'Protokollierung', status: null }
+        { id: '10-01', title: 'Sicherheitseinrichtungen', status: null },
+        { id: '10-02', title: 'Gebrauchstauglichkeit', status: null },
+        { id: '10-03', title: 'Anstoßsicherungen', status: null },
+        { id: '10-04', title: 'Seiteneinstellvorrichtung', status: null }
       ]
     }
   ]
 };
-

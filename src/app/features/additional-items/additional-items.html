@@ -1,0 +1,24 @@
+<!-- htmlhint doctype-first:false -->
+<div class="sonstiges" data-ui="sonstiges">
+  @if (points().length > 0) {
+    <ul class="sonstiges__items" data-ui="sonstiges-items">
+      @for (point of points(); track point.id) {
+        <li class="sonstiges__item" data-ui="sonstiges-item">
+          <app-check-item
+            [model]="point"
+            [editableTitle]="true"
+            [showMedia]="false"
+            [showSaveButton]="false"
+            (titleChange)="setTitle($event.id, $event.title)"
+            (statusChange)="setStatus(point.id, $event)"
+            (noteChange)="setNote($event.id, $event.note)"
+          />
+        </li>
+      }
+    </ul>
+  }
+
+  <div class="sonstiges__actions" data-ui="sonstiges-actions">
+    <button uibutton kind="success" type="button" (click)="addPoint()">Zusatzpunkt hinzufügen</button>
+  </div>
+</div>

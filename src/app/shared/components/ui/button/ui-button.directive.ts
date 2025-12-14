@@ -4,7 +4,7 @@ export type UiButtonKind = 'primary' | 'success' | 'warning' | 'danger' | 'ghost
 export type UiButtonSize = 's' | 'm';
 
 @Directive({
-  selector: 'button[uiButton]',
+  selector: 'button[uiButton],button[uibutton]',
   standalone: true
 })
 export class UiButtonDirective {

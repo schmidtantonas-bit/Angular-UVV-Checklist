@@ -3,7 +3,7 @@
 
 <article
   class="check-item"
-  uiCard
+  uicard
   padding="m"
   variant="raised"
   data-ui="check-item"
@@ -16,9 +16,20 @@
 >
   <div class="check-item__row">
     <div class="check-item__num">{{ item.id }}</div>
-    <h3 class="check-item__title" [id]="'check-item-title-' + item.id">
-      {{ item.title }}
-    </h3>
+    @if (editableTitle()) {
+      <input
+        class="check-item__title-input"
+        type="text"
+        [id]="'check-item-title-' + item.id"
+        placeholder="Punkt benennen…"
+        [value]="item.title"
+        (input)="onTitleInput(item.id, $any($event.target).value)"
+      />
+    } @else {
+      <h3 class="check-item__title" [id]="'check-item-title-' + item.id">
+        {{ item.title }}
+      </h3>
+    }
     <div
       class="check-item__actions"
       data-ui="check-item-actions"
@@ -26,7 +37,7 @@
       [attr.aria-labelledby]="'check-item-title-' + item.id"
     >
       <button
-        uiButton
+        uibutton
         kind="success"
         size="s"
         icon
@@ -38,7 +49,7 @@
         ✓
       </button>
       <button
-        uiButton
+        uibutton
         kind="warning"
         size="s"
         icon
@@ -50,7 +61,7 @@
         –
       </button>
       <button
-        uiButton
+        uibutton
         kind="danger"
         size="s"
         icon
@@ -70,14 +81,20 @@
         data-ui="check-item-note"
         label="Mängelbeschreibung"
         placeholder="Bitte Mangel beschreiben..."
+        [value]="note()"
+        (valueChange)="setNote(item.id, $event)"
       ></app-textarea>
 
       <div class="check-item__footer" data-ui="check-item-footer">
-        <app-check-item-media [photos]="photos()" (photosChange)="photos.set($event)"></app-check-item-media>
+        @if (showMedia()) {
+          <app-check-item-media [photos]="photos()" (photosChange)="photos.set($event)"></app-check-item-media>
+        }
 
-        <button uiButton kind="success" size="m" type="button" disabled data-ui="check-item-save">
-          Speichern
-        </button>
+        @if (showSaveButton()) {
+          <button uibutton kind="success" size="m" type="button" disabled data-ui="check-item-save">
+            Speichern
+          </button>
+        }
       </div>
     }
   </div>

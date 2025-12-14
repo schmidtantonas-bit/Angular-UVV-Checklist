@@ -25,6 +25,8 @@ npm start
 # dann http://localhost:4200/
 ```
 
+Hinweis: `npm start` nutzt `--poll 1000`, damit Auto-Reload auch zuverlässig in OneDrive/WSL-Setups funktioniert.
+
 Build für Produktion:
 
 ```bash

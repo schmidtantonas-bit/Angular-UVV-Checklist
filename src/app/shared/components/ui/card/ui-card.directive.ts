@@ -4,7 +4,7 @@ export type UiCardVariant = 'raised' | 'flat';
 export type UiCardPadding = 'none' | 's' | 'm';
 
 @Directive({
-  selector: '[uiCard]',
+  selector: '[uiCard],[uicard]',
   standalone: true
 })
 export class UiCardDirective {

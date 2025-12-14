@@ -1,3 +1,4 @@
+<!-- htmlhint doctype-first:false -->
 @let section = model();
 
 <section
@@ -33,18 +34,32 @@
     [attr.aria-hidden]="!isOpen ? 'true' : null"
     [attr.inert]="!isOpen ? '' : null"
   >
-    @if (section.items.length === 0) {
-      <p class="check-section__empty" aria-live="polite">
-        Keine Einträge vorhanden.
-      </p>
+    @if (!hideEmptyState()) {
+      @if (section.items.length === 0) {
+        <p class="check-section__empty" aria-live="polite">
+          Keine Einträge vorhanden.
+        </p>
+      } @else {
+        <ul class="check-section__items">
+          @for (item of section.items; track item.id) {
+            <li>
+              <app-check-item [model]="item"></app-check-item>
+            </li>
+          }
+        </ul>
+      }
     } @else {
-      <ul class="check-section__items">
-        @for (item of section.items; track item.id) {
-          <li>
-            <app-check-item [model]="item"></app-check-item>
-          </li>
-        }
-      </ul>
+      @if (section.items.length > 0) {
+        <ul class="check-section__items">
+          @for (item of section.items; track item.id) {
+            <li>
+              <app-check-item [model]="item"></app-check-item>
+            </li>
+          }
+        </ul>
+      }
     }
+
+    <ng-content />
   </div>
 </section>

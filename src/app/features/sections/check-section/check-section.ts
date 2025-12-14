@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, input } from '@angular/core';
+import { booleanAttribute, Component, ViewEncapsulation, input } from '@angular/core';
 import { CheckItemComponent, CheckItemModel } from '@features/sections/check-item/check-item';
 
 export interface CheckSectionModel {
@@ -19,6 +19,7 @@ export interface CheckSectionModel {
 })
 export class CheckSectionComponent {
   model = input.required<CheckSectionModel>();
+  hideEmptyState = input(false, { transform: booleanAttribute });
 
   isOpen = false;
 

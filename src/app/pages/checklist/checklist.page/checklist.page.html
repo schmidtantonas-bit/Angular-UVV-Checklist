@@ -1,8 +1,19 @@
+<!-- htmlhint doctype-first:false -->
 <div class="checklist" data-ui="checklist">
   <app-checklist-overview [model]="overview" />
   <app-checklist-customer-data [model]="customerData" />
 
   @for (section of sections; track section.id) {
-    <app-check-section [model]="section" />
+    @if (section.id === 'sec-overload-1') {
+      <app-check-section [model]="section">
+        <app-overload />
+      </app-check-section>
+    } @else if (section.id === 'sec-misc-1') {
+      <app-check-section [model]="section" hideEmptyState>
+        <app-additional-items />
+      </app-check-section>
+    } @else {
+      <app-check-section [model]="section" />
+    }
   }
 </div>
