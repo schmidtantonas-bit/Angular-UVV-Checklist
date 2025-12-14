@@ -25,6 +25,3 @@ export function isInspectionType(value: string): value is InspectionType {
 export function getInspectionConfig(type: InspectionType): InspectionConfig {
   return INSPECTION_CONFIGS[type];
 }
-
-// convenience re-export for build layer
-export type { InspectionType } from './types';

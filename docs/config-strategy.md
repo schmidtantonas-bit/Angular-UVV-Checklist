@@ -112,9 +112,53 @@ IDs müssen stabil bleiben, weil:
 ## Status Quo im Projekt
 Aktuell existiert bereits:
 - `src/app/config/devices/…` (Base + Models + Registry)
-- UI liest `overview/sections` über `@config/devices`
+- `src/app/config/inspections/…` (UVV/VDE/Überlast Beispiel-Configs)
+- `src/app/config/build/build-checklist-config.ts` (Builder: Device + Inspection → finale Config)
+- `ConfigLoaderService.currentConfig` kann eine finale Config bauen, ist aber aktuell **nicht** an die UI gekoppelt (UI läuft auf Demo-Daten).
 
-Nächster Schritt (wenn gewünscht):
-- `src/app/config/inspections/…` + `build-checklist-config.ts`
-- `ConfigLoaderService` so umbauen, dass er die finale Config liefert
+---
 
+## Plan: UI fertig → Configs aktivieren
+Wenn die UI/Section-Komponenten “fertig” sind, aktivieren wir Configs in klaren Schritten, ohne UI neu zu bauen.
+
+### Phase 1: Datenmodell finalisieren (UI-ready)
+- Definiere zentrale Typen für:
+  - `SectionModel`, `ItemModel`, `MediaModel` (Fotos), `DefectModel` (Mängel), `MeasurementModel` (VDE/Überlast)
+- Stelle sicher, dass alle UI-Komponenten ausschließlich über `@Input()`/`@Output()` arbeiten und keine “Model-Wissen”-Logik enthalten.
+- Stabilisiere IDs (Sections/Items), weil Persistenz/Protocol/PDF darauf aufbauen.
+
+### Phase 2: Renderer-Konzept (optional, aber empfohlen)
+- Baue einen `SectionRenderer` (Feature), der anhand der Config unterschiedliche Section-Typen rendert:
+  - `check` (OK/NA/NOK)
+  - `measurement` (VDE/Überlast)
+  - `text`/`info` (z.B. Hinweise, Vorbereitung)
+- Ziel: keine Page-spezifischen If-Ketten; nur Config steuert.
+
+### Phase 3: Config-Activation in der Checklist-Page
+- Ersetze in `ChecklistPageComponent` die Demo-Daten durch:
+  - `const config = configLoader.currentConfig();`
+  - `overview = config.overview`
+  - `sections = config.sections`
+- Halte die UI gleich; nur die Datenquelle wechselt.
+- Optional: Feature-Flag (z.B. `useConfigs = false`) für “Demo vs. Config” während der Migration.
+
+### Phase 4: Wizard/CustomerData → Selection
+- UI-Inputs (Gerät/Inspektion) rufen `configLoader.setSelection({ device, inspection })` auf.
+- `ConfigLoaderService` bleibt einzige Quelle für aktive Config (Single Source of Truth).
+
+### Phase 5: State/Persistenz & Protocol/PDF
+- `ChecklistStateService` speichert User-Eingaben pro `item.id`/`section.id`.
+- Protocol/PDF lesen nur aus `State + Config`:
+  - Config liefert Labels/Struktur
+  - State liefert Werte/Ergebnisse (inkl. Fotos/Notizen/Messwerte)
+
+---
+
+## Migration-Checkliste (kurz)
+- [ ] Demo-Daten nur in Pages, nicht in Features/UI
+- [ ] IDs stabil + eindeutig
+- [ ] Sections/Items “renderbar” (keine UI-Abhängigkeiten in Config)
+- [ ] `ConfigLoaderService` Auswahl-Keys final (`deviceType`, `inspectionType`)
+- [ ] Checklist-Page: Demo → Config umstellen (1 PR)
+- [ ] Wizard: Auswahl → `setSelection` (1 PR)
+- [ ] State: Speichern/Restore pro ID (1 PR)
