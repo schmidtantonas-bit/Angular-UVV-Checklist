@@ -5,6 +5,7 @@
     class="check-item-media__camera"
     data-ui="check-item-photo"
     aria-label="Foto hinzufügen"
+    [disabled]="!canAddOrReplace()"
     (click)="openCamera()"
   >
     <img
@@ -20,7 +21,7 @@
     type="file"
     accept="image/*"
     capture="environment"
-    multiple
+    [attr.multiple]="allowMultiple() ? '' : null"
     hidden
     (change)="onFilesSelected($event)"
   />

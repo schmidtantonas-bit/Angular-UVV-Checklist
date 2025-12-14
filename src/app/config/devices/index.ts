@@ -1,9 +1,8 @@
 import type { ChecklistCustomerDataDeviceTypeOption } from '@features/checklist-customer-data/checklist-customer-data';
 import type { ChecklistOverviewModel } from '@features/checklist-overview/checklist-overview';
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
-import { B32_DEVICE_CONFIG } from './b32';
-import { L32_DEVICE_CONFIG } from './drehleiter/models/l32';
-import { L32S_DEVICE_CONFIG } from './drehleiter/models/l32s';
+import { B32_DEVICE_CONFIG } from './buhne/models';
+import { L32_DEVICE_CONFIG, L32S_DEVICE_CONFIG } from './drehleiter/models';
 export type { DeviceConfig, DeviceType } from './types';
 import type { DeviceConfig, DeviceType } from './types';
 

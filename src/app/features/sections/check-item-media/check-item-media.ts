@@ -5,7 +5,8 @@ import {
   Input,
   OnDestroy,
   Output,
-  ViewChild
+  ViewChild,
+  input
 } from '@angular/core';
 
 @Component({
@@ -21,6 +22,9 @@ export class CheckItemMediaComponent implements OnDestroy {
 
   @ViewChild('fileInput', { static: true })
   private fileInput?: ElementRef<HTMLInputElement>;
+
+  maxPhotos = input<number>(Number.POSITIVE_INFINITY);
+  allowMultiple = input<boolean>(true);
 
   @Input()
   set photos(value: File[] | null | undefined) {
@@ -40,6 +44,7 @@ export class CheckItemMediaComponent implements OnDestroy {
   }
 
   openCamera() {
+    if (!this.canAddOrReplace()) return;
     this.fileInput?.nativeElement.click();
   }
 
@@ -48,7 +53,8 @@ export class CheckItemMediaComponent implements OnDestroy {
     const files = input?.files ? Array.from(input.files) : [];
     if (files.length === 0) return;
 
-    this.photosChange.emit([...this.photos, ...files]);
+    const next = this.nextPhotosAfterSelection(files);
+    if (next) this.photosChange.emit(next);
 
     if (input) input.value = '';
   }
@@ -67,6 +73,33 @@ export class CheckItemMediaComponent implements OnDestroy {
     const url = URL.createObjectURL(file);
     this.objectUrls.set(file, url);
     return url;
+  }
+
+  canAddOrReplace(): boolean {
+    const max = this.maxPhotos();
+    if (!Number.isFinite(max)) return true;
+    if (max <= 0) return false;
+    if (max === 1) return true;
+    return this.photos.length < max;
+  }
+
+  private nextPhotosAfterSelection(files: File[]): File[] | null {
+    const max = this.maxPhotos();
+    if (max <= 0) return null;
+
+    if (max === 1) {
+      const file = files[0];
+      if (!file) return null;
+      this.syncObjectUrls(this._photos, [file]);
+      return [file];
+    }
+
+    const merged = [...this.photos, ...files];
+    if (!Number.isFinite(max)) return merged;
+
+    const capped = merged.slice(0, max);
+    this.syncObjectUrls(this._photos, capped);
+    return capped;
   }
 
   private syncObjectUrls(prev: File[], next: File[]) {

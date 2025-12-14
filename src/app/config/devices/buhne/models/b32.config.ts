@@ -1,4 +1,4 @@
-import type { DeviceConfig } from './types';
+import type { DeviceConfig } from '../../types';
 
 export const B32_DEVICE_CONFIG: DeviceConfig = {
   type: 'b32',
@@ -22,4 +22,3 @@ export const B32_DEVICE_CONFIG: DeviceConfig = {
     }
   ]
 };
-

@@ -1,4 +1,4 @@
-import type { InspectionConfig } from './types';
+import type { InspectionConfig } from '../types';
 
 export const VDE_INSPECTION_CONFIG: InspectionConfig = {
   type: 'vde',
@@ -17,4 +17,3 @@ export const VDE_INSPECTION_CONFIG: InspectionConfig = {
     }
   ]
 };
-

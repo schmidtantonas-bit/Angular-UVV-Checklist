@@ -21,4 +21,3 @@ export const DREHLEITER_BASE_SECTIONS: CheckSectionModel[] = [
     ]
   }
 ];
-

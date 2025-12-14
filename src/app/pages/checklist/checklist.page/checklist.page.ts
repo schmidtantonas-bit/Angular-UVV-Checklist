@@ -10,6 +10,8 @@ import {
 } from '@features/checklist-customer-data/checklist-customer-data';
 import { OverloadComponent } from '@features/overload/overload';
 import { AdditionalItemsComponent } from '@features/additional-items/additional-items';
+import { BatteryCheckComponent } from '@features/battery-check/battery-check';
+import { SpeedCheckComponent } from '@features/speed-check/speed-check';
 
 @Component({
   selector: 'app-checklist-page',
@@ -19,7 +21,9 @@ import { AdditionalItemsComponent } from '@features/additional-items/additional-
     ChecklistCustomerDataComponent,
     CheckSectionComponent,
     OverloadComponent,
-    AdditionalItemsComponent
+    AdditionalItemsComponent,
+    BatteryCheckComponent,
+    SpeedCheckComponent
   ],
   templateUrl: './checklist.page.html',
   styleUrl: './checklist.page.scss'
@@ -61,8 +65,26 @@ export class ChecklistPageComponent {
       ]
     },
     {
+      id: 'sec-battery-1',
+      title: 'Batterien',
+      total: 4,
+      completed: 0,
+      items: [
+        { id: '3-02', title: 'Batterie / Batteriefach', status: null },
+        { id: '3-03', title: 'Allgemeiner Zustand Starterbatterien', status: null },
+        { id: '3-05', title: 'Zustand der Lagerung und Befestigung der Batterien', status: null }
+      ]
+    },
+    {
       id: 'sec-misc-1',
       title: 'Sonstiges',
+      total: 0,
+      completed: 0,
+      items: []
+    },
+    {
+      id: 'sec-speed-1',
+      title: 'Geschwindigkeiten',
       total: 0,
       completed: 0,
       items: []
@@ -72,7 +94,8 @@ export class ChecklistPageComponent {
       title: 'Fahrerhaus Innen',
       total: 11,
       completed: 0,
-      items: [{ id: '1-01', title: 'Akustische und optische Warneinrichtungen', status: null }]
+      items: [
+        { id: '1-01', title: 'Akustische und optische Warneinrichtungen', status: null }]
     },
     {
       id: 'sec-2',

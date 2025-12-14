@@ -47,6 +47,12 @@
     cursor: pointer;
     padding: 0;
     flex: 0 0 auto;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: var(--neo-inset);
+    }
   }
 
   &__camera-img {

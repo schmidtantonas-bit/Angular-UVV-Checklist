@@ -1,0 +1,63 @@
+<!-- htmlhint doctype-first:false -->
+<article class="speed-check">
+  <header class="speed-check__header">
+    <div>
+      <p class="speed-check__subtitle">Bitte die gemessenen Zeiten in Sekunden eintragen.</p>
+    </div>
+  </header>
+
+  <div class="speed-check__grid">
+    @for (row of results(); track row.key) {
+      <div uicard class="speed-check__card">
+        <div class="speed-check__cardtop">
+          <h3 class="speed-check__cardtitle">{{ row.label }}</h3>
+          @if (row.withinTolerance === true) {
+            <span class="speed-check__pill speed-check__pill--ok">OK</span>
+          } @else if (row.withinTolerance === false) {
+            <span class="speed-check__pill speed-check__pill--nok">Außer Toleranz</span>
+          } @else {
+            <span class="speed-check__pill speed-check__pill--unset">—</span>
+          }
+        </div>
+
+        <label class="speed-check__label">
+          <span>Zeit (s)</span>
+          <input
+            class="speed-check__input"
+            type="number"
+            inputmode="numeric"
+            placeholder="Sekunden"
+            [value]="row.measuredSec ?? ''"
+            (input)="setSeconds(row.key, $any($event.target).value)"
+          />
+        </label>
+
+        <div class="speed-check__meta">
+          <span class="speed-check__hint">Soll: {{ row.referenceSec }} s ± {{ row.toleranceSec }} s</span>
+          <span class="speed-check__hint">
+            Diff:
+            @if (row.deltaSec === null) {
+              —
+            } @else {
+              {{ row.deltaSec > 0 ? '+' : '' }}{{ row.deltaSec }} s
+            }
+          </span>
+        </div>
+      </div>
+    }
+
+    <div uicard class="speed-check__card speed-check__card--summary">
+      <h3 class="speed-check__cardtitle">Übersicht</h3>
+      <div class="speed-check__summary">
+        <div class="speed-check__summary-value">{{ okCount() }} / {{ filledCount() }}</div>
+        <div class="speed-check__hint">OK innerhalb Toleranz (nur ausgefüllte Felder)</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="speed-check__footer">
+    <button uibutton class="speed-check__save" kind="success" type="button" (click)="save()">Speichern</button>
+    <button uibutton kind="ghost" type="button" (click)="reset()">Löschen</button>
+    <span class="speed-check__note">Noch nicht gespeichert – erscheint nicht im Report</span>
+  </footer>
+</article>

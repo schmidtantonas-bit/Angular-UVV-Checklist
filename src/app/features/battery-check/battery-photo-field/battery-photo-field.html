@@ -1,0 +1,65 @@
+<!-- htmlhint doctype-first:false -->
+<article class="battery-photo-field" data-ui="battery-photo-field">
+  <div class="battery-photo-field__label">{{ title() }}</div>
+
+  <button
+    type="button"
+    class="battery-photo-field__drop"
+    (click)="openCamera()"
+    [attr.aria-label]="title() + ' Foto aufnehmen'"
+  >
+    @if (photos().length > 0) {
+      <img class="battery-photo-field__img" [src]="thumbUrl(photos()[0])" alt="" />
+      <span class="battery-photo-field__img-overlay"></span>
+    } @else {
+      <span class="battery-photo-field__icon" aria-hidden="true">
+        <img
+          class="battery-photo-field__camera-img"
+          src="/assets/images/camera-removebg-preview.png"
+          alt=""
+        />
+      </span>
+      <span class="battery-photo-field__hint">Tippe zum Aufnehmen</span>
+    }
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    capture="environment"
+    hidden
+    (change)="onFilesSelected($event)"
+  />
+
+  <div class="battery-photo-field__footer">
+    <div class="battery-photo-field__status" role="group" [attr.aria-label]="title() + ' Status'">
+      <button
+        uibutton
+        kind="success"
+        size="s"
+        type="button"
+        [class.is-active]="status() === 'ok'"
+        [attr.aria-pressed]="status() === 'ok'"
+        (click)="setStatus('ok')"
+      >
+        OK
+      </button>
+      <button
+        uibutton
+        kind="danger"
+        size="s"
+        type="button"
+        [class.is-active]="status() === 'replace'"
+        [attr.aria-pressed]="status() === 'replace'"
+        (click)="setStatus('replace')"
+      >
+        Ersetzen
+      </button>
+    </div>
+
+    @if (photos().length > 0) {
+      <button class="battery-photo-field__remove" type="button" (click)="clearPhoto()">Foto entfernen</button>
+    }
+  </div>
+</article>
