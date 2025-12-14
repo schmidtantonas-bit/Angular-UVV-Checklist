@@ -8,73 +8,38 @@
   </header>
 
   <div class="overload__grid">
-    <div uicard class="overload__card">
-      <h3 class="overload__cardtitle">Schritt 1: Nach der Vorbelastung</h3>
-      <label class="overload__label">
-        <span>Höhe</span>
-        <input
-          class="overload__input"
-          type="number"
-          inputmode="numeric"
-          placeholder="mm"
-          (input)="setMm('preloadMm', ($any($event.target).value))"
-        />
-      </label>
-    </div>
+    @for (field of activeFields(); track field) {
+      <div uicard class="overload__card">
+        <h3 class="overload__cardtitle">{{ cardFor(field).title }}</h3>
+        <label class="overload__label">
+          <span>{{ cardFor(field).label }}</span>
+          <input
+            class="overload__input"
+            type="number"
+            inputmode="numeric"
+            placeholder="mm"
+            [value]="valueFor(field) ?? ''"
+            (input)="setMm(field, ($any($event.target).value))"
+          />
+        </label>
+      </div>
+    }
 
-    <div uicard class="overload__card">
-      <h3 class="overload__cardtitle">Schritt 2: Belastet – Beginn</h3>
-      <label class="overload__label">
-        <span>Höhe</span>
-        <input
-          class="overload__input"
-          type="number"
-          inputmode="numeric"
-          placeholder="mm"
-          (input)="setMm('loadStartMm', ($any($event.target).value))"
-        />
-      </label>
-    </div>
+    @if (showDiffPreloadAfter()) {
+      <div uicard class="overload__card overload__card--result">
+        <h3 class="overload__cardtitle">Differenz Vorbelastung - Nach Belastung</h3>
+        <div class="overload__result">{{ diffPreloadAfter() ?? '—' }}</div>
+        <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
+      </div>
+    }
 
-    <div uicard class="overload__card">
-      <h3 class="overload__cardtitle">Schritt 3: Belastet – nach 10 Minuten</h3>
-      <label class="overload__label">
-        <span>Höhe</span>
-        <input
-          class="overload__input"
-          type="number"
-          inputmode="numeric"
-          placeholder="mm"
-          (input)="setMm('load10MinMm', ($any($event.target).value))"
-        />
-      </label>
-    </div>
-
-    <div uicard class="overload__card">
-      <h3 class="overload__cardtitle">Schritt 4: Nach Belastung</h3>
-      <label class="overload__label">
-        <span>Höhe</span>
-        <input
-          class="overload__input"
-          type="number"
-          inputmode="numeric"
-          placeholder="mm"
-          (input)="setMm('afterLoadMm', ($any($event.target).value))"
-        />
-      </label>
-    </div>
-
-    <div uicard class="overload__card overload__card--result">
-      <h3 class="overload__cardtitle">Differenz Vorbelastung - Nach Belastung</h3>
-      <div class="overload__result">{{ diffPreloadAfter() ?? '—' }}</div>
-      <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
-    </div>
-
-    <div uicard class="overload__card overload__card--result">
-      <h3 class="overload__cardtitle">Differenz Belastet (Beginn) - Belastet (nach 10 Minuten)</h3>
-      <div class="overload__result">{{ diffLoadStart10() ?? '—' }}</div>
-      <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
-    </div>
+    @if (showDiffLoadStart10()) {
+      <div uicard class="overload__card overload__card--result">
+        <h3 class="overload__cardtitle">Differenz Belastet (Beginn) - Belastet (nach 10 Minuten)</h3>
+        <div class="overload__result">{{ diffLoadStart10() ?? '—' }}</div>
+        <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
+      </div>
+    }
   </div>
 
   <footer class="overload__footer">

@@ -6,7 +6,7 @@
   @for (section of sections; track section.id) {
     @if (section.id === 'sec-overload-1') {
       <app-check-section [model]="section">
-        <app-overload />
+        <app-overload [variant]="overloadVariant" />
       </app-check-section>
     } @else if (section.id === 'sec-battery-1') {
       <app-check-section [model]="section" hideEmptyState>

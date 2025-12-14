@@ -1,5 +1,6 @@
-import { booleanAttribute, Component, ViewEncapsulation, input } from '@angular/core';
+import { booleanAttribute, Component, ViewEncapsulation, computed, inject, input } from '@angular/core';
 import { CheckItemComponent, CheckItemModel } from '@features/sections/check-item/check-item';
+import { ChecklistState } from '@pages/checklist/state/checklist.state';
 
 export interface CheckSectionModel {
   id: string;
@@ -20,6 +21,16 @@ export interface CheckSectionModel {
 export class CheckSectionComponent {
   model = input.required<CheckSectionModel>();
   hideEmptyState = input(false, { transform: booleanAttribute });
+
+  private readonly checklistState = inject(ChecklistState, { optional: true });
+
+  readonly completedCount = computed(() => {
+    const section = this.model();
+    if (!this.checklistState) return section.completed;
+    return section.items.filter((item) => this.checklistState!.getItem(`${section.id}:${item.id}`).status !== null).length;
+  });
+
+  readonly totalCount = computed(() => this.model().total);
 
   isOpen = false;
 

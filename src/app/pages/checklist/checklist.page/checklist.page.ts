@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CheckSectionComponent, CheckSectionModel } from '@features/sections/check-section/check-section';
 import {
   ChecklistOverviewComponent,
@@ -12,6 +12,7 @@ import { OverloadComponent } from '@features/overload/overload';
 import { AdditionalItemsComponent } from '@features/additional-items/additional-items';
 import { BatteryCheckComponent } from '@features/battery-check/battery-check';
 import { SpeedCheckComponent } from '@features/speed-check/speed-check';
+import { ChecklistState } from '@pages/checklist/state/checklist.state';
 
 @Component({
   selector: 'app-checklist-page',
@@ -29,6 +30,10 @@ import { SpeedCheckComponent } from '@features/speed-check/speed-check';
   styleUrl: './checklist.page.scss'
 })
 export class ChecklistPageComponent {
+  private readonly checklistState = inject(ChecklistState);
+
+  overloadVariant: 'standard' | 'buehne' = 'standard';
+
   overview: ChecklistOverviewModel = {
     title: 'UVV-Drehleiter',
     subtitle: 'L32',
@@ -109,4 +114,9 @@ export class ChecklistPageComponent {
       ]
     }
   ];
+
+  constructor() {
+    const totalCount = this.sections.reduce((sum, section) => sum + (Number.isFinite(section.total) ? section.total : 0), 0);
+    this.checklistState.setTotalCount(totalCount);
+  }
 }
