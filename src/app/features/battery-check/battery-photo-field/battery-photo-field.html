@@ -33,29 +33,38 @@
   />
 
   <div class="battery-photo-field__footer">
-    <div class="battery-photo-field__status" role="group" [attr.aria-label]="title() + ' Status'">
-      <button
-        uibutton
-        kind="success"
-        size="s"
-        type="button"
-        [class.is-active]="status() === 'ok'"
-        [attr.aria-pressed]="status() === 'ok'"
-        (click)="setStatus('ok')"
-      >
-        OK
-      </button>
-      <button
-        uibutton
-        kind="danger"
-        size="s"
-        type="button"
-        [class.is-active]="status() === 'replace'"
-        [attr.aria-pressed]="status() === 'replace'"
-        (click)="setStatus('replace')"
-      >
-        Ersetzen
-      </button>
+    <div
+      class="battery-photo-field__status"
+      role="group"
+      [attr.aria-label]="title() + ' Status'"
+      [class.battery-photo-field__status--ok]="status() === 'ok'"
+      [class.battery-photo-field__status--replace]="status() === 'replace'"
+    >
+      <div class="battery-photo-field__status-text">Status</div>
+      <div class="battery-photo-field__status-actions">
+        <button
+          uibutton
+          kind="success"
+          size="s"
+          type="button"
+          [class.is-active]="status() === 'ok'"
+          [attr.aria-pressed]="status() === 'ok'"
+          (click)="setStatus('ok')"
+        >
+          OK
+        </button>
+        <button
+          uibutton
+          kind="danger"
+          size="s"
+          type="button"
+          [class.is-active]="status() === 'replace'"
+          [attr.aria-pressed]="status() === 'replace'"
+          (click)="setStatus('replace')"
+        >
+          Ersetzen
+        </button>
+      </div>
     </div>
 
     @if (photos().length > 0) {

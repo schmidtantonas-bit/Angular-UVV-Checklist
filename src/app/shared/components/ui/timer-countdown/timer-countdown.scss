@@ -1,0 +1,59 @@
+.timer {
+  --timer-start-bg: var(--state-ok-bg);
+  --timer-start-text: var(--state-ok-text);
+  --timer-start-border: var(--state-ok-border);
+  --timer-reset-bg: var(--state-def-bg);
+  --timer-reset-text: var(--state-def-text);
+  --timer-reset-border: var(--state-def-border);
+
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--neo-inset);
+  padding: var(--space-xs);
+  display: grid;
+  gap: var(--space-2xs);
+
+  &--done {
+    box-shadow: var(--neo-inset), inset 4px 0 0 0 var(--state-ok-border);
+  }
+
+  &__time {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+  }
+
+  &__bar {
+    height: 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--border-color) 40%, transparent);
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0;
+    transition: width var(--dur-base) ease;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-2xs);
+  }
+
+  &__start {
+    --state-ok-bg: var(--timer-start-bg);
+    --state-ok-text: var(--timer-start-text);
+    --state-ok-border: var(--timer-start-border);
+  }
+
+  &__reset {
+    --state-def-bg: var(--timer-reset-bg);
+    --state-def-text: var(--timer-reset-text);
+    --state-def-border: var(--timer-reset-border);
+  }
+}

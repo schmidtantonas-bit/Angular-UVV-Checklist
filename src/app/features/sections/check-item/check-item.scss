@@ -1,7 +1,6 @@
 /* Checklist / Item */
 .checklist {
   display: grid;
-
 }
 
 .check-item {
@@ -72,28 +71,16 @@
   }
 
   &__acc {
-    display: grid;
-    gap: var(--space-s);
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-4px);
-    max-height: 0;
-    transition:
-      max-height var(--dur-slow) ease,
-      opacity var(--dur-base) ease,
-      transform var(--dur-base) ease;
+    display: none;
 
     &.is-open {
-      opacity: 1;
-      transform: translateY(0);
-      /* großzügiger Wert für Inhalt (Textarea+Buttons+Media) */
-      max-height: 600px;
-      padding-top: var(--space-xs); /* Abstand nur im offenen Zustand */
+      display: grid;
+      gap: var(--space-s);
+      padding-top: var(--space-xs);
       padding-inline: var(--space-xs);
       background: var(--surface-alt);
       border-radius: var(--radius);
       margin-top: var(--space-s);
-
     }
   }
 

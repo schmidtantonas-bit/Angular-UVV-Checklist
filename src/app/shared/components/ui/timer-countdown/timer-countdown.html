@@ -1,0 +1,15 @@
+<!-- htmlhint doctype-first:false -->
+<article class="timer" [class.timer--done]="isDone()">
+  <div class="timer__time" aria-live="polite">{{ display() }}</div>
+  <div class="timer__bar" role="progressbar" [attr.aria-valuemin]="0" [attr.aria-valuemax]="100" [attr.aria-valuenow]="progress()">
+    <div class="timer__bar-fill" [style.width.%]="progress()"></div>
+  </div>
+  <div class="timer__actions">
+    @if (running()) {
+      <button uibutton kind="ghost" size="s" type="button" (click)="toggle()">Pause</button>
+    } @else {
+      <button uibutton class="timer__start" kind="success" size="s" type="button" (click)="toggle()">Start</button>
+    }
+    <button uibutton class="timer__reset" kind="danger" size="s" type="button" (click)="reset()">Reset</button>
+  </div>
+</article>

@@ -4,7 +4,7 @@
   box-shadow: var(--neo-inset);
   padding: var(--space-xs);
   display: grid;
-  gap: var(--space-2xs);
+  gap: var(--space-xs);
 
   &__label {
     font-size: var(--text-caption);
@@ -81,10 +81,37 @@
   }
 
   &__status {
+    --battery-photo-status-accent: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    box-shadow: var(--neo-inset), inset 4px 0 0 0 var(--battery-photo-status-accent);
+
+    &--ok {
+      --battery-photo-status-accent: var(--state-ok-border);
+    }
+
+    &--replace {
+      --battery-photo-status-accent: var(--state-def-border);
+    }
+  }
+
+  &__status-text {
+    font-size: var(--text-2xs);
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  &__status-actions {
     display: flex;
     align-items: center;
     gap: var(--space-2xs);
-    padding-block: var(--space-xs);
   }
 
   :is(.btn).is-active {

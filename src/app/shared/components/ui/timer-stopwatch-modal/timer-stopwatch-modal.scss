@@ -1,0 +1,23 @@
+.timer-modal {
+  display: grid;
+  gap: 14px;
+}
+
+.timer-modal :is(.timer) {
+  padding: 18px 18px;
+}
+
+.timer-modal :is(.timer__time) {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.timer-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+

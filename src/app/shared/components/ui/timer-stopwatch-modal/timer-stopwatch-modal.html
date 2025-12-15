@@ -1,0 +1,17 @@
+<!-- htmlhint doctype-first:false -->
+<app-ui-modal [title]="title()" [closeOnBackdrop]="false" [closeOnEscape]="false" (closed)="onClose()">
+  <div class="timer-modal">
+    <app-timer-stopwatch #stopwatch [autoStart]="autoStart()" [showControls]="false"></app-timer-stopwatch>
+
+    <div class="timer-modal__actions">
+      @if (stopwatch.running()) {
+        <button uibutton kind="ghost" size="m" type="button" (click)="stopwatch.pause()">Pause</button>
+      } @else {
+        <button uibutton kind="success" size="m" type="button" (click)="stopwatch.start()">Start</button>
+      }
+
+      <button uibutton kind="danger" size="m" type="button" (click)="stopwatch.reset()">Reset</button>
+      <button uibutton kind="primary" size="m" type="button" (click)="onAccept(stopwatch)">Übernehmen</button>
+    </div>
+  </div>
+</app-ui-modal>

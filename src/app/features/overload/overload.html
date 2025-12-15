@@ -1,5 +1,9 @@
 <!-- htmlhint doctype-first:false -->
-<article class="overload">
+<article
+  class="overload"
+  [class.overload--columns-1]="columns() === 1"
+  [class.overload--columns-2]="columns() === 2"
+>
   <header class="overload__header">
     <div>
       <h2 class="overload__title">Messwerte Überlastprüfung</h2>
@@ -7,38 +11,61 @@
     </div>
   </header>
 
+  @if (countdownStarted()) {
+    <section class="overload__countdown" aria-label="Wartezeit Countdown">
+      <div class="overload__countdown-head">
+        <div>
+          <div class="overload__countdown-title">Wartezeit</div>
+          <div class="overload__countdown-subtitle">10 Minuten</div>
+        </div>
+        <button uibutton kind="ghost" size="s" type="button" (click)="toggleCountdownHidden()">
+          {{ countdownHidden() ? 'Anzeigen' : 'Ausblenden' }}
+        </button>
+      </div>
+      <div class="overload__countdown-body" [hidden]="countdownHidden()">
+        <app-timer-countdown [durationMs]="countdownDurationMs" [autoStart]="true"></app-timer-countdown>
+      </div>
+    </section>
+  }
+
   <div class="overload__grid">
-    @for (field of activeFields(); track field) {
-      <div uicard class="overload__card">
-        <h3 class="overload__cardtitle">{{ cardFor(field).title }}</h3>
-        <label class="overload__label">
-          <span>{{ cardFor(field).label }}</span>
-          <input
-            class="overload__input"
-            type="number"
-            inputmode="numeric"
-            placeholder="mm"
-            [value]="valueFor(field) ?? ''"
-            (input)="setMm(field, ($any($event.target).value))"
-          />
-        </label>
-      </div>
-    }
-
-    @if (showDiffPreloadAfter()) {
-      <div uicard class="overload__card overload__card--result">
-        <h3 class="overload__cardtitle">Differenz Vorbelastung - Nach Belastung</h3>
-        <div class="overload__result">{{ diffPreloadAfter() ?? '—' }}</div>
-        <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
-      </div>
-    }
-
-    @if (showDiffLoadStart10()) {
-      <div uicard class="overload__card overload__card--result">
-        <h3 class="overload__cardtitle">Differenz Belastet (Beginn) - Belastet (nach 10 Minuten)</h3>
-        <div class="overload__result">{{ diffLoadStart10() ?? '—' }}</div>
-        <div class="overload__hint">Grenzwert ≤ {{ thresholdMm }} mm</div>
-      </div>
+    @for (block of visibleBlocks(); track block.id) {
+      @if (block.kind === 'step') {
+        <div uicard variant="flat" class="overload__card overload__card--input">
+          <p class="overload__steptag">Schritt {{ block.stepNumber }}</p>
+          <h3 class="overload__cardtitle">{{ block.title }}</h3>
+          <label class="overload__label">
+            <span>{{ block.label }}</span>
+            <input
+              class="overload__input"
+              type="number"
+              inputmode="numeric"
+              placeholder="mm"
+              [value]="valueFor(block.field) ?? ''"
+              (input)="setMm(block.field, ($any($event.target).value))"
+            />
+          </label>
+        </div>
+      } @else {
+        <div uicard variant="flat" class="overload__card overload__card--result">
+          <h3 class="overload__cardtitle">{{ block.title }}</h3>
+          @let evaluation = resultEvaluation(block.result);
+          <div
+            class="overload__resultwrap"
+            [class.overload__resultwrap--ok]="evaluation.status === 'ok'"
+            [class.overload__resultwrap--warning]="evaluation.status === 'invalid'"
+            [class.overload__resultwrap--error]="evaluation.status === 'overLimit'"
+          >
+            <div class="overload__result">{{ evaluation.valueMm ?? '-' }}</div>
+            @if (evaluation.status === 'invalid') {
+              <div class="overload__status overload__status--warning">Ungültiger Wert – bitte Eingaben prüfen</div>
+            }
+            @if (evaluation.status === 'overLimit') {
+              <div class="overload__status overload__status--error">Grenzwert überschritten</div>
+            }
+          </div>
+        </div>
+      }
     }
   </div>
 

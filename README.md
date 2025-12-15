@@ -7,6 +7,7 @@ Angular-Setup für die geplante Prüf-App (UVV, Überlast, Mängel, VDE). Die Ap
 - Node.js >= 22.12 (empfohlen via `nvm`)
 - npm (kommt mit Node)
 - Keine globalen Angular-CLI-Installationen nötig – `npx @angular/cli` reicht
+- Falls dein System-Node zu alt ist (z.B. Node 18): nutze `scripts/dev.sh` (lädt Node 22 lokal in `/.node/`)
 
 ### Node mit nvm (optional, aber empfohlen)
 
@@ -27,10 +28,22 @@ npm start
 
 Hinweis: `npm start` nutzt `--poll 1000`, damit Auto-Reload auch zuverlässig in OneDrive/WSL-Setups funktioniert.
 
+### Start ohne nvm (WSL/älteres Node)
+
+```bash
+./scripts/dev.sh
+```
+
 Build für Produktion:
 
 ```bash
 npm run build
+```
+
+Oder (ohne nvm):
+
+```bash
+./scripts/build.sh
 ```
 
 Tests (Vitest):

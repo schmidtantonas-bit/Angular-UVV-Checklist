@@ -1,0 +1,16 @@
+<!-- htmlhint doctype-first:false -->
+<article class="timer">
+  <div class="timer__time" aria-live="polite">{{ display() }}</div>
+  @if (showControls()) {
+    <div class="timer__actions">
+      @if (!running()) {
+        <button uibutton class="timer__start" kind="success" size="s" type="button" (click)="start()">
+          Start
+        </button>
+      } @else {
+        <button uibutton kind="ghost" size="s" type="button" (click)="pause()">Pause</button>
+      }
+      <button uibutton class="timer__reset" kind="danger" size="s" type="button" (click)="reset()">Reset</button>
+    </div>
+  }
+</article>

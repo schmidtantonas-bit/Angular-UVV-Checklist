@@ -1,9 +1,12 @@
-import { Component, ViewEncapsulation, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, Injector, ViewEncapsulation, computed, effect, inject, input, signal } from '@angular/core';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
-import { diffMm, OVERLOAD_THRESHOLD_MM, withinThresholdMm } from './overload.domain';
+import { diffEvaluationMm, OVERLOAD_THRESHOLD_MM, withinThresholdMm, type DiffEvaluationMm } from './overload.domain';
 import { OVERLOAD_VARIANTS, type OverloadVariantId } from '@config/overload/overload-variants';
+import { OVERLOAD_UI_LAYOUTS } from '@config/overload/overload-layout';
+import { OVERLOAD_FIELD_UI, OVERLOAD_RESULTS_UI, type OverloadResultId } from '@config/overload/overload-ui';
+import { TimerCountdownComponent } from '@ui/timer-countdown/timer-countdown';
 import type { OverloadField, OverloadValues } from './overload.types';
 
 const OVERLOAD_ITEM_KEY = 'overload';
@@ -35,29 +38,45 @@ function normalizeValuesForFields(values: OverloadValues, activeFields: readonly
   };
 }
 
-const OVERLOAD_FIELD_CARDS: Record<OverloadField, { title: string; label: string }> = {
-  preloadMm: { title: 'Schritt 1: Nach der Vorbelastung', label: 'Höhe' },
-  loadStartMm: { title: 'Schritt 2: Belastet – Beginn', label: 'Höhe' },
-  load10MinMm: { title: 'Schritt 3: Belastet – nach 10 Minuten', label: 'Höhe' },
-  afterLoadMm: { title: 'Schritt 4: Nach Belastung', label: 'Höhe' }
-};
+type OverloadBlockView =
+  | {
+      id: string;
+      kind: 'step';
+      field: OverloadField;
+      stepNumber: number;
+      title: string;
+      label: string;
+    }
+  | {
+      id: string;
+      kind: 'result';
+      result: OverloadResultId;
+      title: string;
+    };
 
 @Component({
   selector: 'app-overload',
   standalone: true,
-  imports: [UiCardDirective, UiButtonDirective],
+  imports: [UiCardDirective, UiButtonDirective, TimerCountdownComponent],
   templateUrl: './overload.html',
   styleUrl: './overload.scss',
   encapsulation: ViewEncapsulation.None
 })
 export class OverloadComponent {
+  private readonly injector = inject(Injector);
   private readonly checklistState = inject(ChecklistState, { optional: true });
 
   variant = input<OverloadVariantId>('standard');
 
   readonly activeFields = computed(() => OVERLOAD_VARIANTS[this.variant()].fields);
+  readonly layout = computed(() => OVERLOAD_UI_LAYOUTS[this.variant()] ?? OVERLOAD_UI_LAYOUTS.standard);
+  readonly columns = computed(() => this.layout().columns);
 
   readonly thresholdMm = OVERLOAD_THRESHOLD_MM;
+  readonly countdownDurationMs = 10 * 60 * 1000;
+
+  readonly countdownStarted = signal(false);
+  readonly countdownHidden = signal(false);
 
   private readonly initialValues = normalizeValuesForFields(
     coerceOverloadValues(
@@ -68,24 +87,50 @@ export class OverloadComponent {
 
   readonly values = signal<OverloadValues>(this.initialValues);
 
-  readonly showDiffPreloadAfter = computed(() => {
-    const fields = this.activeFields();
-    return fields.includes('preloadMm') && fields.includes('afterLoadMm');
+  readonly visibleBlocks = computed<OverloadBlockView[]>(() => {
+    const fields = new Set(this.activeFields());
+    let stepNumber = 1;
+
+    return this.layout().blocks.reduce<OverloadBlockView[]>((blocks, block) => {
+      if (block.kind === 'step') {
+        if (!fields.has(block.field)) return blocks;
+        const meta = OVERLOAD_FIELD_UI[block.field];
+
+        blocks.push({
+          id: `step-${block.field}`,
+          kind: 'step',
+          field: block.field,
+          stepNumber: stepNumber++,
+          title: meta.title,
+          label: meta.label
+        });
+
+        return blocks;
+      }
+
+      const meta = OVERLOAD_RESULTS_UI[block.result];
+      const allRequiredFieldsVisible = meta.requires.every((field) => fields.has(field));
+      if (!allRequiredFieldsVisible) return blocks;
+
+      blocks.push({
+        id: `result-${block.result}`,
+        kind: 'result',
+        result: block.result,
+        title: meta.title
+      });
+
+      return blocks;
+    }, []);
   });
 
-  readonly showDiffLoadStart10 = computed(() => {
-    const fields = this.activeFields();
-    return fields.includes('loadStartMm') && fields.includes('load10MinMm');
-  });
-
-  readonly diffPreloadAfter = computed(() => {
+  readonly diffPreloadAfterEvaluation = computed(() => {
     const { preloadMm, afterLoadMm } = this.values();
-    return diffMm(preloadMm, afterLoadMm);
+    return diffEvaluationMm(preloadMm, afterLoadMm, this.thresholdMm);
   });
 
-  readonly diffLoadStart10 = computed(() => {
+  readonly diffLoadStart10Evaluation = computed(() => {
     const { loadStartMm, load10MinMm } = this.values();
-    return diffMm(loadStartMm, load10MinMm);
+    return diffEvaluationMm(loadStartMm, load10MinMm, this.thresholdMm);
   });
 
   setMm(field: OverloadField, raw: string) {
@@ -93,20 +138,27 @@ export class OverloadComponent {
     this.values.update((current) => ({ ...current, [field]: Number.isFinite(next) ? next : null }));
   }
 
-  cardFor(field: OverloadField) {
-    return OVERLOAD_FIELD_CARDS[field];
-  }
-
   valueFor(field: OverloadField): number | null {
     return this.values()[field];
+  }
+
+  resultEvaluation(result: OverloadResultId): DiffEvaluationMm {
+    switch (result) {
+      case 'diffPreloadAfter':
+        return this.diffPreloadAfterEvaluation();
+      case 'diffLoadStart10':
+        return this.diffLoadStart10Evaluation();
+      default:
+        return { valueMm: null, status: 'empty' };
+    }
   }
 
   save() {
     const values = normalizeValuesForFields(this.values(), this.activeFields());
     this.values.set(values);
 
-    const diffPreloadAfterMm = this.diffPreloadAfter();
-    const diffLoadStart10Mm = this.diffLoadStart10();
+    const diffPreloadAfterMm = this.diffPreloadAfterEvaluation().valueMm;
+    const diffLoadStart10Mm = this.diffLoadStart10Evaluation().valueMm;
 
     this.checklistState?.setItemValue(OVERLOAD_ITEM_KEY, OVERLOAD_VALUES_KEY, values);
     this.checklistState?.setItemResult(OVERLOAD_ITEM_KEY, OVERLOAD_RESULTS_KEY, {
@@ -125,12 +177,49 @@ export class OverloadComponent {
       load10MinMm: null,
       afterLoadMm: null
     });
+    this.countdownStarted.set(false);
+    this.countdownHidden.set(false);
   }
 
-  constructor() {
-    effect(() => {
-      const fields = this.activeFields();
-      this.values.update((current) => normalizeValuesForFields(current, fields));
-    });
+  ngOnInit(): void {
+    effect(
+      () => {
+        const fields = this.activeFields();
+        this.values.update((current) => normalizeValuesForFields(current, fields));
+      },
+      { injector: this.injector }
+    );
+
+    effect(
+      () => {
+        const fields = this.activeFields();
+        const hasCountdownFields = fields.includes('loadStartMm') && fields.includes('load10MinMm');
+        if (!hasCountdownFields) {
+          this.countdownStarted.set(false);
+          this.countdownHidden.set(false);
+          return;
+        }
+
+        if (this.countdownStarted()) return;
+
+        const { loadStartMm, load10MinMm } = this.values();
+        if (load10MinMm != null) return;
+        if (!isCompleteHeightMm(loadStartMm)) return;
+
+        this.countdownStarted.set(true);
+        this.countdownHidden.set(false);
+      },
+      { injector: this.injector }
+    );
   }
+
+  toggleCountdownHidden() {
+    this.countdownHidden.update((current) => !current);
+  }
+}
+
+function isCompleteHeightMm(valueMm: number | null): boolean {
+  if (valueMm == null) return false;
+  if (!Number.isInteger(valueMm)) return false;
+  return valueMm >= 10000 && valueMm <= 99999;
 }

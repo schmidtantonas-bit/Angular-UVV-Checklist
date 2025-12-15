@@ -22,14 +22,27 @@
 
         <label class="speed-check__label">
           <span>Zeit (s)</span>
-          <input
-            class="speed-check__input"
-            type="number"
-            inputmode="numeric"
-            placeholder="Sekunden"
-            [value]="row.measuredSec ?? ''"
-            (input)="setSeconds(row.key, $any($event.target).value)"
-          />
+          <div class="speed-check__inputrow">
+            <input
+              class="speed-check__input"
+              type="number"
+              inputmode="numeric"
+              placeholder="Sekunden"
+              [value]="row.measuredSec ?? ''"
+              (input)="setSeconds(row.key, $any($event.target).value)"
+            />
+            <button
+              uibutton
+              class="speed-check__measure"
+              kind="success"
+              size="s"
+              type="button"
+              [disabled]="measuring() != null"
+              (click)="openMeasurement(row.key, row.label)"
+            >
+              Messen
+            </button>
+          </div>
         </label>
 
         <div class="speed-check__meta">
@@ -61,3 +74,12 @@
     <span class="speed-check__note">Noch nicht gespeichert – erscheint nicht im Report</span>
   </footer>
 </article>
+
+@if (measuring()) {
+  <app-timer-stopwatch-modal
+    [title]="measuring()!.label"
+    [autoStart]="true"
+    (acceptedMs)="acceptMeasurement($event)"
+    (closed)="closeMeasurement()"
+  ></app-timer-stopwatch-modal>
+}

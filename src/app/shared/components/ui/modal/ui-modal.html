@@ -1,0 +1,18 @@
+<!-- htmlhint doctype-first:false -->
+<div class="ui-modal__backdrop" (click)="onBackdropClick()"></div>
+
+<div class="ui-modal" role="dialog" aria-modal="true" [attr.aria-label]="title() ?? 'Dialog'" (click)="$event.stopPropagation()">
+  @if (title()) {
+    <header class="ui-modal__header">
+      <div class="ui-modal__title">{{ title() }}</div>
+      <button class="ui-modal__close" type="button" (click)="requestClose()" aria-label="Schließen">
+        ×
+      </button>
+    </header>
+  }
+
+  <div class="ui-modal__body">
+    <ng-content></ng-content>
+  </div>
+</div>
+

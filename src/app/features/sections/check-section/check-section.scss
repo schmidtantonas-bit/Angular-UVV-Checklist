@@ -34,18 +34,8 @@
   }
 
   &__content {
-    --accordion-duration: var(--dur-slow);
-
     display: grid;
     gap: var(--space-s);
-    max-height: 999px;
-    opacity: 1;
-    visibility: visible;
-    overflow: hidden;
-    transition:
-      max-height var(--accordion-duration) ease-in-out,
-      opacity var(--accordion-duration) ease-in-out,
-      visibility var(--accordion-duration) ease-in-out;
   }
 
   &__items {
@@ -54,8 +44,6 @@
   }
 
   &:not(.is-open) &__content {
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
+    display: none;
   }
 }

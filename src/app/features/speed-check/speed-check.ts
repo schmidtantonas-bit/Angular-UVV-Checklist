@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, computed, inject, signal } from '@angular/core';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
+import { TimerStopwatchModalComponent } from '@ui/timer-stopwatch-modal/timer-stopwatch-modal';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
 import {
   DEFAULT_SPEED_CHECK_TABLE,
@@ -31,7 +32,7 @@ function coerceMeasurements(value: unknown): SpeedCheckMeasurements {
 @Component({
   selector: 'app-speed-check',
   standalone: true,
-  imports: [UiCardDirective, UiButtonDirective],
+  imports: [UiCardDirective, UiButtonDirective, TimerStopwatchModalComponent],
   templateUrl: './speed-check.html',
   styleUrl: './speed-check.scss',
   encapsulation: ViewEncapsulation.None
@@ -50,9 +51,29 @@ export class SpeedCheckComponent {
   readonly okCount = computed(() => this.results().filter((row) => row.withinTolerance === true).length);
   readonly filledCount = computed(() => this.results().filter((row) => row.measuredSec != null).length);
 
+  readonly measuring = signal<{ key: SpeedCheckKey; label: string } | null>(null);
+
   setSeconds(field: SpeedCheckKey, raw: string) {
     const next = raw.trim() === '' ? null : Number(raw);
     this.values.update((current) => ({ ...current, [field]: Number.isFinite(next) ? next : null }));
+  }
+
+  openMeasurement(key: SpeedCheckKey, label: string) {
+    if (this.measuring() != null) return;
+    this.measuring.set({ key, label });
+  }
+
+  closeMeasurement() {
+    this.measuring.set(null);
+  }
+
+  acceptMeasurement(ms: number) {
+    const context = this.measuring();
+    if (!context) return;
+
+    const seconds = Math.round((ms / 1000) * 100) / 100;
+    this.values.update((current) => ({ ...current, [context.key]: seconds }));
+    this.measuring.set(null);
   }
 
   save() {
@@ -69,5 +90,6 @@ export class SpeedCheckComponent {
 
   reset() {
     this.values.set(createEmptyValues());
+    this.measuring.set(null);
   }
 }
