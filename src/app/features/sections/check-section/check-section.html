@@ -5,6 +5,7 @@
   class="check-section container"
   data-ui="check-section"
   [class.is-open]="isOpen"
+  [class.check-section--completed]="isCompleted()"
   [attr.aria-labelledby]="'check-section-title-' + section.id"
 >
   <h2 class="check-section__heading" [id]="'check-section-title-' + section.id">

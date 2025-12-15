@@ -2,6 +2,17 @@
 <footer class="layout-footer" data-ui="footer">
   <div class="container layout-footer__container" data-ui="footer-container">
     <div data-ui="footer-content">Footer</div>
-    <div class="layout-footer__actions" data-ui="footer-actions"></div>
+    <div class="layout-footer__actions" data-ui="footer-actions">
+      <button
+        uibutton
+        type="button"
+        kind="primary"
+        class="layout-footer__action-print"
+        data-ui="footer-action-pdf4show"
+        (click)="print()"
+      >
+        PDF anzeigen
+      </button>
+    </div>
   </div>
 </footer>

@@ -22,3 +22,9 @@
     align-items: flex-start;
   }
 }
+
+@media print {
+  .layout-footer__action-print {
+    display: none !important;
+  }
+}

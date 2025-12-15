@@ -1,5 +1,15 @@
 <!-- htmlhint doctype-first:false -->
-<section class="container" data-ui="page-protocol">
-  <h2>Protocol Placeholder</h2>
-  <p>Protokoll-Ansicht kommt hierhin.</p>
-</section>
+<article class="protocol container" data-ui="page-protocol">
+  <section class="protocol__section protocol__section--customer" data-ui="protocol-customer-data">
+    <h2 class="protocol__section-title">Kundendaten</h2>
+
+    <dl class="protocol__kv" data-ui="protocol-customer-data-kv">
+      @for (row of customerRows(); track row.key) {
+        <div class="protocol__kv-row" [attr.data-ui]="'protocol-customer-data-row-' + row.key">
+          <dt class="protocol__kv-label">{{ row.label }}</dt>
+          <dd class="protocol__kv-value">{{ row.value }}</dd>
+        </div>
+      }
+    </dl>
+  </section>
+</article>

@@ -38,11 +38,6 @@ export const routes: Routes = [
             (m) => m.ProtocolPageComponent
           ),
       },
-      {
-        path: 'pdf',
-        loadComponent: () =>
-          import('./pages/pdf/pdf.page/pdf.page').then((m) => m.PdfPageComponent),
-      },
     ],
   },
   {

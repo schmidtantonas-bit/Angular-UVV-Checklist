@@ -2,6 +2,12 @@
   display: grid;
   box-shadow: var(--neo-outset);
   border-radius: var(--radius);
+  background: var(--surface);
+  transition: box-shadow var(--dur-base) ease;
+
+  &--completed {
+    box-shadow: var(--neo-inset), inset 4px 0 0 0 var(--state-ok-border);
+  }
 
   &__heading {
     margin: 0;

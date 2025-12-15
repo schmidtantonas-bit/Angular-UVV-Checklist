@@ -32,6 +32,17 @@ export class CheckSectionComponent {
 
   readonly totalCount = computed(() => this.model().total);
 
+  readonly isCompleted = computed(() => {
+    const section = this.model();
+    if (section.items.length === 0) return false;
+
+    if (!this.checklistState) {
+      return section.items.every((item) => item.status !== null);
+    }
+
+    return section.items.every((item) => this.checklistState!.getItem(`${section.id}:${item.id}`).status !== null);
+  });
+
   isOpen = false;
 
   toggle() {

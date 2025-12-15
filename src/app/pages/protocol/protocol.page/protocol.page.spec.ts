@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChecklistState } from '@pages/checklist/state/checklist.state';
 
 import { ProtocolPageComponent } from './protocol.page';
 
@@ -8,7 +9,8 @@ describe('ProtocolPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProtocolPageComponent]
+      imports: [ProtocolPageComponent],
+      providers: [ChecklistState]
     })
     .compileComponents();
 
