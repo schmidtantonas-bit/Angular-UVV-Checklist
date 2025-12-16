@@ -1,9 +1,8 @@
 :host {
   display: block;
   width: 100%;
-  max-width: var(--container-max-px);
-  margin: 0 auto var(--space-xs);
-  padding: 0 var(--container-pad-inline);
+  margin: 0;
+  padding: 0;
 }
 
 .progress {

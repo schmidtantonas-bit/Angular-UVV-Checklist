@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CheckSectionComponent, CheckSectionModel } from '@features/sections/check-section/check-section';
 import {
   ChecklistOverviewComponent,
@@ -13,6 +14,9 @@ import { AdditionalItemsComponent } from '@features/additional-items/additional-
 import { BatteryCheckComponent } from '@features/battery-check/battery-check';
 import { SpeedCheckComponent } from '@features/speed-check/speed-check';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { getDeviceConfig, isDeviceType, type DeviceType } from '@config-devices';
+import { buildChecklistConfig } from '@config/build/build-checklist-config';
+import { isInspectionType, type InspectionType } from '@config-inspections';
 
 @Component({
   selector: 'app-checklist-page',
@@ -30,93 +34,36 @@ import { ChecklistState } from '@pages/checklist/state/checklist.state';
   styleUrl: './checklist.page.scss'
 })
 export class ChecklistPageComponent {
+  private readonly route = inject(ActivatedRoute);
   private readonly checklistState = inject(ChecklistState);
 
-  overloadVariant: 'standard' | 'buehne' = 'standard';
+  readonly deviceType: DeviceType;
+  readonly inspectionType: InspectionType;
 
-  overview: ChecklistOverviewModel = {
-    title: 'UVV-Drehleiter',
-    subtitle: 'L32',
-    imageSrc: '/assets/images/L32.png',
-    imageAlt: 'Drehleiter'
-  };
+  overloadVariant: 'standard' | 'buehne';
 
-  customerData: ChecklistCustomerDataModel = {
-    inspectionType: 'Inspektion Basic',
-    customerName: '',
-    address: '',
-    orderNumber: '',
-    licensePlate: '',
-    deviceType: 'L32',
-    bodyNumber: '',
-    mileageKm: '',
-    operatingHours: '',
-    serviceTechnician: '',
-    date: '',
-    location: ''
-  };
-
-  sections: CheckSectionModel[] = [
-    {
-      id: 'sec-overload-1',
-      title: 'Überlastprüfung',
-      total: 4,
-      completed: 0,
-      items: [
-        { id: '10-01', title: 'Sicherheitseinrichtungen', status: null },
-        { id: '10-02', title: 'Gebrauchstauglichkeit', status: null },
-        { id: '10-03', title: 'Anstoßsicherungen', status: null },
-        { id: '10-04', title: 'Seiteneinstellvorrichtung', status: null }
-      ]
-    },
-    {
-      id: 'sec-battery-1',
-      title: 'Batterien',
-      total: 4,
-      completed: 0,
-      items: [
-        { id: '3-02', title: 'Batterie / Batteriefach', status: null },
-        { id: '3-03', title: 'Allgemeiner Zustand Starterbatterien', status: null },
-        { id: '3-05', title: 'Zustand der Lagerung und Befestigung der Batterien', status: null }
-      ]
-    },
-    {
-      id: 'sec-misc-1',
-      title: 'Sonstiges',
-      total: 0,
-      completed: 0,
-      items: []
-    },
-    {
-      id: 'sec-speed-1',
-      title: 'Geschwindigkeiten',
-      total: 0,
-      completed: 0,
-      items: []
-    },
-    {
-      id: 'sec-1',
-      title: 'Fahrerhaus Innen',
-      total: 11,
-      completed: 0,
-      items: [
-        { id: '1-01', title: 'Akustische und optische Warneinrichtungen', status: null }]
-    },
-    {
-      id: 'sec-2',
-      title: 'Fahrerhaus Außen',
-      total: 4,
-      completed: 0,
-      items: [
-        { id: '2-01', title: 'Beleuchtungseinrichtungen am Gesamtfahrzeug (Chassis + Aufbau)', status: null },
-        { id: '2-02', title: 'Abdeckkappen Ladeerhaltung', status: null },
-        { id: '2-03', title: 'Beschilderung am Fahrerhaus', status: null }
-      ]
-    }
-  ];
+  overview: ChecklistOverviewModel;
+  customerData: ChecklistCustomerDataModel;
+  sections: CheckSectionModel[];
 
   constructor() {
-    const totalCount = this.sections.reduce((sum, section) => sum + (Number.isFinite(section.total) ? section.total : 0), 0);
+    const rawDeviceType = this.route.snapshot.queryParamMap.get('deviceType') ?? 'l32';
+    const rawInspectionType = this.route.snapshot.queryParamMap.get('inspectionType') ?? 'uvv';
+
+    this.deviceType = isDeviceType(rawDeviceType) ? rawDeviceType : 'l32';
+    this.inspectionType = isInspectionType(rawInspectionType) ? rawInspectionType : 'uvv';
+
+    const checklistConfig = buildChecklistConfig({ deviceType: this.deviceType, inspectionType: this.inspectionType });
+
+    this.overloadVariant = this.deviceType === 'b32' ? 'buehne' : 'standard';
+    this.overview = checklistConfig.overview;
+    this.sections = checklistConfig.sections;
+    this.customerData = checklistConfig.customerData;
+
+    const totalCount = this.sections.reduce(
+      (sum, section) => sum + (Number.isFinite(section.total) ? section.total : 0),
+      0
+    );
     this.checklistState.setTotalCount(totalCount);
   }
 }

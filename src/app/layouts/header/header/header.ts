@@ -1,10 +1,12 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '@app/layouts/progress-bar/progress-bar/progress-bar';
+import { UiButtonDirective } from '@ui/button/ui-button.directive';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ProgressBarComponent],
+  imports: [ProgressBarComponent, RouterLink, UiButtonDirective],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })

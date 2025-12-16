@@ -31,7 +31,6 @@
   font-weight: 650;
   opacity: 0.75;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .wizard__progress {
@@ -45,7 +44,8 @@
 }
 
 .wizard__title {
-  margin: 0;
+  margin-top: var(--space-s);
+  font-size: var(--text-xl);
 }
 
 .wizard__subtitle {
@@ -64,7 +64,7 @@
 }
 
 .wizard__grid--inspections {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 @media (max-width: calc(var(--container-max-px) - var(--space-2xl))) {

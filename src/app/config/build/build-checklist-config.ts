@@ -9,11 +9,22 @@ export function buildChecklistConfig(params: {
   const device = getDeviceConfig(params.deviceType);
   const inspection = getInspectionConfig(params.inspectionType);
 
+  const overview = inspection.overview ?? device.overview;
+  const sections =
+    inspection.sectionMode === 'replace'
+      ? [...(inspection.extraSections ?? [])]
+      : [...device.sections, ...(inspection.extraSections ?? [])];
+
   return {
     deviceType: params.deviceType,
     inspectionType: params.inspectionType,
-    overview: device.overview,
-    sections: [...device.sections, ...(inspection.extraSections ?? [])]
+    overview,
+    customerData: {
+      ...(device.customerData ?? {}),
+      ...(inspection.customerData ?? {}),
+      deviceType: device.overview.subtitle,
+      inspectionType: inspection.label
+    },
+    sections
   };
 }
-

@@ -18,7 +18,7 @@
     border-radius: var(--radius);
     background: var(--surface-alt);
     border: 2px dashed color-mix(in oklab, var(--border-color), transparent 40%);
-    min-height: 160px;
+    min-height: 300px;
     padding: var(--space-s);
     display: grid;
     place-items: center;
@@ -60,16 +60,6 @@
     display: block;
     position: absolute;
     inset: 0;
-  }
-
-  &__img-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface), transparent 85%) 0%,
-      color-mix(in oklab, var(--surface), transparent 35%) 100%
-    );
   }
 
   &__footer {

@@ -6,7 +6,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'checklist'
+    redirectTo: 'wizard'
   },
   {
     path: 'wizard',

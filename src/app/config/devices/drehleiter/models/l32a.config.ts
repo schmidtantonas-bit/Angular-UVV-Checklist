@@ -3,7 +3,7 @@ import { DREHLEITER_BASE_SECTIONS } from '../base.config';
 
 // TODO: Modell-spezifische Anpassungen ergänzen.
 export const L32A_DEVICE_CONFIG: DeviceConfig = {
-  type: 'l32',
+  type: 'l32a',
   overview: {
     title: 'UVV-Drehleiter',
     subtitle: 'L32A',

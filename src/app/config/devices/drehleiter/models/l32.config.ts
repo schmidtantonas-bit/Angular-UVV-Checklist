@@ -9,6 +9,20 @@ export const L32_DEVICE_CONFIG: DeviceConfig = {
     imageSrc: '/assets/images/L32.png',
     imageAlt: 'Drehleiter'
   },
+  customerData: {
+    inspectionType: 'Inspektion Basic',
+    customerName: '',
+    address: '',
+    orderNumber: '',
+    licensePlate: '',
+    deviceType: 'L32',
+    bodyNumber: '',
+    mileageKm: '',
+    operatingHours: '',
+    serviceTechnician: '',
+    date: '',
+    location: ''
+  },
   sections: DREHLEITER_BASE_SECTIONS.map((section) => ({
     ...section,
     id: section.id.replace('sec-l-', 'sec-l32-')

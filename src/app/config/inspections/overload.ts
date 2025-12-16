@@ -2,7 +2,14 @@ import type { InspectionConfig } from './types';
 
 export const OVERLOAD_INSPECTION_CONFIG: InspectionConfig = {
   type: 'overload',
-  label: 'Überlast',
+  label: 'Überlastprüfung',
+  overview: {
+    title: 'Überlastprüfung',
+    subtitle: '',
+    imageSrc: '/assets/images/overload-bild.png',
+    imageAlt: 'Überlastprüfung'
+  },
+  sectionMode: 'replace',
   extraSections: [
     {
       id: 'sec-overload-1',

@@ -1,4 +1,5 @@
 import type { DeviceConfig } from '../../types';
+import { BUHNE_BASE_SECTIONS } from '../base.config';
 
 export const B32_DEVICE_CONFIG: DeviceConfig = {
   type: 'b32',
@@ -8,17 +9,21 @@ export const B32_DEVICE_CONFIG: DeviceConfig = {
     imageSrc: '/assets/images/B32.png',
     imageAlt: 'Bühne'
   },
-  sections: [
-    {
-      id: 'sec-b32-1',
-      title: 'Bühne – Grundprüfung',
-      total: 3,
-      completed: 0,
-      items: [
-        { id: 'B-01', title: 'Not-Aus Funktion', status: null },
-        { id: 'B-02', title: 'Abstützung geprüft', status: null },
-        { id: 'B-03', title: 'Warnhinweise vorhanden', status: null }
-      ]
-    }
-  ]
+  customerData: {
+    customerName: '',
+    address: '',
+    orderNumber: '',
+    licensePlate: '',
+    deviceType: 'B32',
+    bodyNumber: '',
+    mileageKm: '',
+    operatingHours: '',
+    serviceTechnician: '',
+    date: '',
+    location: ''
+  },
+  sections: BUHNE_BASE_SECTIONS.map((section) => ({
+    ...section,
+    id: section.id.startsWith('sec-b-') ? section.id.replace('sec-b-', 'sec-b32-') : section.id
+  }))
 };
