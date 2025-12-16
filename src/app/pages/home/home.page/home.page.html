@@ -1,5 +1,78 @@
 <!-- htmlhint doctype-first:false -->
-<section class="container" data-ui="page-home">
-  <h2>Home Wizard Placeholder</h2>
-  <p>Wizard kommt hierhin.</p>
+<section class="wizard" data-ui="page-home">
+  <div uicard class="wizard__panel" variant="raised">
+    <div class="wizard__panelhead">
+      <img class="wizard__logo" src="/assets/svg/rosenbauer-logo.svg" alt="Rosenbauer Logo" />
+      <div class="wizard__step">Schritt {{ stepNumber() }} von 3</div>
+    </div>
+
+    <app-progress-bar class="wizard__progress" [value]="stepProgress()" />
+
+    <header class="wizard__header">
+      <h2 class="wizard__title">Was möchtest du prüfen?</h2>
+      @if (stepNumber() === 1) {
+        <p class="wizard__subtitle">Wähle zuerst den Fahrzeugtyp aus.</p>
+      } @else if (stepNumber() === 2) {
+        <p class="wizard__subtitle">Wähle jetzt das Fahrzeugmodell aus.</p>
+      } @else {
+        <p class="wizard__subtitle">Wähle jetzt die Prüfungsart aus.</p>
+      }
+    </header>
+
+    @if (selectedFamily() === null) {
+      <div class="wizard__grid">
+        @for (family of families; track family.id) {
+          <button
+            uicard
+            class="wizard__card wizard__card--choice"
+            type="button"
+            (click)="selectFamily(family.id)"
+          >
+            <img class="wizard__image" [src]="family.imageSrc" [alt]="family.imageAlt" />
+            <div class="wizard__cardtitle">{{ family.title }}</div>
+          </button>
+        }
+      </div>
+    } @else if (selectedModel() === null) {
+      <div class="wizard__grid">
+        @for (model of modelsByFamily[selectedFamily()!]; track model.id) {
+          <button
+            uicard
+            class="wizard__card wizard__card--choice"
+            type="button"
+            (click)="selectModel(model)"
+          >
+            <img class="wizard__image" [src]="model.imageSrc" [alt]="model.imageAlt" />
+            <div class="wizard__cardtitle">{{ model.title }}</div>
+            @if (model.subtitle) {
+              <div class="wizard__cardsubtitle">{{ model.subtitle }}</div>
+            }
+          </button>
+        }
+      </div>
+
+      <div class="wizard__footer">
+        <button uibutton kind="ghost" class="wizard__back" type="button" (click)="back()">Zurück</button>
+      </div>
+    } @else {
+      <div class="wizard__grid wizard__grid--inspections">
+        @for (inspection of inspections; track inspection.id) {
+          <button
+            uicard
+            class="wizard__card wizard__card--choice"
+            type="button"
+            (click)="startChecklist(inspection.id)"
+          >
+            <img class="wizard__image" [src]="inspection.imageSrc" [alt]="inspection.imageAlt" />
+            <div class="wizard__cardtitle">{{ inspection.title }}</div>
+            <div class="wizard__cardsubtitle">{{ inspection.subtitle }}</div>
+          </button>
+        }
+      </div>
+
+      <div class="wizard__footer">
+        <button uibutton kind="ghost" class="wizard__back" type="button" (click)="back()">Zurück</button>
+      </div>
+    }
+  </div>
 </section>
