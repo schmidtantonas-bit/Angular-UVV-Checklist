@@ -3,6 +3,8 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  padding-bottom: var(--space-xs);
+  padding-inline: var(--container-pad-inline);
 }
 
 .progress {
@@ -24,4 +26,10 @@
   background: var(--def);
   transition: width var(--dur-base) ease;
   border-radius: inherit;
+}
+/* ab 767px */
+@media (max-width: 767px) {
+  :host {
+    padding-inline: var(--space-s);
+  }
 }

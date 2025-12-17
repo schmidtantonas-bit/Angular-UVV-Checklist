@@ -3,6 +3,8 @@
   background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--neo-outset);
+  margin-inline: var(--space-s);
+
 
   &__container {
     display: flex;

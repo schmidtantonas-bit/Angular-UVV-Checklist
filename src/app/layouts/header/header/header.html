@@ -5,10 +5,12 @@
       <img class="header__logo-img" src="/assets/svg/rosenbauer-logo.svg" alt="Rosenbauer Logo" />
     </div>
     <div class="header__actions" data-ui="header-actions">
-      <button uibutton kind="ghost" size="s" type="button" [routerLink]="['/wizard']">Zum Menü</button>
+      <button uibutton kind="ghost" size="s" class="header__menu-btn" type="button" [routerLink]="['/wizard']">
+        Zum Menü
+      </button>
     </div>
   </div>
   @if (progress() !== null) {
-    <app-progress-bar data-ui="header-progress" [value]="progress() ?? 0" />
+    <app-progress-bar data-ui="header-progress container" [value]="progress() ?? 0" />
   }
 </header>
