@@ -9,13 +9,12 @@
     <app-progress-bar class="wizard__progress" [value]="stepProgress()" />
 
     <header class="wizard__header">
-      <h2 class="wizard__title">Was möchtest du prüfen?</h2>
       @if (stepNumber() === 1) {
-        <p class="wizard__subtitle">Wähle zuerst den Fahrzeugtyp aus.</p>
+        <h2 class="wizard__title">Wähle zuerst den Fahrzeugtyp aus.</h2>
       } @else if (stepNumber() === 2) {
-        <p class="wizard__subtitle">Wähle jetzt das Fahrzeugmodell aus.</p>
+        <h2 class="wizard__title">Wähle jetzt das Fahrzeugmodell aus.</h2>
       } @else {
-        <p class="wizard__subtitle">Wähle jetzt die Prüfungsart aus.</p>
+        <h2 class="wizard__title">Wähle jetzt die Prüfungsart aus.</h2>
       }
     </header>
 

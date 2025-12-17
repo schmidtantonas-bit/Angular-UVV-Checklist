@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '@app/layouts/header/header/header';
 import { FooterComponent } from '@app/layouts/footer/footer/footer';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { ChecklistPersistence } from '@pages/checklist/state/checklist.persistence';
 
 @Component({
   selector: 'app-main-layout',
@@ -10,7 +11,7 @@ import { ChecklistState } from '@pages/checklist/state/checklist.state';
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
-  providers: [ChecklistState]
+  providers: [ChecklistState, ChecklistPersistence]
 })
 export class MainLayoutComponent {
   private readonly checklistState = inject(ChecklistState);

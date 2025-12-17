@@ -87,13 +87,34 @@
 
       <div class="check-item__footer" data-ui="check-item-footer">
         @if (showMedia()) {
-          <app-check-item-media [photos]="photos()" (photosChange)="photos.set($event)"></app-check-item-media>
+          <app-check-item-media [photos]="photos()" (photosChange)="setPhotos($event)"></app-check-item-media>
         }
 
         @if (showSaveButton()) {
-          <button uibutton kind="success" size="m" type="button" disabled data-ui="check-item-save">
-            Speichern
-          </button>
+          <div class="check-item__footer-actions">
+            <button
+              uibutton
+              kind="success"
+              size="s"
+              type="button"
+              [disabled]="!dirty()"
+              (click)="save()"
+              data-ui="check-item-save"
+            >
+              Speichern
+            </button>
+            <button
+              uibutton
+              kind="ghost"
+              size="s"
+              type="button"
+              [disabled]="note().trim() === '' && photos().length === 0"
+              (click)="clearDefect()"
+              data-ui="check-item-clear"
+            >
+              Löschen
+            </button>
+          </div>
         }
       </div>
     }

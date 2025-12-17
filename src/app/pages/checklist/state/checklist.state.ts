@@ -14,6 +14,14 @@ export interface ChecklistStateSnapshot {
   items: Record<string, ChecklistItemState>;
 }
 
+export type PersistedChecklistItemState = Omit<ChecklistItemState, 'photos'>;
+
+export interface PersistedChecklistStateSnapshot {
+  version: 1;
+  totalCount: number;
+  items: Record<string, PersistedChecklistItemState>;
+}
+
 function emptyItemState(): ChecklistItemState {
   return {
     status: null,
@@ -47,6 +55,45 @@ export class ChecklistState {
       totalCount: this.totalCountSignal(),
       items: this.itemsSignal()
     };
+  }
+
+  persistedSnapshot(): PersistedChecklistStateSnapshot {
+    const items = this.itemsSignal();
+    const persisted: Record<string, PersistedChecklistItemState> = {};
+
+    for (const [key, value] of Object.entries(items)) {
+      persisted[key] = {
+        status: value.status,
+        note: value.note,
+        values: value.values,
+        results: value.results
+      };
+    }
+
+    return {
+      version: 1,
+      totalCount: this.totalCountSignal(),
+      items: persisted
+    };
+  }
+
+  hydrate(snapshot: PersistedChecklistStateSnapshot | null | undefined) {
+    if (!snapshot || snapshot.version !== 1) return;
+
+    this.totalCountSignal.set(Number.isFinite(snapshot.totalCount) ? Math.max(0, snapshot.totalCount) : 0);
+
+    const nextItems: Record<string, ChecklistItemState> = {};
+    for (const [key, item] of Object.entries(snapshot.items ?? {})) {
+      nextItems[key] = {
+        status: item.status ?? null,
+        note: typeof item.note === 'string' ? item.note : '',
+        photos: [],
+        values: item.values && typeof item.values === 'object' ? item.values : {},
+        results: item.results && typeof item.results === 'object' ? item.results : {}
+      };
+    }
+
+    this.itemsSignal.set(nextItems);
   }
 
   setTotalCount(totalCount: number) {
@@ -91,4 +138,3 @@ export class ChecklistState {
     });
   }
 }
-

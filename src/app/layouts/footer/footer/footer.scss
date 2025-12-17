@@ -10,16 +10,21 @@
     justify-content: space-between;
     gap: var(--space-m);
   }
-
-  .btn {
-    width: 100%;
-  }
 }
 
 @media (max-width: 767px) {
   .layout-footer__container {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .layout-footer__actions {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .layout-footer__action-print {
+    width: 100%;
   }
 }
 

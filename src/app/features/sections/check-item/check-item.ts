@@ -50,6 +50,7 @@ export class CheckItemComponent implements OnInit {
   readonly isNokOpen = signal(false);
   readonly photos = signal<File[]>([]);
   readonly note = signal('');
+  readonly dirty = signal(false);
 
   private currentStateKey: string | null = null;
   private readonly checklistState = inject(ChecklistState, { optional: true });
@@ -62,15 +63,18 @@ export class CheckItemComponent implements OnInit {
         const nextStateKey = this.stateKey() ?? nextModel.id;
         if (nextStateKey !== this.currentStateKey) {
           this.currentStateKey = nextStateKey;
-          this.photos.set([]);
+          const stored = this.checklistState?.getItem(nextStateKey);
+          this.status.set(stored?.status ?? nextModel.status);
+          this.isNokOpen.set((stored?.status ?? nextModel.status) === 'nok');
+          this.note.set(stored?.note ?? nextModel.note ?? '');
+          this.photos.set(stored?.photos ?? []);
+          this.dirty.set(false);
+          return;
         }
 
-        const storedStatus = this.checklistState?.getItem(nextStateKey).status;
-        const nextStatus = storedStatus !== undefined ? storedStatus : nextModel.status;
-        this.status.set(nextStatus);
-        this.isNokOpen.set(nextStatus === 'nok');
-
-        this.note.set(nextModel.note ?? '');
+        const storedStatus = this.checklistState?.getItem(nextStateKey).status ?? nextModel.status;
+        this.status.set(storedStatus);
+        this.isNokOpen.set(storedStatus === 'nok');
       });
     });
   }
@@ -100,6 +104,26 @@ export class CheckItemComponent implements OnInit {
 
   setNote(id: string, note: string) {
     this.note.set(note);
+    this.dirty.set(true);
     this.noteChange.emit({ id, note });
+  }
+
+  setPhotos(photos: File[]) {
+    this.photos.set(photos);
+    this.dirty.set(true);
+  }
+
+  save() {
+    if (!this.currentStateKey) return;
+    this.checklistState?.setItemNote(this.currentStateKey, this.note());
+    this.checklistState?.setItemPhotos(this.currentStateKey, this.photos());
+    this.dirty.set(false);
+  }
+
+  clearDefect() {
+    this.note.set('');
+    this.photos.set([]);
+    this.dirty.set(true);
+    this.save();
   }
 }
