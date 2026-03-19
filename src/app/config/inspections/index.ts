@@ -8,7 +8,6 @@ export type { InspectionConfig, InspectionType } from './types';
 
 export const INSPECTION_TYPE_OPTIONS: ChecklistCustomerDataInspectionType[] = [
   { value: 'uvv', label: 'UVV' },
-  { value: 'vde', label: 'VDE' },
   { value: 'overload', label: 'Überlast' }
 ];
 
@@ -19,7 +18,7 @@ const INSPECTION_CONFIGS: Record<InspectionType, InspectionConfig> = {
 };
 
 export function isInspectionType(value: string): value is InspectionType {
-  return value === 'uvv' || value === 'vde' || value === 'overload';
+  return value === 'uvv' || value === 'overload';
 }
 
 export function getInspectionConfig(type: InspectionType): InspectionConfig {
