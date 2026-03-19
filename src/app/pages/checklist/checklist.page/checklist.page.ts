@@ -17,6 +17,8 @@ import { ChecklistState } from '@pages/checklist/state/checklist.state';
 import { getDeviceConfig, isDeviceType, type DeviceType } from '@config-devices';
 import { buildChecklistConfig } from '@config/build/build-checklist-config';
 import { isInspectionType, type InspectionType } from '@config-inspections';
+import { ConfigChecklistService } from '@app/config/service/config-service';
+import { ChecklistConfig } from '@app/config/build/checklist-config';
 
 @Component({
   selector: 'app-checklist-page',
@@ -36,6 +38,7 @@ import { isInspectionType, type InspectionType } from '@config-inspections';
 export class ChecklistPageComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly checklistState = inject(ChecklistState);
+  private readonly configService = inject(ConfigChecklistService);
 
   readonly deviceType: DeviceType;
   readonly inspectionType: InspectionType;
@@ -65,5 +68,11 @@ export class ChecklistPageComponent {
       0
     );
     this.checklistState.setTotalCount(totalCount);
+    this.configService.setCurrentConfig(checklistConfig);
+  }
+
+  ngOnDestroy() {
+    this.checklistState.clear();
+    this.configService.clearCurrentConfig();
   }
 }
