@@ -69,13 +69,6 @@ export class HomePageComponent {
         imageAlt: 'UVV'
       },
       {
-        id: 'vde',
-        title: 'VDE',
-        subtitle: 'Elektrische Prüfung',
-        imageSrc: '/assets/images/Vde Gossen Messgerät.png',
-        imageAlt: 'VDE'
-      },
-      {
         id: 'overload',
         title: 'Überlastprüfung',
         subtitle: 'Nur Überlastprüfung',
