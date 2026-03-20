@@ -81,6 +81,11 @@
     text-align: left;
     width: 100%;
     cursor: pointer;
+    transition:
+      transform var(--dur-fast) ease,
+      background-color var(--dur-fast) ease,
+      border-color var(--dur-fast) ease;
+    will-change: transform;
   }
 
   &__card--choice {
@@ -90,6 +95,20 @@
 
     &.card {
       padding: var(--space-s);
+      box-shadow: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--surface-alt) 85%, transparent);
+      border-color: color-mix(in srgb, var(--brand) 22%, var(--border-color));
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      background: color-mix(in srgb, var(--brand) 12%, var(--surface));
+      border-color: color-mix(in srgb, var(--brand) 38%, var(--border-color));
     }
   }
 
