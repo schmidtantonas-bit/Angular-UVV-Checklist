@@ -109,3 +109,30 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Lift Abfahren | 33 | +4 | - |
 
 > Hinweis: Für die drei Einträge mit voller Leiterlänge wurden im gelieferten Inhalt keine Zeit- oder Toleranzwerte angegeben.
+
+---
+
+## L39
+
+### Metadaten / Prüfprotokoll
+
+- **Fahrzeugtyp / Modell:** L39
+- **Aufbauart:** Drehleiter mit Korb
+- **Kategorie:** Geschwindigkeitsparameter / Zeitmessung
+- **Prüfungsart:** UVV-Prüfung (Entwicklung & Feedback)
+
+### Konfigurationstabelle
+
+| Bewegung | Zeit (s) | Toleranz | Kommentar |
+| --- | ---: | ---: | --- |
+| Drehen Rechts | 20 | +4 | 90° Drehen |
+| Drehen Links | 20 | +4 | 90° Drehen |
+| Aufrichten | 31 | +3 | 0° - 75° |
+| Neigen | 34 | +3 | 75° - 0° |
+| Ausfahren | 43 | +3 | - |
+| Einfahren | 45 | +3 | - |
+| Aufrichten mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 60° - 70° |
+| Neigen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 70° - 60° |
+| Drehen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt 90° |
+
+> Hinweis: Für die drei Einträge mit voller Leiterlänge wurden im gelieferten Inhalt keine Zeit- oder Toleranzwerte angegeben.
