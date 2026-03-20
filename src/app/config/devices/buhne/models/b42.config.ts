@@ -1,12 +1,12 @@
 import type { DeviceConfig } from '../../types';
 
-export const B32_DEVICE_CONFIG: DeviceConfig = {
-  type: 'b32',
+export const B42_DEVICE_CONFIG: DeviceConfig = {
+  type: 'b42',
   family: 'hr_buehne',
-  label: 'B32',
+  label: 'B42',
   overview: {
     title: 'UVV-HR-Buehne',
-    subtitle: 'B32',
+    subtitle: 'B42',
     imageSrc: '/assets/images/B32.png',
     imageAlt: 'HR-Buehne'
   },
@@ -15,8 +15,8 @@ export const B32_DEVICE_CONFIG: DeviceConfig = {
     { key: 'rotateLeft', label: 'Drehen links', referenceSec: 30, toleranceSec: 3 },
     { key: 'raise', label: 'Aufrichten', referenceSec: 42, toleranceSec: 3 },
     { key: 'tilt', label: 'Neigen', referenceSec: 43, toleranceSec: 3 },
-    { key: 'extend', label: 'Ausfahren', referenceSec: 42, toleranceSec: 3 },
-    { key: 'retract', label: 'Einfahren', referenceSec: 47, toleranceSec: 3 },
+    { key: 'extend', label: 'Ausfahren', referenceSec: 72, toleranceSec: 3 },
+    { key: 'retract', label: 'Einfahren', referenceSec: 76, toleranceSec: 3 },
     { key: 'jointTilt', label: 'Korbarm neigen', referenceSec: 68, toleranceSec: 3 },
     { key: 'jointRaise', label: 'Korbarm aufrichten', referenceSec: 68, toleranceSec: 3 },
     { key: 'basketRotateFast', label: 'Korb drehen schnell', referenceSec: 15, toleranceSec: 3 },

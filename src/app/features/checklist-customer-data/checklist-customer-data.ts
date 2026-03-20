@@ -14,6 +14,7 @@ export interface ChecklistCustomerDataDeviceTypeOption {
 export interface ChecklistCustomerDataModel {
   inspectionTypes?: ChecklistCustomerDataInspectionType[];
   inspectionType?: string;
+  inspectionPackage?: string;
   deviceTypes?: ChecklistCustomerDataDeviceTypeOption[];
   customerName?: string;
   address?: string;
@@ -44,6 +45,7 @@ export class ChecklistCustomerDataComponent {
     const m = this.model();
 
     this.updateCustomerData("inspectionType", m.inspectionType);
+    this.updateCustomerData("inspectionPackage", m.inspectionPackage);
     this.updateCustomerData("customerName", m.customerName);
     this.updateCustomerData("address", m.address);
     this.updateCustomerData("orderNumber", m.orderNumber);

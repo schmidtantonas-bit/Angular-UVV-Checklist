@@ -14,11 +14,11 @@ import { AdditionalItemsComponent } from '@features/additional-items/additional-
 import { BatteryCheckComponent } from '@features/battery-check/battery-check';
 import { SpeedCheckComponent } from '@features/speed-check/speed-check';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
-import { getDeviceConfig, isDeviceType, type DeviceType } from '@config-devices';
+import { isDeviceType, type DeviceType } from '@config-devices';
 import { buildChecklistConfig } from '@config/build/build-checklist-config';
 import { isInspectionType, type InspectionType } from '@config-inspections';
+import { isInspectionPackageType, type InspectionPackageType } from '@app/config/inspection-packages';
 import { ConfigChecklistService } from '@app/config/service/config-service';
-import { ChecklistConfig } from '@app/config/build/checklist-config';
 
 @Component({
   selector: 'app-checklist-page',
@@ -42,6 +42,7 @@ export class ChecklistPageComponent {
 
   readonly deviceType: DeviceType;
   readonly inspectionType: InspectionType;
+  readonly inspectionPackage: InspectionPackageType;
 
   overloadVariant: 'standard' | 'buehne';
 
@@ -52,13 +53,19 @@ export class ChecklistPageComponent {
   constructor() {
     const rawDeviceType = this.route.snapshot.queryParamMap.get('deviceType') ?? 'l32';
     const rawInspectionType = this.route.snapshot.queryParamMap.get('inspectionType') ?? 'uvv';
+    const rawInspectionPackage = this.route.snapshot.queryParamMap.get('inspectionPackage') ?? 'none';
 
     this.deviceType = isDeviceType(rawDeviceType) ? rawDeviceType : 'l32';
     this.inspectionType = isInspectionType(rawInspectionType) ? rawInspectionType : 'uvv';
+    this.inspectionPackage = isInspectionPackageType(rawInspectionPackage) ? rawInspectionPackage : 'none';
 
-    const checklistConfig = buildChecklistConfig({ deviceType: this.deviceType, inspectionType: this.inspectionType });
+    const checklistConfig = buildChecklistConfig({
+      deviceType: this.deviceType,
+      inspectionType: this.inspectionType,
+      inspectionPackage: this.inspectionPackage
+    });
 
-    this.overloadVariant = this.deviceType === 'b32' ? 'buehne' : 'standard';
+    this.overloadVariant = checklistConfig.overloadVariant;
     this.overview = checklistConfig.overview;
     this.sections = checklistConfig.sections;
     this.customerData = checklistConfig.customerData;

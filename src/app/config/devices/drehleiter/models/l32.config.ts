@@ -1,30 +1,25 @@
 import type { DeviceConfig } from '../../types';
-import { DREHLEITER_BASE_SECTIONS } from '../base.config';
 
 export const L32_DEVICE_CONFIG: DeviceConfig = {
   type: 'l32',
+  family: 'drehleiter',
+  label: 'L32',
   overview: {
     title: 'UVV-Drehleiter',
     subtitle: 'L32',
     imageSrc: '/assets/images/L32.png',
     imageAlt: 'Drehleiter'
   },
-  customerData: {
-    inspectionType: 'Inspektion Basic',
-    customerName: '',
-    address: '',
-    orderNumber: '',
-    licensePlate: '',
-    deviceType: 'L32',
-    bodyNumber: '',
-    mileageKm: '',
-    operatingHours: '',
-    serviceTechnician: '',
-    date: '',
-    location: ''
-  },
-  sections: DREHLEITER_BASE_SECTIONS.map((section) => ({
-    ...section,
-    id: section.id.replace('sec-l-', 'sec-l32-')
-  }))
+  speedCheckTable: [
+    { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 20, toleranceSec: 4 },
+    { key: 'rotateLeft', label: 'Drehen links', referenceSec: 20, toleranceSec: 4 },
+    { key: 'raise', label: 'Aufrichten', referenceSec: 31, toleranceSec: 3 },
+    { key: 'tilt', label: 'Neigen', referenceSec: 34, toleranceSec: 3 },
+    { key: 'extend', label: 'Ausfahren', referenceSec: 30, toleranceSec: 3 },
+    { key: 'retract', label: 'Einfahren', referenceSec: 33, toleranceSec: 3 },
+    { key: 'fullLengthRaise', label: 'Aufrichten mit voller Leiterlaenge', referenceSec: 22, toleranceSec: 5 },
+    { key: 'fullLengthTilt', label: 'Neigen mit voller Leiterlaenge', referenceSec: 22, toleranceSec: 5 },
+    { key: 'fullLengthRotate', label: 'Drehen mit voller Leiterlaenge', referenceSec: 52, toleranceSec: 5 }
+  ],
+  overloadVariant: 'standard'
 };

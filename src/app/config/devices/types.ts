@@ -1,12 +1,17 @@
 import type { ChecklistCustomerDataModel } from '@features/checklist-customer-data/checklist-customer-data';
 import type { ChecklistOverviewModel } from '@features/checklist-overview/checklist-overview';
-import type { CheckSectionModel } from '@features/sections/check-section/check-section';
+import type { SpeedCheckDefinition } from '@features/speed-check/speed-check.domain';
+import type { DeviceFamily } from '../families';
+import type { OverloadVariantId } from '../overload/overload-variants';
 
-export type DeviceType = 'l32' | 'l32a' | 'l32xs' | 'b32';
+export type DeviceType = 'l27' | 'l32' | 'l32a' | 'l32xs' | 'l39' | 'l39_lift' | 'b32' | 'b36' | 'b42';
 
 export interface DeviceConfig {
   type: DeviceType;
+  family: DeviceFamily;
+  label: string;
   overview: ChecklistOverviewModel;
   customerData?: ChecklistCustomerDataModel;
-  sections: CheckSectionModel[];
+  speedCheckTable: readonly SpeedCheckDefinition[];
+  overloadVariant: OverloadVariantId;
 }
