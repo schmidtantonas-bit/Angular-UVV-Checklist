@@ -1,6 +1,6 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection } from '../../build/section-factories';
-import { SPEED_CHECK_SECTION } from '../shared.sections';
+import { createBatteryCheckSection, SPEED_CHECK_SECTION } from '../shared.sections';
 
 export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-dl-1', '1. Fahrerhaus innen', 'dl-1', [
@@ -34,17 +34,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Radkeile inkl. Halter und Verriegelung',
     'Oelstand Haupthydraulik'
   ]),
-  createCheckSection('sec-battery-1', '4. Batterien', 'dl-4', [
-    'Batterie / Batteriefach',
-    'Batterietest mit Ausdruck',
-    'Abdeckung / Verriegelung',
-    'Auszug',
-    'Wanne (VA)',
-    'Kabelfuehrung',
-    'Kabelsicherung',
-    'Entlueftung',
-    'Batteriehalter (Befestigung)'
-  ]),
+  createBatteryCheckSection('4. Batterien'),
   createCheckSection('sec-dl-5', '5. Geraetekaesten', 'dl-5', [
     'Geraetekaesten',
     'Ueberwachungseinrichtung',

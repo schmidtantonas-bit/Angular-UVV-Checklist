@@ -1,6 +1,6 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection } from '../../build/section-factories';
-import { BATTERY_CHECK_SECTION, SPEED_CHECK_SECTION } from '../shared.sections';
+import { createBatteryCheckSection, SPEED_CHECK_SECTION } from '../shared.sections';
 
 export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-hr-1', 'Grundpruefungen und Vorpruefung', 'hr-1', [
@@ -78,7 +78,7 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Arbeitsdruck Notbetrieb 24 Volt'
   ]),
   SPEED_CHECK_SECTION,
-  BATTERY_CHECK_SECTION,
+  createBatteryCheckSection('Batterien'),
   createCheckSection('sec-hr-8', 'Abschlusspruefungen und Zusatzfunktionen', 'hr-8', [
     'Abschaltung Korbschraeglage',
     'Notbetrieb',

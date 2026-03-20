@@ -1,12 +1,21 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection, createEmptySection } from '../build/section-factories';
 
-export const BATTERY_CHECK_SECTION: CheckSectionModel = createCheckSection('sec-battery-1', 'Batterien', 'battery', [
+export const BATTERY_CHECK_ITEMS = [
   'Batterie / Batteriefach',
-  'Allgemeiner Zustand Starterbatterien',
-  'Austausch empfohlen',
-  'Zustand der Lagerung und Befestigung der Batterien'
-]);
+  'Abdeckung / Verriegelung',
+  'Wanne (VA)',
+  'Kabelfuehrung',
+  'Kabelsicherung',
+  'Entlueftung',
+  'Batteriehalter (Befestigung)'
+] as const;
+
+export function createBatteryCheckSection(title: string, items: readonly string[] = BATTERY_CHECK_ITEMS): CheckSectionModel {
+  return createCheckSection('sec-battery-1', title, 'battery', items);
+}
+
+export const BATTERY_CHECK_SECTION: CheckSectionModel = createBatteryCheckSection('Batterien');
 
 export const SPEED_CHECK_SECTION: CheckSectionModel = createEmptySection('sec-speed-1', 'Geschwindigkeiten');
 
