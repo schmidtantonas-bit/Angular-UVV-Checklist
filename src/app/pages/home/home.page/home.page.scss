@@ -1,11 +1,11 @@
 .wizard {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   padding-block: var(--space-l);
   position: relative;
   padding-inline: var(--space-s);
+  box-sizing: border-box;
 
   &__panel {
     width: min(var(--container-max-px), 100%);
