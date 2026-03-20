@@ -7,7 +7,7 @@
           <app-check-item
             [model]="point"
             [editableTitle]="true"
-            [showMedia]="false"
+            [showMedia]="true"
             [showSaveButton]="false"
             (titleChange)="setTitle($event.id, $event.title)"
             (statusChange)="setStatus(point.id, $event)"

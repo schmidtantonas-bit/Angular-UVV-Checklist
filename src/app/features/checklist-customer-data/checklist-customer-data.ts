@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { ChecklistState } from '@app/pages/checklist/state/checklist.state';
 
 export interface ChecklistCustomerDataInspectionType {
   value: string;
@@ -35,5 +36,31 @@ export interface ChecklistCustomerDataModel {
   styleUrl: './checklist-customer-data.scss'
 })
 export class ChecklistCustomerDataComponent {
+  private readonly checklist = inject(ChecklistState);
+
   model = input.required<ChecklistCustomerDataModel>();
+
+  ngOnInit() {
+    const m = this.model();
+
+    this.updateCustomerData("inspectionType", m.inspectionType);
+    this.updateCustomerData("customerName", m.customerName);
+    this.updateCustomerData("address", m.address);
+    this.updateCustomerData("orderNumber", m.orderNumber);
+    this.updateCustomerData("licensePlate", m.licensePlate);
+    this.updateCustomerData("deviceType", m.deviceType);
+    this.updateCustomerData("bodyNumber", m.bodyNumber);
+    this.updateCustomerData("mileageKm", m.mileageKm);
+    this.updateCustomerData("operatingHours", m.operatingHours);
+    this.updateCustomerData("serviceTechnician", m.serviceTechnician);
+    this.updateCustomerData("date", m.date);
+    this.updateCustomerData("location", m.location);
+  }
+
+  updateCustomerData(key: string, value: unknown) {
+    // it seems that this is the way the protocol.page.ts wants it
+    var val = (this.checklist.getItem("customerData").values["fields"] ?? {}) as Record<string, unknown>;
+    val[key] = value;
+    this.checklist.setItemValue("customerData", "fields", val);
+  }
 }

@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 
-export type BatteryPhotoStatus = 'ok' | 'replace' | null;
+import { BatteryStatus as BatteryPhotoStatus } from '../battery-check';
 
 @Component({
   selector: 'app-battery-photo-field',

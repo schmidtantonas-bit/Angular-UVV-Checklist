@@ -99,18 +99,33 @@ export class CheckItemComponent implements OnInit {
   }
 
   onTitleInput(id: string, raw: string) {
+    // this is required to sync changes!!!
+    if (this.editableTitle() && this.currentStateKey)
+      this.checklistState?.setItemValue(this.currentStateKey, "title", raw);
     this.titleChange.emit({ id, title: raw });
   }
 
   setNote(id: string, note: string) {
+    // this is required to sync changes!!!
+    if (!this.showSaveButton()) {
+      if (this.currentStateKey)
+        this.checklistState?.setItemNote(this.currentStateKey, note);
+    }
+    else
+      this.dirty.set(true);
     this.note.set(note);
-    this.dirty.set(true);
     this.noteChange.emit({ id, note });
   }
 
   setPhotos(photos: File[]) {
+    // this is required to sync changes!!!
+    if (!this.showSaveButton()) {
+      if (this.currentStateKey)
+        this.checklistState?.setItemPhotos(this.currentStateKey, photos);
+    }
+    else
+      this.dirty.set(true);
     this.photos.set(photos);
-    this.dirty.set(true);
   }
 
   save() {

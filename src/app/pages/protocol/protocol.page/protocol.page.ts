@@ -61,7 +61,7 @@ function coerceCustomerFields(value: unknown): Record<string, unknown> {
 })
 export class ProtocolPageComponent {
   private readonly checklistState = inject(ChecklistState);
-  private readonly document = inject(DOCUMENT);
+  private readonly document = inject<Document>(DOCUMENT);
 
   private readonly customerFieldsRaw = computed(
     () => this.checklistState.getItem(CUSTOMER_DATA_ITEM_KEY).values[CUSTOMER_DATA_VALUES_KEY]

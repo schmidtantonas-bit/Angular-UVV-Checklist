@@ -6,16 +6,16 @@
       title="Batterie 1"
       [photos]="battery1Photos()"
       [status]="battery1Status()"
-      (photosChange)="battery1Photos.set($event)"
-      (statusChange)="battery1Status.set($event)"
+      (photosChange)="setBattery1Photo($event)"
+      (statusChange)="setBattery1Status($event)"
     />
 
     <app-battery-photo-field
       title="Batterie 2"
       [photos]="battery2Photos()"
       [status]="battery2Status()"
-      (photosChange)="battery2Photos.set($event)"
-      (statusChange)="battery2Status.set($event)"
+      (photosChange)="setBattery2Photo($event)"
+      (statusChange)="setBattery2Status($event)"
     />
   </div>
 </div>

@@ -17,6 +17,7 @@
         type="text"
         placeholder="Inspektion"
         [value]="data.inspectionType ?? ''"
+        (change)="updateCustomerData('inspectionType', $event.target.value)"
       />
     </label>
 
@@ -27,6 +28,7 @@
         type="text"
         placeholder="Kundenname"
         [value]="data.customerName ?? ''"
+        (change)="updateCustomerData('customerName', $event.target.value)"
       />
     </label>
 
@@ -37,6 +39,7 @@
         type="text"
         placeholder="Adresse"
         [value]="data.address ?? ''"
+        (change)="updateCustomerData('address', $event.target.value)"
       />
     </label>
 
@@ -47,6 +50,7 @@
         type="text"
         placeholder="Auftragsnummer"
         [value]="data.orderNumber ?? ''"
+        (change)="updateCustomerData('orderNumber', $event.target.value)"
       />
     </label>
 
@@ -57,6 +61,7 @@
         type="text"
         placeholder="Kennzeichen"
         [value]="data.licensePlate ?? ''"
+        (change)="updateCustomerData('licensePlate', $event.target.value)"
       />
     </label>
 
@@ -67,6 +72,7 @@
         type="text"
         placeholder="Gerätetyp"
         [value]="data.deviceType ?? ''"
+        (change)="updateCustomerData('deviceType', $event.target.value)"
         readonly
       />
     </label>
@@ -78,6 +84,7 @@
         type="text"
         placeholder="Aufbaunummer"
         [value]="data.bodyNumber ?? ''"
+        (change)="updateCustomerData('bodyNumber', $event.target.value)"
       />
     </label>
 
@@ -89,6 +96,7 @@
         inputmode="numeric"
         placeholder="km"
         [value]="data.mileageKm ?? ''"
+        (change)="updateCustomerData('mileageKm', $event.target.value)"
       />
     </label>
 
@@ -100,6 +108,7 @@
         inputmode="numeric"
         placeholder="Bh"
         [value]="data.operatingHours ?? ''"
+        (change)="updateCustomerData('operatingHours', $event.target.value)"
       />
     </label>
 
@@ -110,17 +119,29 @@
         type="text"
         placeholder="Name Servicetechniker"
         [value]="data.serviceTechnician ?? ''"
+        (change)="updateCustomerData('serviceTechnician', $event.target.value)"
       />
     </label>
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-date">
       <span class="checklist-customer-data__label">Datum</span>
-      <input class="checklist-customer-data__control" type="date" [value]="data.date ?? ''" />
+      <input
+        class="checklist-customer-data__control"
+        type="date"
+        [value]="data.date ?? ''"
+        (change)="updateCustomerData('date', $event.target.value)"
+        />
     </label>
 
     <label class="checklist-customer-data__field" data-ui="checklist-customer-data-field-location">
       <span class="checklist-customer-data__label">Ort</span>
-      <input class="checklist-customer-data__control" type="text" placeholder="Ort" [value]="data.location ?? ''" />
+      <input
+        class="checklist-customer-data__control"
+        type="text"
+        placeholder="Ort"
+        [value]="data.location ?? ''"
+        (change)="updateCustomerData('location', $event.target.value)"
+        />
     </label>
   </form>
 </section>
