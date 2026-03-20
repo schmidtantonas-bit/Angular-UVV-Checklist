@@ -20,6 +20,10 @@
       <app-check-section [model]="section" hideEmptyState>
         <app-speed-check />
       </app-check-section>
+    } @else if (section.id === 'sec-operational-status-1') {
+      <app-check-section [model]="section" hideEmptyState>
+        <app-operational-status />
+      </app-check-section>
     } @else {
       <app-check-section [model]="section" />
     }

@@ -8,6 +8,7 @@ export interface CheckSectionModel {
   total: number;
   completed: number;
   items: CheckItemModel[];
+  customStateKey?: string;
 }
 
 @Component({
@@ -26,6 +27,10 @@ export class CheckSectionComponent {
 
   readonly completedCount = computed(() => {
     const section = this.model();
+    if (section.items.length === 0 && section.customStateKey) {
+      if (!this.checklistState) return section.completed;
+      return this.checklistState.getItem(section.customStateKey).status !== null ? section.total : 0;
+    }
     if (!this.checklistState) return section.completed;
     return section.items.filter((item) => this.checklistState!.getItem(`${section.id}:${item.id}`).status !== null).length;
   });
@@ -34,6 +39,10 @@ export class CheckSectionComponent {
 
   readonly isCompleted = computed(() => {
     const section = this.model();
+    if (section.items.length === 0 && section.customStateKey) {
+      if (!this.checklistState) return section.completed >= section.total;
+      return this.checklistState.getItem(section.customStateKey).status !== null;
+    }
     if (section.items.length === 0) return false;
 
     if (!this.checklistState) {

@@ -13,6 +13,7 @@ import { OverloadComponent } from '@features/overload/overload';
 import { AdditionalItemsComponent } from '@features/additional-items/additional-items';
 import { BatteryCheckComponent } from '@features/battery-check/battery-check';
 import { SpeedCheckComponent } from '@features/speed-check/speed-check';
+import { OperationalStatusComponent } from '@features/operational-status/operational-status';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
 import { isDeviceType, type DeviceType } from '@config-devices';
 import { buildChecklistConfig } from '@config/build/build-checklist-config';
@@ -30,7 +31,8 @@ import { ConfigChecklistService } from '@app/config/service/config-service';
     OverloadComponent,
     AdditionalItemsComponent,
     BatteryCheckComponent,
-    SpeedCheckComponent
+    SpeedCheckComponent,
+    OperationalStatusComponent
   ],
   templateUrl: './checklist.page.html',
   styleUrl: './checklist.page.scss'

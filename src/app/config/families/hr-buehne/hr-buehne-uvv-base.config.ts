@@ -112,5 +112,13 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     '1 Person Freistandsgrenze dokumentieren',
     'Benutzungsgrenze dokumentieren',
     'Notwendige Instandsetzungsarbeiten dokumentieren'
-  ])
+  ]),
+  {
+    id: 'sec-operational-status-1',
+    title: '10. Einsatzfaehigkeit',
+    total: 1,
+    completed: 0,
+    items: [],
+    customStateKey: 'operational-status'
+  }
 ];

@@ -1,5 +1,5 @@
-import { DREHLEITER_UVV_BASE_SECTIONS } from './drehleiter/uvv-base.config';
-import { HR_BUEHNE_UVV_BASE_SECTIONS } from './hr-buehne/uvv-base.config';
+import { DREHLEITER_UVV_BASE_SECTIONS } from './drehleiter/drehleiter-uvv-base.config';
+import { HR_BUEHNE_UVV_BASE_SECTIONS } from './hr-buehne/hr-buehne-uvv-base.config';
 import type { DeviceFamily, DeviceFamilyConfig } from './types';
 
 export type { DeviceFamily, DeviceFamilyConfig } from './types';

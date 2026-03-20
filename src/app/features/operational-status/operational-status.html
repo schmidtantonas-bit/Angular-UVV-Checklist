@@ -1,0 +1,26 @@
+<!-- htmlhint doctype-first:false -->
+<article class="operational-status" data-ui="operational-status">
+  <header class="operational-status__header">
+    <p class="operational-status__subtitle">Bitte genau einen Betriebsstatus auswählen.</p>
+  </header>
+
+  <div class="operational-status__grid">
+    @for (option of options; track option.value) {
+      <button
+        uicard
+        type="button"
+        class="operational-status__card"
+        [class.is-selected]="isSelected(option.value)"
+        [ngClass]="'operational-status__card--' + option.tone"
+        (click)="select(option.value)"
+      >
+        <span class="operational-status__label">{{ option.label }}</span>
+        <span class="operational-status__description">{{ option.description }}</span>
+      </button>
+    }
+  </div>
+
+  <footer class="operational-status__footer">
+    <button uibutton kind="ghost" type="button" (click)="clear()">Auswahl zurücksetzen</button>
+  </footer>
+</article>

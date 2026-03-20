@@ -1,0 +1,52 @@
+.operational-status {
+  display: grid;
+  gap: 1rem;
+}
+
+.operational-status__subtitle {
+  margin: 0;
+  color: var(--ui-text-secondary, #5f6b7a);
+}
+
+.operational-status__grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.operational-status__card {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.operational-status__card.is-selected {
+  border-color: currentColor;
+}
+
+.operational-status__card--ok {
+  color: #1f7a45;
+}
+
+.operational-status__card--warn {
+  color: #9a6700;
+}
+
+.operational-status__card--danger {
+  color: #b42318;
+}
+
+.operational-status__label {
+  font-weight: 700;
+}
+
+.operational-status__description {
+  color: var(--ui-text-secondary, #5f6b7a);
+}
+
+.operational-status__footer {
+  display: flex;
+  justify-content: flex-end;
+}
