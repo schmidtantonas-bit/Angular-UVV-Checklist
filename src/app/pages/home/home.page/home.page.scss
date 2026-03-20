@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding-block: var(--space-l);
   position: relative;
   padding-inline: var(--space-s);
@@ -97,7 +96,6 @@
     &.card {
       padding: var(--space-s);
       box-shadow: none;
-      background: color-mix(in srgb, var(--surface) 88%, var(--fg) 12%);
     }
 
     &:hover,
