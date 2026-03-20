@@ -39,6 +39,7 @@ testem.log
 /typings
 __screenshots__/
 devserver.log
+/incoming-update/
 
 # System files
 .DS_Store
