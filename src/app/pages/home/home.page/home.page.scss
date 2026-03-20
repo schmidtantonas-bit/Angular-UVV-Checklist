@@ -1,11 +1,13 @@
 .wizard {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: var(--space-l);
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  padding-top: var(--space-m);
+  padding-bottom: var(--space-l);
   position: relative;
   padding-inline: var(--space-s);
+  box-sizing: border-box;
 
   &__panel {
     width: min(var(--container-max-px), 100%);
@@ -81,15 +83,34 @@
     text-align: left;
     width: 100%;
     cursor: pointer;
+    transition:
+      transform var(--dur-fast) ease,
+      background-color var(--dur-fast) ease,
+      border-color var(--dur-fast) ease;
+    will-change: transform;
   }
 
   &__card--choice {
-    border: none;
     background: transparent;
     padding: 0;
 
     &.card {
       padding: var(--space-s);
+      border: 1px solid var(--border-color);
+      box-shadow: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--surface-alt) 85%, transparent);
+      border-color: color-mix(in srgb, var(--brand) 22%, var(--border-color));
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      background: color-mix(in srgb, var(--brand) 12%, var(--surface));
+      border-color: color-mix(in srgb, var(--brand) 38%, var(--border-color));
     }
   }
 
