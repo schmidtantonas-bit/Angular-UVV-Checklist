@@ -1,8 +1,10 @@
 .wizard {
   min-height: 100vh;
   display: grid;
-  place-items: center;
-  padding-block: var(--space-l);
+  justify-items: center;
+  align-items: start;
+  padding-top: var(--space-m);
+  padding-bottom: var(--space-l);
   position: relative;
   padding-inline: var(--space-s);
   box-sizing: border-box;
@@ -89,12 +91,12 @@
   }
 
   &__card--choice {
-    border: none;
     background: transparent;
     padding: 0;
 
     &.card {
       padding: var(--space-s);
+      border: 1px solid var(--border-color);
       box-shadow: none;
     }
 
