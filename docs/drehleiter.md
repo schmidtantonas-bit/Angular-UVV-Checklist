@@ -1,14 +1,6 @@
-# Maschinenkonfigurationen für UVV-Zeitmessungen
+# Drehleiter Konfigurationen für UVV-Zeitmessungen
 
-Diese Datei bündelt die aktuell vorliegenden Konfigurationsdaten für mehrere Fahrzeuge in einem gemeinsamen Markdown-Dokument. Sie dient als zentrale Sammelstelle, bis die Konfigurationen bei Bedarf in einzelne Dateien pro Maschine aufgeteilt werden.
-
-## Struktur für spätere Aufteilung
-
-Für die weitere Pflege kann später pro Maschine eine eigene Datei angelegt werden, zum Beispiel:
-
-- `docs/machines/l32a.md`
-- `docs/machines/l27-dlk.md`
-- `docs/machines/l32-dlk.md`
+Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeitmessungen für Drehleiter-Modelle.
 
 ---
 
@@ -88,3 +80,32 @@ Für die weitere Pflege kann später pro Maschine eine eigene Datei angelegt wer
 | Aufrichten mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 60° - 70° |
 | Neigen mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 70° - 60° |
 | Drehen mit voller Leiterlänge | 52 | +5 | heißes Öl, in voller Fahrt 90° |
+
+---
+
+## L39_Lift
+
+### Metadaten / Prüfprotokoll
+
+- **Fahrzeugtyp / Modell:** L39_Lift
+- **Aufbauart:** Drehleiter mit Korb (Lift)
+- **Kategorie:** Geschwindigkeitsparameter / Zeitmessung
+- **Prüfungsart:** UVV-Prüfung (Entwicklung & Feedback)
+
+### Konfigurationstabelle
+
+| Bewegung | Zeit (s) | Toleranz | Kommentar |
+| --- | ---: | ---: | --- |
+| Drehen Rechts | 20 | +4 | 90° Drehen |
+| Drehen Links | 20 | +4 | 90° Drehen |
+| Aufrichten | 32 | +3 | 0° - 75° |
+| Neigen | 35 | +3 | 75° - 0° |
+| Ausfahren | 43 | +3 | - |
+| Einfahren | 47 | +3 | - |
+| Aufrichten mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 60° - 70° |
+| Neigen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 70° - 60° |
+| Drehen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt 90° |
+| Lift Auffahren | 33 | +4 | - |
+| Lift Abfahren | 33 | +4 | - |
+
+> Hinweis: Für die drei Einträge mit voller Leiterlänge wurden im gelieferten Inhalt keine Zeit- oder Toleranzwerte angegeben.
