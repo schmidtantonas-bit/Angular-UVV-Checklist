@@ -1,6 +1,6 @@
-# HR-Bühne Konfigurationen für UVV-Zeitmessungen
+# HR Bühne Konfigurationen für UVV-Zeitmessungen
 
-Diese Datei ist die Sammelstelle für Geschwindigkeitsparameter und Zeitmessungen von HR-Bühne-Modellen.
+Diese Datei ist die Sammelstelle für Geschwindigkeitsparameter und Zeitmessungen von HR Bühne-Modellen.
 
 ---
 

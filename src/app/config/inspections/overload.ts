@@ -30,7 +30,7 @@ export function createOverloadInspectionConfig(family: DeviceFamily): Inspection
     extraSections: [
       {
         id: 'sec-overload-1',
-        title: family === 'hr_buehne' ? 'Überlastprüfung HR-Bühne' : 'Überlastprüfung Drehleiter',
+        title: family === 'hr_buehne' ? 'Überlastprüfung HR Bühne' : 'Überlastprüfung Drehleiter',
         total: items.length,
         completed: 0,
         items

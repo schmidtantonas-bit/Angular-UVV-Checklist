@@ -133,7 +133,7 @@ export class HomePageComponent {
     imageAlt: string;
   }> = [
     { id: 'drehleiter', title: 'Drehleiter', imageSrc: '/assets/images/L32.png', imageAlt: 'Drehleiter' },
-    { id: 'buhne', title: 'Bühne', imageSrc: '/assets/images/B32.png', imageAlt: 'Bühne' }
+    { id: 'buhne', title: 'HR Bühne', imageSrc: '/assets/images/B32.png', imageAlt: 'HR Bühne' }
   ];
 
   readonly modelsByFamily = MODELS_BY_FAMILY;

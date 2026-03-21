@@ -1,4 +1,4 @@
-# HR-Buehne UVV-Pruefpunkte
+# HR Bühne UVV-Pruefpunkte
 
 Quelle: `UVV-Bericht Bühne.doc.doc`
 
