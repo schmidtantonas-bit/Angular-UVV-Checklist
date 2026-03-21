@@ -34,6 +34,8 @@ const WIZARD_FAMILY_BY_DEVICE_FAMILY = {
   hr_buehne: 'buhne'
 } as const;
 
+const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32xs', 'l32', 'l32a', 'l27', 'l39', 'l39_lift'];
+
 const WIZARD_MODELS: WizardModel[] = DEVICE_TYPE_OPTIONS.filter((option): option is { value: DeviceType; label: string } =>
   isDeviceType(option.value)
 ).map((option) => {
@@ -47,9 +49,11 @@ const WIZARD_MODELS: WizardModel[] = DEVICE_TYPE_OPTIONS.filter((option): option
   };
 });
 
+const WIZARD_MODELS_BY_ID = new Map(WIZARD_MODELS.map((model) => [model.id, model]));
+
 const MODELS_BY_FAMILY: Record<WizardFamily, WizardModel[]> = {
-  drehleiter: WIZARD_MODELS.filter(
-    (model) => WIZARD_FAMILY_BY_DEVICE_FAMILY[getDeviceConfig(model.id).family] === 'drehleiter'
+  drehleiter: DREHLEITER_WIZARD_ORDER.map((deviceType) => WIZARD_MODELS_BY_ID.get(deviceType)).filter(
+    (model): model is WizardModel => model !== undefined
   ),
   buhne: WIZARD_MODELS.filter(
     (model) => WIZARD_FAMILY_BY_DEVICE_FAMILY[getDeviceConfig(model.id).family] === 'buhne'
@@ -141,7 +145,7 @@ export class HomePageComponent {
         id: 'uvv',
         title: 'UVV',
         subtitle: 'Standard UVV-Check',
-        imageSrc: '/assets/images/defekltlist.png',
+        imageSrc: '/assets/images/UVV-%20Chekliste.png',
         imageAlt: 'UVV'
       },
       {
