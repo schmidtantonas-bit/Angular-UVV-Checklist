@@ -5,11 +5,24 @@ import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { ProgressBarComponent } from '@app/layouts/progress-bar/progress-bar/progress-bar';
 import type { InspectionType } from '@config-inspections';
 import { DEVICE_TYPE_OPTIONS, getDeviceConfig, isDeviceType, type DeviceType } from '@config-devices';
+import {
+  INSPECTION_PACKAGE_OPTIONS,
+  isInspectionPackageType,
+  type InspectionPackageType
+} from '@app/config/inspection-packages';
 
 type WizardFamily = 'drehleiter' | 'buhne';
 
 type WizardModel = {
   id: DeviceType;
+  title: string;
+  subtitle?: string;
+  imageSrc: string;
+  imageAlt: string;
+};
+
+type WizardInspectionPackage = {
+  id: InspectionPackageType;
   title: string;
   subtitle?: string;
   imageSrc: string;
@@ -43,6 +56,32 @@ const MODELS_BY_FAMILY: Record<WizardFamily, WizardModel[]> = {
   )
 };
 
+const WIZARD_INSPECTION_PACKAGE_ORDER: readonly InspectionPackageType[] = ['none', 'basic', 'pro', 'plus'];
+
+const INSPECTION_PACKAGE_OPTIONS_BY_ID = new Map(
+  INSPECTION_PACKAGE_OPTIONS.filter(
+    (option): option is { value: InspectionPackageType; label: string } => isInspectionPackageType(option.value)
+  ).map((option) => [option.value, option])
+);
+
+const WIZARD_INSPECTION_PACKAGES: WizardInspectionPackage[] = WIZARD_INSPECTION_PACKAGE_ORDER.map((packageType) => {
+  const option = INSPECTION_PACKAGE_OPTIONS_BY_ID.get(packageType);
+
+  return {
+    id: packageType,
+    title:
+      packageType === 'none'
+        ? 'Ohne Zusatzpaket'
+        : option?.label ?? packageType,
+    subtitle:
+      packageType === 'none'
+        ? 'Nur die Standard-Checkliste'
+        : undefined,
+    imageSrc: '/assets/images/defekltlist.png',
+    imageAlt: option?.label ?? packageType
+  };
+});
+
 @Component({
   selector: 'app-home-page',
   standalone: true,
@@ -56,17 +95,20 @@ export class HomePageComponent {
 
   readonly selectedFamily = signal<WizardFamily | null>(null);
   readonly selectedModel = signal<WizardModel | null>(null);
+  readonly selectedInspectionType = signal<InspectionType | null>(null);
 
   readonly stepNumber = computed(() => {
     if (this.selectedFamily() === null) return 1;
     if (this.selectedModel() === null) return 2;
+    if (this.selectedInspectionType() === null) return 3;
+    if (this.selectedInspectionType() === 'uvv') return 4;
     return 3;
   });
+
+  readonly totalSteps = computed(() => (this.selectedInspectionType() === 'uvv' ? 4 : 3));
+
   readonly stepProgress = computed(() => {
-    const step = this.stepNumber();
-    if (step === 1) return 33;
-    if (step === 2) return 67;
-    return 100;
+    return Math.round((this.stepNumber() / this.totalSteps()) * 100);
   });
 
   readonly families: Array<{
@@ -80,6 +122,7 @@ export class HomePageComponent {
   ];
 
   readonly modelsByFamily = MODELS_BY_FAMILY;
+  readonly inspectionPackages = WIZARD_INSPECTION_PACKAGES;
 
   readonly inspections: Array<{ id: InspectionType; title: string; subtitle: string; imageSrc: string; imageAlt: string }> =
     [
@@ -102,23 +145,42 @@ export class HomePageComponent {
   selectFamily(family: WizardFamily) {
     this.selectedFamily.set(family);
     this.selectedModel.set(null);
+    this.selectedInspectionType.set(null);
   }
 
   back() {
+    if (this.selectedInspectionType() !== null) {
+      this.selectedInspectionType.set(null);
+      return;
+    }
+
     if (this.selectedModel() !== null) {
       this.selectedModel.set(null);
       return;
     }
+
     this.selectedFamily.set(null);
   }
 
   selectModel(model: WizardModel) {
     this.selectedModel.set(model);
+    this.selectedInspectionType.set(null);
   }
 
-  startChecklist(inspectionType: InspectionType) {
+  selectInspectionType(inspectionType: InspectionType) {
+    if (inspectionType === 'uvv') {
+      this.selectedInspectionType.set(inspectionType);
+      return;
+    }
+
+    this.startChecklist(inspectionType, 'none');
+  }
+
+  startChecklist(inspectionType: InspectionType, inspectionPackage: InspectionPackageType) {
     const model = this.selectedModel();
     if (!model) return;
-    this.router.navigate(['/checklist'], { queryParams: { deviceType: model.id, inspectionType } });
+    this.router.navigate(['/checklist'], {
+      queryParams: { deviceType: model.id, inspectionType, inspectionPackage }
+    });
   }
 }

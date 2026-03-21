@@ -31,5 +31,7 @@ const PRO_ITEMS = [
 export const PRO_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {
   type: 'pro',
   label: 'Service PRO (+4h)',
-  extraSections: [createCheckSection('sec-package-1', 'Inspektionsart: PRO', 'pkg-pro', PRO_ITEMS)]
+  extraSections: [
+    createCheckSection('sec-package-1', 'Inspektionsart: Service PRO (+4h)', 'pkg-pro', PRO_ITEMS)
+  ]
 };

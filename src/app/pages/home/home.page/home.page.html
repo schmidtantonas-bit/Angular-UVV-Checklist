@@ -3,7 +3,7 @@
   <div uicard class="wizard__panel" variant="raised">
     <div class="wizard__panelhead">
       <img class="wizard__logo" src="/assets/svg/rosenbauer-logo.svg" alt="Rosenbauer Logo" />
-      <div class="wizard__step">Schritt {{ stepNumber() }} von 3</div>
+      <div class="wizard__step">Schritt {{ stepNumber() }} von {{ totalSteps() }}</div>
     </div>
 
     <app-progress-bar class="wizard__progress" [value]="stepProgress()" />
@@ -13,8 +13,10 @@
         <h2 class="wizard__title">Wähle zuerst den Fahrzeugtyp aus.</h2>
       } @else if (stepNumber() === 2) {
         <h2 class="wizard__title">Wähle jetzt das Fahrzeugmodell aus.</h2>
-      } @else {
+      } @else if (stepNumber() === 3) {
         <h2 class="wizard__title">Wähle jetzt die Prüfungsart aus.</h2>
+      } @else {
+        <h2 class="wizard__title">Wähle jetzt das Servicepaket aus.</h2>
       }
     </header>
 
@@ -53,18 +55,39 @@
       <div class="wizard__footer">
         <button uibutton kind="ghost" class="wizard__back" type="button" (click)="back()">Zurück</button>
       </div>
-    } @else {
+    } @else if (selectedInspectionType() === null) {
       <div class="wizard__grid wizard__grid--inspections">
         @for (inspection of inspections; track inspection.id) {
           <button
             uicard
             class="wizard__card wizard__card--choice"
             type="button"
-            (click)="startChecklist(inspection.id)"
+            (click)="selectInspectionType(inspection.id)"
           >
             <img class="wizard__image" [src]="inspection.imageSrc" [alt]="inspection.imageAlt" />
             <div class="wizard__cardtitle">{{ inspection.title }}</div>
             <div class="wizard__cardsubtitle">{{ inspection.subtitle }}</div>
+          </button>
+        }
+      </div>
+
+      <div class="wizard__footer">
+        <button uibutton kind="ghost" class="wizard__back" type="button" (click)="back()">Zurück</button>
+      </div>
+    } @else {
+      <div class="wizard__grid wizard__grid--inspections">
+        @for (inspectionPackage of inspectionPackages; track inspectionPackage.id) {
+          <button
+            uicard
+            class="wizard__card wizard__card--choice"
+            type="button"
+            (click)="startChecklist(selectedInspectionType() ?? 'uvv', inspectionPackage.id)"
+          >
+            <img class="wizard__image" [src]="inspectionPackage.imageSrc" [alt]="inspectionPackage.imageAlt" />
+            <div class="wizard__cardtitle">{{ inspectionPackage.title }}</div>
+            @if (inspectionPackage.subtitle) {
+              <div class="wizard__cardsubtitle">{{ inspectionPackage.subtitle }}</div>
+            }
           </button>
         }
       </div>

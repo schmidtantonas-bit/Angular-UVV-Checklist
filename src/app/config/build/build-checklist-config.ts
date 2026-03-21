@@ -36,6 +36,7 @@ export function buildChecklistConfig(params: {
   const overloadInspection = getInspectionConfig('overload', device.family);
   const inspectionPackageType = params.inspectionType === 'uvv' ? (params.inspectionPackage ?? 'none') : 'none';
   const inspectionPackage = getInspectionPackageConfig(inspectionPackageType);
+  const inspectionPackageSections = params.inspectionType === 'uvv' ? [...inspectionPackage.extraSections] : [];
   const overloadSections = params.inspectionType === 'uvv' ? [...(overloadInspection.extraSections ?? [])] : [];
   const baseSections = [...family.uvvSections];
   const speedSection = takeSection(baseSections, 'sec-speed-1');
@@ -49,11 +50,11 @@ export function buildChecklistConfig(params: {
       : renumberSections([
           ...baseSections,
           ...(inspection.extraSections ?? []),
-          ...inspectionPackage.extraSections,
           ...(speedSection ? [speedSection] : []),
           ...(batterySection ? [batterySection] : []),
           ...overloadSections,
           MISC_SECTION,
+          ...inspectionPackageSections,
           ...(operationalStatusSection ? [operationalStatusSection] : [])
         ]);
 

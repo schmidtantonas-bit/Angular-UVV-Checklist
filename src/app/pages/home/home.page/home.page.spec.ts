@@ -35,4 +35,13 @@ describe('HomePage', () => {
 
     expect(component.modelsByFamily.buhne.map((model) => model.id)).toEqual(['b32', 'b36', 'b42']);
   });
+
+  it('should expose the inspection package choices for the UVV flow', () => {
+    expect(component.inspectionPackages.map((inspectionPackage) => inspectionPackage.id)).toEqual([
+      'none',
+      'basic',
+      'pro',
+      'plus'
+    ]);
+  });
 });
