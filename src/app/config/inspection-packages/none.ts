@@ -7,7 +7,7 @@ export const NONE_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {
   extraSections: [
     createCheckSection(
       'sec-package-1',
-      'Inspektionsart: Keine Zusatzinspektion',
+      'Keine Zusatzinspektion',
       'pkg-none',
       ['Keine Zusatzinspektion ausgewaehlt']
     )
