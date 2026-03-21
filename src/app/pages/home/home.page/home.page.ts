@@ -143,8 +143,8 @@ export class HomePageComponent {
     [
       {
         id: 'uvv',
-        title: 'UVV',
-        subtitle: 'Standard UVV-Check',
+        title: 'UVV-Prüfung',
+        subtitle: 'Komplette Sicherheitsprüfung nach Herstellervorgaben',
         imageSrc: '/assets/images/UVV-%20Chekliste.png',
         imageAlt: 'UVV'
       },

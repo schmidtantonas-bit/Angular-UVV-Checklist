@@ -2,7 +2,15 @@ import { Component, Injector, ViewEncapsulation, computed, effect, inject, input
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
-import { diffEvaluationMm, OVERLOAD_THRESHOLD_MM, withinThresholdMm, type DiffEvaluationMm } from './overload.domain';
+import {
+  diffEvaluationMm,
+  OVERLOAD_HEIGHT_MAX_MM,
+  OVERLOAD_HEIGHT_MIN_MM,
+  OVERLOAD_THRESHOLD_MM,
+  sanitizeHeightMm,
+  withinThresholdMm,
+  type DiffEvaluationMm
+} from './overload.domain';
 import { OVERLOAD_VARIANTS, type OverloadVariantId } from '@config/overload/overload-variants';
 import { OVERLOAD_UI_LAYOUTS } from '@config/overload/overload-layout';
 import { OVERLOAD_FIELD_UI, OVERLOAD_RESULTS_UI, type OverloadResultId } from '@config/overload/overload-ui';
@@ -16,8 +24,7 @@ const OVERLOAD_RESULTS_KEY = 'evaluation';
 function coerceOverloadValues(value: unknown): OverloadValues {
   const raw = value && typeof value === 'object' ? (value as Record<string, unknown>) : {};
   const coerce = (key: OverloadField): number | null => {
-    const next = raw[key];
-    return typeof next === 'number' && Number.isFinite(next) ? next : null;
+    return sanitizeHeightMm(raw[key]);
   };
 
   return {
@@ -73,6 +80,8 @@ export class OverloadComponent {
   readonly columns = computed(() => this.layout().columns);
 
   readonly thresholdMm = OVERLOAD_THRESHOLD_MM;
+  readonly heightMinMm = OVERLOAD_HEIGHT_MIN_MM;
+  readonly heightMaxMm = OVERLOAD_HEIGHT_MAX_MM;
   readonly countdownDurationMs = 10 * 60 * 1000;
 
   readonly countdownStarted = signal(false);
@@ -134,8 +143,15 @@ export class OverloadComponent {
   });
 
   setMm(field: OverloadField, raw: string) {
-    const next = raw.trim() === '' ? null : Number(raw);
-    this.values.update((current) => ({ ...current, [field]: Number.isFinite(next) ? next : null }));
+    const next = sanitizeHeightMm(raw);
+    this.values.update((current) => ({ ...current, [field]: next }));
+  }
+
+  restrictInput(event: KeyboardEvent) {
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.key.length !== 1) return;
+    if (/^\d$/.test(event.key)) return;
+    event.preventDefault();
   }
 
   valueFor(field: OverloadField): number | null {
@@ -159,12 +175,16 @@ export class OverloadComponent {
 
     const diffPreloadAfterMm = this.diffPreloadAfterEvaluation().valueMm;
     const diffLoadStart10Mm = this.diffLoadStart10Evaluation().valueMm;
+    const diffPreloadAfterStatus = this.diffPreloadAfterEvaluation().status;
+    const diffLoadStart10Status = this.diffLoadStart10Evaluation().status;
 
     this.checklistState?.setItemValue(OVERLOAD_ITEM_KEY, OVERLOAD_VALUES_KEY, values);
     this.checklistState?.setItemResult(OVERLOAD_ITEM_KEY, OVERLOAD_RESULTS_KEY, {
       thresholdMm: this.thresholdMm,
       diffPreloadAfterMm,
       diffLoadStart10Mm,
+      diffPreloadAfterStatus,
+      diffLoadStart10Status,
       withinThresholdPreloadAfter: withinThresholdMm(diffPreloadAfterMm, this.thresholdMm),
       withinThresholdLoadStart10: withinThresholdMm(diffLoadStart10Mm, this.thresholdMm)
     });

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { OVERLOAD_FIELD_UI, OVERLOAD_RESULTS_UI } from '@app/config/overload/overload-ui';
 import { ConfigChecklistService } from '@app/config/service/config-service';
+import { diffStatusNote, evaluateDiffStatus, isDiffStatus, type DiffStatus } from '@app/features/overload/overload.domain';
 import { OverloadField, OverloadValues } from '@app/features/overload/overload.types';
 import { CheckStatus } from '@app/features/sections/check-item/check-item';
 import { SpeedCheckRowResult } from '@app/features/speed-check/speed-check.domain';
@@ -19,6 +20,12 @@ export class FooterComponent {
   private readonly checklist = inject(ChecklistState);
 
   private readonly maxImageSize = 600;
+
+  private overloadPdfStatus(status: DiffStatus): CheckStatus {
+    if (status === 'ok') return 'ok';
+    if (status === 'followUpRequired') return 'na';
+    return 'nok';
+  }
 
   // crucial step for ensuring that the request is small enough to be sent
   private async compressImage(file: File) {
@@ -141,16 +148,32 @@ export class FooterComponent {
           const evalu = check?.results['evaluation'] as any;
           if (evalu) {
             if (evalu.diffPreloadAfterMm !== null) {
-              const calc1stat: CheckStatus = evalu.withinThresholdPreloadAfter ? 'ok' : 'nok';
-              const calc1note =
-                calc1stat === 'ok' ? 'Bestanden - Grenzwert ≤ 100 mm eingehalten' : 'Grenzwert 100mm überschritten';
-              await this.preparePdfItem(secout, { id: 'diff1', title: OVERLOAD_RESULTS_UI['diffPreloadAfter'].title }, { status: calc1stat, note: calc1note, measurement: evalu.diffPreloadAfterMm + 'mm' });
+              const diff1Status = isDiffStatus(evalu.diffPreloadAfterStatus)
+                ? evalu.diffPreloadAfterStatus
+                : evaluateDiffStatus(evalu.diffPreloadAfterMm);
+              await this.preparePdfItem(
+                secout,
+                { id: 'diff1', title: OVERLOAD_RESULTS_UI['diffPreloadAfter'].title },
+                {
+                  status: this.overloadPdfStatus(diff1Status),
+                  note: diffStatusNote(diff1Status) ?? undefined,
+                  measurement: evalu.diffPreloadAfterMm + 'mm'
+                }
+              );
             }
             if (evalu.diffLoadStart10Mm !== null) {
-              const calc2stat: CheckStatus = evalu.withinThresholdLoadStart10 ? 'ok' : 'nok';
-              const calc2note =
-                calc2stat === 'ok' ? 'Bestanden - Grenzwert ≤ 100 mm eingehalten' : 'Grenzwert 100mm überschritten';
-              await this.preparePdfItem(secout, { id: 'diff2', title: OVERLOAD_RESULTS_UI['diffLoadStart10'].title }, { status: calc2stat, note: calc2note, measurement: evalu.diffLoadStart10Mm + 'mm' });
+              const diff2Status = isDiffStatus(evalu.diffLoadStart10Status)
+                ? evalu.diffLoadStart10Status
+                : evaluateDiffStatus(evalu.diffLoadStart10Mm);
+              await this.preparePdfItem(
+                secout,
+                { id: 'diff2', title: OVERLOAD_RESULTS_UI['diffLoadStart10'].title },
+                {
+                  status: this.overloadPdfStatus(diff2Status),
+                  note: diffStatusNote(diff2Status) ?? undefined,
+                  measurement: evalu.diffLoadStart10Mm + 'mm'
+                }
+              );
             }
           }
           break;

@@ -40,8 +40,13 @@
               class="overload__input"
               type="number"
               inputmode="numeric"
+              [min]="heightMinMm"
+              [max]="heightMaxMm"
+              step="1"
+              autocomplete="off"
               placeholder="mm"
               [value]="valueFor(block.field) ?? ''"
+              (keydown)="restrictInput($event)"
               (input)="setMm(block.field, ($any($event.target).value))"
             />
           </label>
@@ -53,15 +58,18 @@
           <div
             class="overload__resultwrap"
             [class.overload__resultwrap--ok]="evaluation.status === 'ok'"
-            [class.overload__resultwrap--warning]="evaluation.status === 'invalid'"
-            [class.overload__resultwrap--error]="evaluation.status === 'overLimit'"
+            [class.overload__resultwrap--warning]="evaluation.status === 'invalid' || evaluation.status === 'followUpRequired'"
+            [class.overload__resultwrap--error]="evaluation.status === 'outOfService'"
           >
             <div class="overload__result">{{ evaluation.valueMm ?? '-' }}</div>
             @if (evaluation.status === 'invalid') {
-              <div class="overload__status overload__status--warning">Ungültiger Wert – bitte Eingaben prüfen</div>
+              <div class="overload__status overload__status--warning">Ungültiger Wert - bitte Eingaben prüfen</div>
             }
-            @if (evaluation.status === 'overLimit') {
-              <div class="overload__status overload__status--error">Grenzwert überschritten</div>
+            @if (evaluation.status === 'followUpRequired') {
+              <div class="overload__status overload__status--warning">Über 100 mm - genaue Prüfung erforderlich</div>
+            }
+            @if (evaluation.status === 'outOfService') {
+              <div class="overload__status overload__status--error">Über 150 mm - nicht einsatzfähig</div>
             }
           </div>
         </div>
