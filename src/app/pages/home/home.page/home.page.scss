@@ -3,13 +3,13 @@
   display: grid;
   justify-items: center;
   align-items: start;
-  padding-top: var(--space-m);
+  padding-top: var(--space-l);
   padding-bottom: var(--space-l);
   position: relative;
   padding-inline: var(--space-s);
   box-sizing: border-box;
 
-  @media (min-width: 488px) {
+  @media (max-width: 488px) {
     padding-top: calc(var(--space-3xl) * 2);
   }
 

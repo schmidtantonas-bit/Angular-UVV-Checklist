@@ -31,6 +31,34 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 
 ---
 
+## L32XS
+
+### Metadaten / Prüfprotokoll
+
+- **Fahrzeugtyp / Modell:** L32XS
+- **Aufbauart:** Drehleiter mit Korb (Gelenk)
+- **Kategorie:** Geschwindigkeitsparameter / Zeitmessung
+- **Prüfungsart:** UVV-Prüfung (Entwicklung & Feedback)
+- **Referenzkonfiguration:** identisch zu L32A
+
+### Konfigurationstabelle
+
+| Bewegung | Zeit (s) | Toleranz | Kommentar |
+| --- | ---: | ---: | --- |
+| Drehen rechts | 20 | +4 | 90° Drehen |
+| Drehen links | 20 | +4 | 90° Drehen |
+| Aufrichten | 31 | +3 | 0° - 75° |
+| Neigen | 34 | +3 | 75° - 0° |
+| Ausfahren | 30 | +3 | - |
+| Einfahren | 33 | +3 | - |
+| Gelenk neigen | 34 | +3 | 0° - 75° |
+| Gelenk aufrichten | 34 | +3 | 75° - 0° |
+| Aufrichten mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 60° - 70° |
+| Neigen mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 70° - 60° |
+| Drehen mit voller Leiterlänge | 52 | +5 | heißes Öl, in voller Fahrt 90° |
+
+---
+
 ## L27 (DLK)
 
 ### Metadaten / Prüfprotokoll
