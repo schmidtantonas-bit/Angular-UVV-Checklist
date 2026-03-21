@@ -4,34 +4,65 @@ Folgende Serviceleistungen sind in diesem Paket enthalten.
 
 ## Inspektion BASIC (4h)
 
-- Erinnerung an die alljährliche Sicherheitsüberprüfung
-- Anfahrpauschale mit Tag- und Nachtspesen
-- Jährliche Sicherheitsüberprüfung (Safety Check) gemäß der Prüfanweisung des Herstellers in Anlehnung an den DGUV-Grundsatz 305-002 (bisher 9102)
-- Überlastprüfung des Aufbaus nach Herstellervorgaben (Spezialwerkzeug)
-- Sichtprüfung des elektrischen, mechanischen und hydraulischen Aufbaus (inkl. hydr. Notbetrieb)
-- Funktionsprüfung des elektrischen, mechanischen und hydraulischen Aufbaus
-- Anfertigen eines Inspektionsberichtes mit Übergabegespräch
-- Eintrag in das Prüfbuch der Drehleiter
-- Im Nachgang Erstellen eines Infoangebotes, falls erforderlich
-- Wechsel des Filtereinsatzes der Haupthydraulikanlage alle 2 Jahre oder 150 Betriebsstunden (Material wird zusätzlich berechnet)
-- Durchführen von notwendigen Reparaturen zzgl. Arbeitszeit und Material
+- Erinnerung Sicherheitsüberprüfung
+- Anfahrt inkl. Tag- und Nachtspesen
+- Jährliche Sicherheitsüberprüfung nach DGUV 305-002
+- Überlastprüfung nach Herstellervorgaben
+- Sichtprüfung Aufbau inkl. Notbetrieb
+- Funktionsprüfung Aufbau
+- Inspektionsbericht mit Übergabe
+- Eintrag ins Prüfbuch
+- Infoangebot bei Bedarf
+- Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh
+- Reparaturen zzgl. Arbeitszeit und Material
 
-## Service PLUS (+2h)
+## Service PLUS (6h)
 
-- Öffnen und Kontrollieren aller elektrischen Verteilerkästen, Bedienelemente und Montagedeckel
-- Prüfen und ggf. Reinigen der elektrischen Drehdurchführung
-- Prüfen und ggf. Einstellen der Aus- und Einzugsseile im Leitersatz
-- Prüfen und ggf. Einstellen der Kabel (Steuerkabel, Stromkabel, Neigekabel) im Leitersatz
-- Fehlerspeicher oder Service 4 Fire auslesen, auswerten, ggfl. speichern und zurücksetzen (wenn vorhanden)
-- Prüfen der Performance und ggf. Einstellen bzw. Optimieren der Bewegungen
-- Funktionsprüfung des Wassermonitors
-- Funktionsprüfung der Krankentragelagerung
-- Funktionsprüfung Notstromgenerator in Verbindung mit 400V Notbetrieb
-- Durchführen von notwendigen Reparaturen zzgl. Arbeitszeit und Material
+- Erinnerung Sicherheitsüberprüfung
+- Anfahrt inkl. Tag- und Nachtspesen
+- Jährliche Sicherheitsüberprüfung nach DGUV 305-002
+- Überlastprüfung nach Herstellervorgaben
+- Sichtprüfung Aufbau inkl. Notbetrieb
+- Funktionsprüfung Aufbau
+- Inspektionsbericht mit Übergabe
+- Eintrag ins Prüfbuch
+- Infoangebot bei Bedarf
+- Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh
+- Reparaturen zzgl. Arbeitszeit und Material
+- Elektrische Kästen und Deckel kontrollieren
+- Elektrische Drehdurchführung prüfen/reinigen
+- Aus- und Einzugsseile prüfen/einstellen
+- Kabel im Leitersatz prüfen/einstellen
+- Fehlerspeicher / Service 4 Fire auslesen
+- Performance prüfen / Bewegungen optimieren
+- Wassermonitor prüfen
+- Krankentragelagerung prüfen
+- Notstromgenerator mit 400V Notbetrieb prüfen
+- Reparaturen zzgl. Arbeitszeit und Material
 
-## Service PRO (+4h)
+## Service PRO (8h)
 
-- Prüfen auf mögliche Softwareupdates
-- Überprüfen und ggf. Kalibrieren von Sensorik oder elektronischen Gebern
-- Schmierstellen des Aufbaus nach Herstellervorgabe nach Bedarf reinigen und neu abschmieren (Schmiermittel sind vom Kunden beizustellen oder werden durch den Kundendienst gegen Aufpreis in Rechnung gestellt)
-- Durchführen von notwendigen Reparaturen zzgl. Arbeitszeit und Material
+- Erinnerung Sicherheitsüberprüfung
+- Anfahrt inkl. Tag- und Nachtspesen
+- Jährliche Sicherheitsüberprüfung nach DGUV 305-002
+- Überlastprüfung nach Herstellervorgaben
+- Sichtprüfung Aufbau inkl. Notbetrieb
+- Funktionsprüfung Aufbau
+- Inspektionsbericht mit Übergabe
+- Eintrag ins Prüfbuch
+- Infoangebot bei Bedarf
+- Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh
+- Reparaturen zzgl. Arbeitszeit und Material
+- Elektrische Kästen und Deckel kontrollieren
+- Elektrische Drehdurchführung prüfen/reinigen
+- Aus- und Einzugsseile prüfen/einstellen
+- Kabel im Leitersatz prüfen/einstellen
+- Fehlerspeicher / Service 4 Fire auslesen
+- Performance prüfen / Bewegungen optimieren
+- Wassermonitor prüfen
+- Krankentragelagerung prüfen
+- Notstromgenerator mit 400V Notbetrieb prüfen
+- Softwareupdates prüfen
+- Sensorik / Geber prüfen und kalibrieren
+- Schmierstellen reinigen und abschmieren
+- Reparaturen zzgl. Arbeitszeit und Material

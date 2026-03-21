@@ -10,8 +10,8 @@ export type { InspectionPackageConfig, InspectionPackageType } from './types';
 export const INSPECTION_PACKAGE_OPTIONS: ChecklistCustomerDataInspectionType[] = [
   { value: 'none', label: 'Keine Zusatzinspektion' },
   { value: 'basic', label: 'Inspektion BASIC (4h)' },
-  { value: 'plus', label: 'Service PLUS (+2h)' },
-  { value: 'pro', label: 'Service PRO (+4h)' }
+  { value: 'plus', label: 'Service PLUS (6h)' },
+  { value: 'pro', label: 'Service PRO (8h)' }
 ];
 
 const INSPECTION_PACKAGE_CONFIGS: Record<InspectionPackageType, InspectionPackageConfig> = {

@@ -53,8 +53,8 @@ export function buildChecklistConfig(params: {
           ...(speedSection ? [speedSection] : []),
           ...(batterySection ? [batterySection] : []),
           ...overloadSections,
-          MISC_SECTION,
           ...inspectionPackageSections,
+          MISC_SECTION,
           ...(operationalStatusSection ? [operationalStatusSection] : [])
         ]);
 
