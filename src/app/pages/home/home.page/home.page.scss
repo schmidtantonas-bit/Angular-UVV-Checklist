@@ -9,6 +9,10 @@
   padding-inline: var(--space-s);
   box-sizing: border-box;
 
+  @media (min-width: 488px) {
+    padding-top: calc(var(--space-3xl) * 2);
+  }
+
   &__panel {
     width: min(var(--container-max-px), 100%);
     margin-inline: auto;
