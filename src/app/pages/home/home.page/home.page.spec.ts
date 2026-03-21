@@ -22,4 +22,17 @@ describe('HomePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should expose all configured models in the wizard', () => {
+    expect(component.modelsByFamily.drehleiter.map((model) => model.id)).toEqual([
+      'l27',
+      'l32',
+      'l32a',
+      'l32xs',
+      'l39',
+      'l39_lift'
+    ]);
+
+    expect(component.modelsByFamily.buhne.map((model) => model.id)).toEqual(['b32', 'b36', 'b42']);
+  });
 });
