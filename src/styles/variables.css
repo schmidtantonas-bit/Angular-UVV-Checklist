@@ -125,6 +125,9 @@
     --state-def-text: var(--def);
 
     /* ========= Neumorph Shadows ========= */
+    --neo-surface: #e0e0e0;
+    --neo-shadow-dark-color: #bebebe;
+    --neo-shadow-light-color: #ffffff;
     --neo-inset: inset 1px 1px 2px var(--shadow-dark),
         inset -1px -1px 2px var(--shadow-light);
     --neo-outset: 2px 2px 5px var(--shadow-dark),
