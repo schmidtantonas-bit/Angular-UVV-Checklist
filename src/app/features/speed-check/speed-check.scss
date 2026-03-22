@@ -1,5 +1,4 @@
 .speed-check {
-  --speed-shell-surface: #e8e8e8;
   --speed-surface: var(--neo-surface);
   --speed-shadow-dark: var(--neo-shadow-dark-color);
   --speed-shadow-light: var(--neo-shadow-light-color);
@@ -11,7 +10,7 @@
 
   padding: var(--space-l);
   border-radius: calc(var(--radius) * 3);
-  background: var(--speed-shell-surface);
+  background: var(--speed-surface);
   box-shadow:
     20px 20px 60px var(--speed-shadow-dark-soft),
     -20px -20px 60px var(--speed-shadow-light-soft);
