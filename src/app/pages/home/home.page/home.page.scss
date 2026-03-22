@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: grid;
   justify-items: center;
-  align-items: start;
+  align-items: center;
   padding-top: var(--space-l);
   padding-bottom: var(--space-l);
   position: relative;
@@ -11,6 +11,8 @@
 
   @media (max-width: 488px) {
     padding-top: calc(var(--space-3xl) * 2);
+    align-items: start;
+
   }
 
   &__panel {
