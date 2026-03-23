@@ -87,7 +87,7 @@ const WIZARD_INSPECTION_PACKAGES: WizardInspectionPackage[] = WIZARD_INSPECTION_
           ? 'Inspektion BASIC 4h'
           : packageType === 'plus'
             ? 'Inspektion PLUS 6h'
-            : 'Inspektion PRO 8h',
+            : 'Inspektion PRO 10h',
     subtitle:
       packageType === 'none'
         ? 'Nur die Standard-Checkliste'

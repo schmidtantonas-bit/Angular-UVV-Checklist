@@ -40,7 +40,7 @@ Folgende Serviceleistungen sind in diesem Paket enthalten.
 - Notstromgenerator mit 400V Notbetrieb prüfen
 - Reparaturen zzgl. Arbeitszeit und Material
 
-## Service PRO (8h)
+## Service PRO (10h)
 
 - Erinnerung Sicherheitsüberprüfung
 - Anfahrt inkl. Tag- und Nachtspesen
