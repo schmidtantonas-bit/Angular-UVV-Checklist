@@ -25,9 +25,6 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Einfahren | 33 | +3 | - |
 | Gelenk neigen | 34 | +3 | 0° - 75° |
 | Gelenk aufrichten | 34 | +3 | 75° - 0° |
-| Aufrichten mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 60° - 70° |
-| Neigen mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 70° - 60° |
-| Drehen mit voller Leiterlänge | 52 | +5 | heißes Öl, in voller Fahrt 90° |
 
 ---
 
@@ -53,9 +50,6 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Einfahren | 33 | +3 | - |
 | Gelenk neigen | 34 | +3 | 0° - 75° |
 | Gelenk aufrichten | 34 | +3 | 75° - 0° |
-| Aufrichten mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 60° - 70° |
-| Neigen mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 70° - 60° |
-| Drehen mit voller Leiterlänge | 52 | +5 | heißes Öl, in voller Fahrt 90° |
 
 ---
 
@@ -78,11 +72,6 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Neigen | 34 | +3 | 75° - 0° |
 | Ausfahren | 27 | +3 | - |
 | Einfahren | 30 | +3 | - |
-| Aufrichten mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 60° - 70° |
-| Neigen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 70° - 60° |
-| Drehen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt 90° |
-
-> Hinweis: Für die drei Einträge mit voller Leiterlänge wurden im gelieferten Inhalt keine Zeit- oder Toleranzwerte angegeben.
 
 ---
 
@@ -105,9 +94,6 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Neigen | 34 | +3 | 75° - 0° |
 | Ausfahren | 30 | +3 | - |
 | Einfahren | 33 | +3 | - |
-| Aufrichten mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 60° - 70° |
-| Neigen mit voller Leiterlänge | 22 | +5 | heißes Öl, in voller Fahrt von 70° - 60° |
-| Drehen mit voller Leiterlänge | 52 | +5 | heißes Öl, in voller Fahrt 90° |
 
 ---
 
@@ -130,13 +116,8 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Neigen | 35 | +3 | 75° - 0° |
 | Ausfahren | 43 | +3 | - |
 | Einfahren | 47 | +3 | - |
-| Aufrichten mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 60° - 70° |
-| Neigen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 70° - 60° |
-| Drehen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt 90° |
 | Lift Auffahren | 33 | +4 | - |
 | Lift Abfahren | 33 | +4 | - |
-
-> Hinweis: Für die drei Einträge mit voller Leiterlänge wurden im gelieferten Inhalt keine Zeit- oder Toleranzwerte angegeben.
 
 ---
 
@@ -159,8 +140,3 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Neigen | 34 | +3 | 75° - 0° |
 | Ausfahren | 43 | +3 | - |
 | Einfahren | 45 | +3 | - |
-| Aufrichten mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 60° - 70° |
-| Neigen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt von 70° - 60° |
-| Drehen mit voller Leiterlänge | - | - | heißes Öl, in voller Fahrt 90° |
-
-> Hinweis: Für die drei Einträge mit voller Leiterlänge wurden im gelieferten Inhalt keine Zeit- oder Toleranzwerte angegeben.

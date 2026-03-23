@@ -17,10 +17,7 @@ export const L32A_DEVICE_CONFIG: DeviceConfig = {
     { key: 'extend', label: 'Ausfahren', referenceSec: 30, toleranceSec: 3 },
     { key: 'retract', label: 'Einfahren', referenceSec: 33, toleranceSec: 3 },
     { key: 'jointTilt', label: 'Gelenk neigen', referenceSec: 34, toleranceSec: 3 },
-    { key: 'jointRaise', label: 'Gelenk aufrichten', referenceSec: 34, toleranceSec: 3 },
-    { key: 'fullLengthRaise', label: 'Aufrichten mit voller Leiterlaenge', referenceSec: 22, toleranceSec: 5 },
-    { key: 'fullLengthTilt', label: 'Neigen mit voller Leiterlaenge', referenceSec: 22, toleranceSec: 5 },
-    { key: 'fullLengthRotate', label: 'Drehen mit voller Leiterlaenge', referenceSec: 52, toleranceSec: 5 }
+    { key: 'jointRaise', label: 'Gelenk aufrichten', referenceSec: 34, toleranceSec: 3 }
   ],
   overloadVariant: 'standard'
 };

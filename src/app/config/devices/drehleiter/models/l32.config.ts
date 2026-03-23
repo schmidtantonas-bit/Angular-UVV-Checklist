@@ -16,10 +16,7 @@ export const L32_DEVICE_CONFIG: DeviceConfig = {
     { key: 'raise', label: 'Aufrichten', referenceSec: 31, toleranceSec: 3 },
     { key: 'tilt', label: 'Neigen', referenceSec: 34, toleranceSec: 3 },
     { key: 'extend', label: 'Ausfahren', referenceSec: 30, toleranceSec: 3 },
-    { key: 'retract', label: 'Einfahren', referenceSec: 33, toleranceSec: 3 },
-    { key: 'fullLengthRaise', label: 'Aufrichten mit voller Leiterlaenge', referenceSec: 22, toleranceSec: 5 },
-    { key: 'fullLengthTilt', label: 'Neigen mit voller Leiterlaenge', referenceSec: 22, toleranceSec: 5 },
-    { key: 'fullLengthRotate', label: 'Drehen mit voller Leiterlaenge', referenceSec: 52, toleranceSec: 5 }
+    { key: 'retract', label: 'Einfahren', referenceSec: 33, toleranceSec: 3 }
   ],
   overloadVariant: 'standard'
 };
