@@ -44,7 +44,10 @@ export function evaluateSpeedCheck(
     const measuredSec = measurements[definition.key] ?? null;
     const deltaSec = measuredSec == null ? null : measuredSec - definition.referenceSec;
     const withinTolerance =
-      measuredSec == null ? null : Math.abs(deltaSec ?? 0) <= definition.toleranceSec;
+      measuredSec == null
+        ? null
+        : measuredSec >= definition.referenceSec &&
+          measuredSec <= definition.referenceSec + definition.toleranceSec;
 
     return { ...definition, measuredSec, deltaSec, withinTolerance };
   });

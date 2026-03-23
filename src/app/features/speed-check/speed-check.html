@@ -46,7 +46,9 @@
         </label>
 
         <div class="speed-check__meta">
-          <span class="speed-check__hint">Soll: {{ row.referenceSec }} s ± {{ row.toleranceSec }} s</span>
+          <span class="speed-check__hint">
+            Soll: {{ row.referenceSec }} s bis {{ row.referenceSec + row.toleranceSec }} s
+          </span>
           <span class="speed-check__hint">
             Diff:
             @if (row.deltaSec === null) {
