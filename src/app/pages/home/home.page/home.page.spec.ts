@@ -25,10 +25,10 @@ describe('HomePage', () => {
 
   it('should expose all configured models in the wizard', () => {
     expect(component.modelsByFamily.drehleiter.map((model) => model.id)).toEqual([
-      'l27',
+      'l32xs',
       'l32',
       'l32a',
-      'l32xs',
+      'l27',
       'l39',
       'l39_lift'
     ]);
@@ -37,11 +37,6 @@ describe('HomePage', () => {
   });
 
   it('should expose the inspection package choices for the UVV flow', () => {
-    expect(component.inspectionPackages.map((inspectionPackage) => inspectionPackage.id)).toEqual([
-      'none',
-      'basic',
-      'pro',
-      'plus'
-    ]);
+    expect(component.inspectionPackages.map((inspectionPackage) => inspectionPackage.id)).toEqual(['basic', 'plus', 'pro']);
   });
 });
