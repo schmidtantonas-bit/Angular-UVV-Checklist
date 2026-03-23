@@ -30,7 +30,8 @@ describe('HomePage', () => {
       'l32a',
       'l27',
       'l39',
-      'l39_lift'
+      'l39_lift',
+      'plc'
     ]);
 
     expect(component.modelsByFamily.buhne.map((model) => model.id)).toEqual(['b32', 'b36', 'b42']);

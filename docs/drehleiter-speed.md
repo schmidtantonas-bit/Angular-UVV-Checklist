@@ -140,3 +140,25 @@ Diese Datei bündelt die aktuell vorliegenden Geschwindigkeitsparameter und Zeit
 | Neigen | 34 | +3 | 75° - 0° |
 | Ausfahren | 43 | +3 | - |
 | Einfahren | 45 | +3 | - |
+
+---
+
+## PLC
+
+### Metadaten / Prüfprotokoll
+
+- **Fahrzeugtyp / Modell:** PLC
+- **Aufbauart:** Drehleiter mit/ohne Korb
+- **Kategorie:** Geschwindigkeitsparameter / Zeitmessung
+- **Prüfungsart:** UVV-Prüfung (Entwicklung & Feedback)
+
+### Konfigurationstabelle
+
+| Bewegung | Zeit (s) | Toleranz | Kommentar |
+| --- | ---: | ---: | --- |
+| Drehen rechts | 24 | +3 | 90° Drehen |
+| Drehen links | 24 | +3 | 90° Drehen |
+| Aufrichten | 39 | +3 | 0° - 75° |
+| Neigen | 44 | +3 | 75° - 0° |
+| Ausfahren | 30 | +3 | max. Geschwindigkeit |
+| Einfahren | 28 | +3 | max. Geschwindigkeit |

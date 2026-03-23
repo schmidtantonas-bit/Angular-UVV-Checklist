@@ -34,7 +34,7 @@ const WIZARD_FAMILY_BY_DEVICE_FAMILY = {
   hr_buehne: 'buhne'
 } as const;
 
-const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32xs', 'l32', 'l32a', 'l27', 'l39', 'l39_lift'];
+const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32xs', 'l32', 'l32a', 'l27', 'l39', 'l39_lift', 'plc'];
 
 const WIZARD_MODELS: WizardModel[] = DEVICE_TYPE_OPTIONS.filter((option): option is { value: DeviceType; label: string } =>
   isDeviceType(option.value)
