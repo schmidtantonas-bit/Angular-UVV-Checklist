@@ -78,6 +78,12 @@ button {
         transform var(--transition-duration) ease;
 }
 
+input,
+select,
+textarea {
+    font-size: var(--text-control);
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;

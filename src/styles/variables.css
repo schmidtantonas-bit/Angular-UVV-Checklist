@@ -12,7 +12,8 @@
     /* ── Semantik → T-Shirt Skala (die T-Shirt-Variablen hast du bereits) ── */
     --text-caption: var(--text-3xs); /* sehr klein: Labels, Hilfetext (≈ 10–12px) */
     --text-label: var(--text-2xs); /* UI-Labels, Meta (≈ 12–14px) */
-    --text-body: 16px; /* Fließtext & Inputs (≈ 16–18px) */
+    --text-body: 16px; /* Fließtext (≈ 16px) */
+    --text-control: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* Inputs/Selects/Textareas: min 16px, max 18px */
     --text-lead: var(--text-m); /* etwas größerer Body (≈ 18–20px) */
 
     --text-sub: var(--text-m); /* Subheadline / H4 (≈ 20–24px) */
