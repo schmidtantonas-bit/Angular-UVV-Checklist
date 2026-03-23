@@ -60,7 +60,7 @@ const MODELS_BY_FAMILY: Record<WizardFamily, WizardModel[]> = {
   )
 };
 
-const WIZARD_INSPECTION_PACKAGE_ORDER: readonly InspectionPackageType[] = ['none', 'basic', 'plus', 'pro'];
+const WIZARD_INSPECTION_PACKAGE_ORDER: readonly InspectionPackageType[] = ['basic', 'plus', 'pro'];
 
 const WIZARD_INSPECTION_PACKAGE_IMAGES: Record<InspectionPackageType, string> = {
   none: '/assets/images/Inspektion%20Ohne%20Zusatzpaket.png',
