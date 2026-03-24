@@ -6,13 +6,15 @@ import {
   OnDestroy,
   Output,
   ViewChild,
-  input
+  input,
+  signal
 } from '@angular/core';
+import { UiModalComponent } from '@ui/modal/ui-modal';
 
 @Component({
   selector: 'app-check-item-media',
   standalone: true,
-  imports: [],
+  imports: [UiModalComponent],
   templateUrl: './check-item-media.html',
   styleUrl: './check-item-media.scss'
 })
@@ -25,11 +27,13 @@ export class CheckItemMediaComponent implements OnDestroy {
 
   maxPhotos = input<number>(Number.POSITIVE_INFINITY);
   allowMultiple = input<boolean>(true);
+  readonly previewPhoto = signal<File | null>(null);
 
   @Input()
   set photos(value: File[] | null | undefined) {
     const next = value ?? [];
     this.syncObjectUrls(this._photos, next);
+    if (this.previewPhoto() && !next.includes(this.previewPhoto()!)) this.previewPhoto.set(null);
     this._photos = next;
   }
   get photos(): File[] {
@@ -62,8 +66,17 @@ export class CheckItemMediaComponent implements OnDestroy {
   removePhoto(index: number) {
     const next = this.photos.slice();
     const removed = next.splice(index, 1)[0];
+    if (removed && this.previewPhoto() === removed) this.previewPhoto.set(null);
     this.revokeObjectUrl(removed);
     this.photosChange.emit(next);
+  }
+
+  openPreview(photo: File) {
+    this.previewPhoto.set(photo);
+  }
+
+  closePreview() {
+    this.previewPhoto.set(null);
   }
 
   thumbUrl(file: File): string {

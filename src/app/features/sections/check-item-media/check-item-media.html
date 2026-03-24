@@ -29,16 +29,41 @@
   @if (photos.length > 0) {
     <div class="check-item-media__thumbs" aria-label="Fotos">
       @for (photo of photos; track photo; let i = $index) {
-        <button
-          class="check-item-media__thumb"
-          type="button"
-          (click)="removePhoto(i)"
-          [attr.aria-label]="'Foto entfernen ' + (i + 1)"
-          data-ui="check-item-thumb"
-        >
-          <img class="check-item-media__img" [src]="thumbUrl(photo)" alt="" />
-        </button>
+        <div class="check-item-media__thumb-frame">
+          <button
+            class="check-item-media__thumb"
+            type="button"
+            (click)="openPreview(photo)"
+            [attr.aria-label]="'Foto vergrößern ' + (i + 1)"
+            data-ui="check-item-thumb"
+          >
+            <img class="check-item-media__img" [src]="thumbUrl(photo)" [alt]="'Foto ' + (i + 1)" />
+          </button>
+
+          <button
+            class="check-item-media__delete"
+            type="button"
+            (click)="removePhoto(i)"
+            [attr.aria-label]="'Foto löschen ' + (i + 1)"
+            data-ui="check-item-thumb-delete"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M9 3h6l1 2h4v2H4V5h4l1-2Zm1 6h2v8h-2V9Zm4 0h2v8h-2V9ZM7 9h2v8H7V9Zm-1 11h12l1-13H5l1 13Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
       }
     </div>
   }
 </div>
+
+@if (previewPhoto(); as photo) {
+  <app-ui-modal title="Foto Vorschau" (closed)="closePreview()">
+    <div class="check-item-media__preview" data-ui="check-item-preview-modal">
+      <img class="check-item-media__preview-img" [src]="thumbUrl(photo)" alt="Foto Vorschau" />
+    </div>
+  </app-ui-modal>
+}
