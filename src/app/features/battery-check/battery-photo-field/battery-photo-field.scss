@@ -27,6 +27,12 @@
     position: relative;
     overflow: hidden;
     box-shadow: var(--neo-outset);
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--focus-border-color);
+      box-shadow: var(--focus-ring-shadow-outset);
+    }
   }
 
   &__icon {
@@ -121,7 +127,8 @@
     &:hover,
     &:focus-visible {
       color: var(--text-primary);
-      outline: none;
+      outline: var(--focus-outline);
+      outline-offset: var(--focus-outline-offset);
       text-decoration: underline;
     }
   }

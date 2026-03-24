@@ -50,9 +50,7 @@
 
   &:focus-visible {
     outline: none;
-    box-shadow:
-      0 0 0 2px color-mix(in srgb, var(--focus) 40%, white),
-      var(--neo-outset);
+    box-shadow: var(--focus-ring-shadow-outset);
   }
 
   &:disabled,

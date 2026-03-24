@@ -121,6 +121,12 @@
     padding: 10px 12px;
     font-size: var(--text-control);
     font-weight: 600;
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--focus-border-color);
+      box-shadow: var(--focus-ring-shadow);
+    }
   }
 
   &__hint {

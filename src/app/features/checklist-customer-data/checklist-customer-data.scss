@@ -37,8 +37,8 @@
   }
 
   &__control:focus-visible {
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 25%, transparent), var(--neo-inset);
+    border-color: var(--focus-border-color);
+    box-shadow: var(--focus-ring-shadow-inset);
   }
 
   @media (max-width: 488px) {

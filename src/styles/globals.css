@@ -31,16 +31,25 @@ a {
     text-decoration: none;
     transition: color var(--transition-duration) ease;
 }
-a:hover,
+a:hover {
+    text-decoration: underline;
+    color: var(--primary);
+}
+
 a:focus-visible {
     text-decoration: underline;
-    /* Fallback for browsers without color-mix support */
     color: var(--primary);
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+    border-radius: 4px;
 }
 
 /* Progressive enhancement: use color-mix when supported */
 @supports (color: color-mix(in srgb, black, white)) {
-    a:hover,
+    a:hover {
+        color: color-mix(in srgb, var(--primary) 80%, white);
+    }
+
     a:focus-visible {
         color: color-mix(in srgb, var(--primary) 80%, white);
     }

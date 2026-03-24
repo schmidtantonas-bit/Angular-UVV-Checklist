@@ -56,10 +56,15 @@
     }
   }
 
-  &__menu-btn.btn--ghost:hover:not(.is-disabled):not(:disabled),
-  &__menu-btn.btn--ghost:focus-visible:not(.is-disabled):not(:disabled) {
+  &__menu-btn.btn--ghost:hover:not(.is-disabled):not(:disabled) {
     background: var(--surface-alt);
     box-shadow: var(--neo-outset);
+    filter: none;
+  }
+
+  &__menu-btn.btn--ghost:focus-visible:not(.is-disabled):not(:disabled) {
+    background: var(--surface-alt);
+    box-shadow: var(--focus-ring-shadow-outset);
     filter: none;
   }
 
@@ -81,6 +86,11 @@
       background var(--dur-fast) ease,
       color var(--dur-fast) ease,
       border-color var(--dur-fast) ease;
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring-shadow);
+    }
 
     &.is-active {
       background: var(--surface-alt);
@@ -180,11 +190,14 @@
       background var(--dur-fast) ease,
       color var(--dur-fast) ease;
 
-    &:hover,
-    &:focus-visible {
+    &:hover {
       background: var(--def);
       color: var(--text-on-primary);
+    }
+
+    &:focus-visible {
       outline: none;
+      box-shadow: var(--focus-ring-shadow);
     }
   }
 

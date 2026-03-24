@@ -51,11 +51,14 @@
   &:hover,
   &:focus-visible {
     filter: brightness(0.98);
+  }
+
+  &:focus-visible {
     outline: none;
+    box-shadow: var(--focus-ring-shadow);
   }
 }
 
 .ui-modal__body {
   padding: 14px 14px;
 }
-

@@ -106,17 +106,22 @@
       box-shadow: none;
     }
 
-    &:hover,
-    &:focus-visible {
+    &:hover {
       background: color-mix(in srgb, var(--surface-alt) 85%, transparent);
-      border-color: color-mix(in srgb, var(--brand) 22%, var(--border-color));
+      border-color: color-mix(in srgb, var(--primary) 22%, var(--border-color));
       transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring-shadow);
+      border-color: var(--focus-border-color);
     }
 
     &:active {
       transform: scale(0.97);
-      background: color-mix(in srgb, var(--brand) 12%, var(--surface));
-      border-color: color-mix(in srgb, var(--brand) 38%, var(--border-color));
+      background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+      border-color: color-mix(in srgb, var(--primary) 38%, var(--border-color));
     }
   }
 
@@ -148,9 +153,13 @@
     justify-content: flex-end;
   }
 
-  &__back.btn--ghost:hover:not(:disabled),
-  &__back.btn--ghost:focus-visible:not(:disabled) {
+  &__back.btn--ghost:hover:not(:disabled) {
     background: var(--surface-alt);
     box-shadow: var(--neo-outset);
+  }
+
+  &__back.btn--ghost:focus-visible:not(:disabled) {
+    background: var(--surface-alt);
+    box-shadow: var(--focus-ring-shadow-outset);
   }
 }

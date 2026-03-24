@@ -51,9 +51,8 @@
 
   &__title-input:focus-visible {
     outline: none;
-    box-shadow:
-      0 0 0 2px color-mix(in srgb, var(--focus) 40%, white),
-      var(--neo-outset);
+    border-color: var(--focus-border-color);
+    box-shadow: var(--focus-ring-shadow-outset);
   }
 
   &__actions {

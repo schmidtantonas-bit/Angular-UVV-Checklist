@@ -24,10 +24,10 @@
       box-shadow var(--dur-fast) ease,
       background var(--dur-fast) ease;
 
-    &:focus {
+    &:focus-visible {
       outline: none;
-      border-color: var(--focus);
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 40%, white), var(--neo-inset);
+      border-color: var(--focus-border-color);
+      box-shadow: var(--focus-ring-shadow-inset);
     }
 
     &:disabled {

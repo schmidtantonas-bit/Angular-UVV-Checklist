@@ -132,7 +132,14 @@
         -2px -2px 5px var(--shadow-light);
 
     /* ========= Focus & Disabled ========= */
-    --focus: var(--primary);
+    --focus-ring-color: #2563eb;
+    --focus: var(--focus-ring-color);
+    --focus-border-color: color-mix(in srgb, var(--focus-ring-color) 72%, white);
+    --focus-ring-shadow: 0 0 0 3px color-mix(in srgb, var(--focus-ring-color) 28%, transparent);
+    --focus-ring-shadow-inset: var(--focus-ring-shadow), var(--neo-inset);
+    --focus-ring-shadow-outset: var(--focus-ring-shadow), var(--neo-outset);
+    --focus-outline: 2px solid color-mix(in srgb, var(--focus-ring-color) 72%, white);
+    --focus-outline-offset: 2px;
     --disabled-bg: #dfe3eb;
     --disabled-text: #a1a8b5;
 
