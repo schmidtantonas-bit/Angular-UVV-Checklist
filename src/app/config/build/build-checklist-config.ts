@@ -34,9 +34,9 @@ export function buildChecklistConfig(params: {
   const family = getFamilyConfig(device.family);
   const inspection = getInspectionConfig(params.inspectionType, device.family);
   const overloadInspection = getInspectionConfig('overload', device.family);
-  const inspectionPackageType = params.inspectionType === 'uvv' ? (params.inspectionPackage ?? 'none') : 'none';
-  const inspectionPackage = getInspectionPackageConfig(inspectionPackageType);
-  const inspectionPackageSections = params.inspectionType === 'uvv' ? [...inspectionPackage.extraSections] : [];
+  const inspectionPackageType = params.inspectionType === 'uvv' ? (params.inspectionPackage ?? 'basic') : null;
+  const inspectionPackage = inspectionPackageType ? getInspectionPackageConfig(inspectionPackageType) : null;
+  const inspectionPackageSections = inspectionPackage ? [...inspectionPackage.extraSections] : [];
   const overloadSections = params.inspectionType === 'uvv' ? [...(overloadInspection.extraSections ?? [])] : [];
   const baseSections = [...family.uvvSections];
   const speedSection = takeSection(baseSections, 'sec-speed-1');
@@ -58,10 +58,7 @@ export function buildChecklistConfig(params: {
           ...(operationalStatusSection ? [operationalStatusSection] : [])
         ]);
 
-  const inspectionLabel =
-    params.inspectionType === 'uvv' && inspectionPackageType !== 'none'
-      ? `${inspection.label} / ${inspectionPackage.label}`
-      : inspection.label;
+  const inspectionLabel = inspectionPackage ? `${inspection.label} / ${inspectionPackage.label}` : inspection.label;
 
   return {
     deviceType: params.deviceType,
@@ -74,7 +71,7 @@ export function buildChecklistConfig(params: {
       ...(inspection.customerData ?? {}),
       deviceType: device.label,
       inspectionType: inspectionLabel,
-      inspectionPackage: inspectionPackageType === 'none' ? '' : inspectionPackage.label
+      inspectionPackage: inspectionPackage?.label ?? ''
     },
     sections,
     speedCheckTable: device.speedCheckTable,

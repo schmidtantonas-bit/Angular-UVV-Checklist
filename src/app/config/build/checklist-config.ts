@@ -12,7 +12,7 @@ export interface ChecklistConfig {
   deviceType: DeviceType;
   family: DeviceFamily;
   inspectionType: InspectionType;
-  inspectionPackage: InspectionPackageType;
+  inspectionPackage: InspectionPackageType | null;
   overview: ChecklistOverviewModel;
   customerData: ChecklistCustomerDataModel;
   sections: CheckSectionModel[];

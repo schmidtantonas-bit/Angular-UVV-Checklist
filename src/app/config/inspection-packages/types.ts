@@ -1,6 +1,6 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 
-export type InspectionPackageType = 'none' | 'basic' | 'plus' | 'pro';
+export type InspectionPackageType = 'basic' | 'plus' | 'pro';
 
 export interface InspectionPackageConfig {
   type: InspectionPackageType;

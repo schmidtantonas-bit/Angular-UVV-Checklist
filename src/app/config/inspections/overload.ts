@@ -5,14 +5,14 @@ export function createOverloadInspectionConfig(family: DeviceFamily): Inspection
   const items =
     family === 'hr_buehne'
       ? [
-          { id: 'ol-01', title: 'Ueberlastsicherung', status: null },
-          { id: 'ol-02', title: 'Ueberlastpruefung', status: null },
+          { id: 'ol-01', title: 'Überlastsicherung', status: null },
+          { id: 'ol-02', title: 'Überlastprüfung', status: null },
           { id: 'ol-03', title: 'Variable Freistandsgrenze', status: null },
           { id: 'ol-04', title: 'Variable Benutzungsgrenze', status: null }
         ]
       : [
-          { id: 'ol-01', title: 'Ueberlastwarneinrichtung (Lasthupe)', status: null },
-          { id: 'ol-02', title: 'Ueberlastpruefung (Hysterese)', status: null },
+          { id: 'ol-01', title: 'Überlastwarneinrichtung (Lasthupe)', status: null },
+          { id: 'ol-02', title: 'Überlastprüfung (Hysterese)', status: null },
           { id: 'ol-03', title: 'Sicherheitseinrichtungen', status: null },
           { id: 'ol-04', title: 'Gebrauchstauglichkeit', status: null }
         ];

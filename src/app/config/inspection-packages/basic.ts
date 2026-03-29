@@ -2,14 +2,14 @@ import { createCheckSection } from '../build/section-factories';
 import type { InspectionPackageConfig } from './types';
 
 const BASIC_ITEMS = [
-  'Erinnerung Sicherheitsueberpruefung',
+  'Erinnerung Sicherheitsüberprüfung',
   'Anfahrt inkl. Tag- und Nachtspesen',
-  'Jaehrliche Sicherheitsueberpruefung nach DGUV 305-002',
-  'Ueberlastpruefung nach Herstellervorgaben',
-  'Sichtpruefung Aufbau inkl. Notbetrieb',
-  'Funktionspruefung Aufbau',
-  'Inspektionsbericht mit Uebergabe',
-  'Eintrag ins Pruefbuch',
+  'Jährliche Sicherheitsüberprüfung nach DGUV 305-002',
+  'Überlastprüfung nach Herstellervorgaben',
+  'Sichtprüfung Aufbau inkl. Notbetrieb',
+  'Funktionsprüfung Aufbau',
+  'Inspektionsbericht mit Übergabe',
+  'Eintrag ins Prüfbuch',
   'Infoangebot bei Bedarf',
   'Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh',
   'Reparaturen zzgl. Arbeitszeit und Material'
