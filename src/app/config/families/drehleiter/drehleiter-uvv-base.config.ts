@@ -147,7 +147,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Hydrauliksystem Korbsteuerung',
     'Wasserabweiser Gelenkarmzylinder',
     'Lastoesen',
-    'Kabel / Kabelfuehrungen',
+    'Kabel / Kabelführungen',
     'Sensoren',
     'Oberleiterkasten',
     'Panzersteckrohre',

@@ -5,9 +5,9 @@ export const BATTERY_CHECK_ITEMS = [
   'Batterie / Batteriefach',
   'Abdeckung / Verriegelung',
   'Wanne (VA)',
-  'Kabelfuehrung',
+  'Kabelführung',
   'Kabelsicherung',
-  'Entlueftung',
+  'Entlüftung',
   'Batteriehalter (Befestigung)'
 ] as const;
 

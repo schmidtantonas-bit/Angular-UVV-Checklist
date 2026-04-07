@@ -39,13 +39,12 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 ## 4. Batterien
 
 - Batterie / Batteriefach
-- Batterietest mit Ausdruck
 - Abdeckung / Verriegelung
 - Auszug
 - Wanne (VA)
-- Kabelfuehrung
+- Kabelführung
 - Kabelsicherung
-- Entlueftung
+- Entlüftung
 - Batteriehalter (Befestigung)
 
 ## 5. Geraetekaesten
@@ -173,7 +172,7 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Hydrauliksystem Korbsteuerung
 - Wasserabweiser Gelenkarmzylinder
 - Lastoesen
-- Kabel / Kabelfuehrungen
+- Kabel / Kabelführungen
 - Sensoren
 - Oberleiterkasten
 - Panzersteckrohre
