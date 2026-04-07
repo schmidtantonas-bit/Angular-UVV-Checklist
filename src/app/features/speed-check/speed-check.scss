@@ -65,6 +65,8 @@
     display: flex;
     align-items: center;
     gap: var(--space-2xs);
+    width: 100%;
+    overflow: hidden;
   }
 
   &__input {
