@@ -9,7 +9,8 @@ import {
   evaluateSpeedCheck,
   type SpeedCheckDefinition,
   type SpeedCheckKey,
-  type SpeedCheckMeasurements
+  type SpeedCheckMeasurements,
+  type SpeedCheckRowResult
 } from './speed-check.domain';
 
 function createEmptyValues(table: readonly SpeedCheckDefinition[]): SpeedCheckMeasurements {
@@ -58,6 +59,14 @@ export class SpeedCheckComponent {
   readonly filledCount = computed(() => this.results().filter((row) => row.measuredSec != null).length);
 
   readonly measuring = signal<{ key: SpeedCheckKey; label: string } | null>(null);
+
+  outOfToleranceLabel(row: SpeedCheckRowResult): string {
+    if (row.measuredSec == null || row.withinTolerance !== false) {
+      return 'außer Toleranz';
+    }
+
+    return row.measuredSec < row.referenceSec ? 'zu Schnell' : 'zu langsam';
+  }
 
   setSeconds(field: SpeedCheckKey, raw: string) {
     const next = raw.trim() === '' ? null : Number(raw);

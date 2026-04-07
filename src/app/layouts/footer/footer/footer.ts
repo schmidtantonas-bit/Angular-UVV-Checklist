@@ -196,8 +196,13 @@ export class FooterComponent {
             for (const e of evaluation) {
               if (e.measuredSec === null)
                 continue;
+              const stateLabel = e.withinTolerance
+                ? 'Bestanden'
+                : e.measuredSec < e.referenceSec
+                  ? 'zu schnell'
+                  : 'zu langsam';
               const note =
-                (e.withinTolerance ? 'Bestanden' : 'Nicht im Sollbereich') +
+                stateLabel +
                 ' - Soll: ' +
                 e.referenceSec +
                 's ± ' +

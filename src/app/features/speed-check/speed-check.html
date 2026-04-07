@@ -14,7 +14,7 @@
           @if (row.withinTolerance === true) {
             <span class="speed-check__pill speed-check__pill--ok">OK</span>
           } @else if (row.withinTolerance === false) {
-            <span class="speed-check__pill speed-check__pill--nok">Außer Toleranz</span>
+            <span class="speed-check__pill speed-check__pill--nok">{{ outOfToleranceLabel(row) }}</span>
           } @else {
             <span class="speed-check__pill speed-check__pill--unset">—</span>
           }

@@ -5,7 +5,6 @@ import {
   L27_DEVICE_CONFIG,
   L32_DEVICE_CONFIG,
   L32A_DEVICE_CONFIG,
-  L32XS_DEVICE_CONFIG,
   L39_DEVICE_CONFIG,
   L39_LIFT_DEVICE_CONFIG,
   PLC_DEVICE_CONFIG
@@ -16,8 +15,7 @@ import type { DeviceConfig, DeviceType } from './types';
 export const DEVICE_TYPE_OPTIONS: ChecklistCustomerDataDeviceTypeOption[] = [
   { value: 'l27', label: 'L27' },
   { value: 'l32', label: 'L32' },
-  { value: 'l32a', label: 'L32A' },
-  { value: 'l32xs', label: 'L32XS' },
+  { value: 'l32a', label: 'L32A/XS' },
   { value: 'l39', label: 'L39' },
   { value: 'l39_lift', label: 'L39 Lift' },
   { value: 'plc', label: 'PLC' },
@@ -30,7 +28,6 @@ const DEVICE_CONFIGS: Record<DeviceType, DeviceConfig> = {
   l27: L27_DEVICE_CONFIG,
   l32: L32_DEVICE_CONFIG,
   l32a: L32A_DEVICE_CONFIG,
-  l32xs: L32XS_DEVICE_CONFIG,
   l39: L39_DEVICE_CONFIG,
   l39_lift: L39_LIFT_DEVICE_CONFIG,
   plc: PLC_DEVICE_CONFIG,
@@ -44,7 +41,6 @@ export function isDeviceType(value: string): value is DeviceType {
     value === 'l27' ||
     value === 'l32' ||
     value === 'l32a' ||
-    value === 'l32xs' ||
     value === 'l39' ||
     value === 'l39_lift' ||
     value === 'plc' ||

@@ -2,10 +2,10 @@ import type { DeviceConfig } from '../../types';
 export const L32A_DEVICE_CONFIG: DeviceConfig = {
   type: 'l32a',
   family: 'drehleiter',
-  label: 'L32A',
+  label: 'L32A/XS',
   overview: {
     title: 'UVV-Drehleiter',
-    subtitle: 'L32A',
+    subtitle: 'L32A/XS',
     imageSrc: '/assets/images/L32.png',
     imageAlt: 'Drehleiter'
   },

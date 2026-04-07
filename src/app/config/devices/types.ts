@@ -4,7 +4,7 @@ import type { SpeedCheckDefinition } from '@features/speed-check/speed-check.dom
 import type { DeviceFamily } from '../families';
 import type { OverloadVariantId } from '../overload/overload-variants';
 
-export type DeviceType = 'l27' | 'l32' | 'l32a' | 'l32xs' | 'l39' | 'l39_lift' | 'plc' | 'b32' | 'b36' | 'b42';
+export type DeviceType = 'l27' | 'l32' | 'l32a' | 'l39' | 'l39_lift' | 'plc' | 'b32' | 'b36' | 'b42';
 
 export interface DeviceConfig {
   type: DeviceType;
