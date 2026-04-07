@@ -44,7 +44,7 @@ export class ChecklistPageComponent {
 
   readonly deviceType: DeviceType;
   readonly inspectionType: InspectionType;
-  readonly inspectionPackage: InspectionPackageType;
+  readonly inspectionPackage: InspectionPackageType | undefined;
 
   overloadVariant: 'standard' | 'buehne';
 
@@ -55,11 +55,11 @@ export class ChecklistPageComponent {
   constructor() {
     const rawDeviceType = this.route.snapshot.queryParamMap.get('deviceType') ?? 'l32';
     const rawInspectionType = this.route.snapshot.queryParamMap.get('inspectionType') ?? 'uvv';
-    const rawInspectionPackage = this.route.snapshot.queryParamMap.get('inspectionPackage') ?? 'none';
+    const rawInspectionPackage = this.route.snapshot.queryParamMap.get('inspectionPackage');
 
     this.deviceType = isDeviceType(rawDeviceType) ? rawDeviceType : 'l32';
     this.inspectionType = isInspectionType(rawInspectionType) ? rawInspectionType : 'uvv';
-    this.inspectionPackage = isInspectionPackageType(rawInspectionPackage) ? rawInspectionPackage : 'none';
+    this.inspectionPackage = rawInspectionPackage && isInspectionPackageType(rawInspectionPackage) ? rawInspectionPackage : undefined;
 
     const checklistConfig = buildChecklistConfig({
       deviceType: this.deviceType,

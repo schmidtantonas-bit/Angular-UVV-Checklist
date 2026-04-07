@@ -63,7 +63,6 @@ const MODELS_BY_FAMILY: Record<WizardFamily, WizardModel[]> = {
 const WIZARD_INSPECTION_PACKAGE_ORDER: readonly InspectionPackageType[] = ['basic', 'plus', 'pro'];
 
 const WIZARD_INSPECTION_PACKAGE_IMAGES: Record<InspectionPackageType, string> = {
-  none: '/assets/images/Inspektion%20Ohne%20Zusatzpaket.png',
   basic: '/assets/images/Inspektion%20BASIC.png',
   plus: '/assets/images/Inspektion%20PLUS.png',
   pro: '/assets/images/Inspektion%20PRO.png'
@@ -81,17 +80,11 @@ const WIZARD_INSPECTION_PACKAGES: WizardInspectionPackage[] = WIZARD_INSPECTION_
   return {
     id: packageType,
     title:
-      packageType === 'none'
-        ? 'Ohne Zusatzpaket'
-        : packageType === 'basic'
-          ? 'Inspektion BASIC 4h'
-          : packageType === 'plus'
-            ? 'Inspektion PLUS 6h'
-            : 'Inspektion PRO 10h',
-    subtitle:
-      packageType === 'none'
-        ? 'Nur die Standard-Checkliste'
-        : undefined,
+      packageType === 'basic'
+        ? 'Inspektion BASIC 4h'
+        : packageType === 'plus'
+          ? 'Inspektion PLUS 6h'
+          : 'Inspektion PRO 10h',
     imageSrc: WIZARD_INSPECTION_PACKAGE_IMAGES[packageType],
     imageAlt: option?.label ?? packageType
   };
@@ -188,10 +181,10 @@ export class HomePageComponent {
       return;
     }
 
-    this.startChecklist(inspectionType, 'none');
+    this.startChecklist(inspectionType, undefined);
   }
 
-  startChecklist(inspectionType: InspectionType, inspectionPackage: InspectionPackageType) {
+  startChecklist(inspectionType: InspectionType, inspectionPackage?: InspectionPackageType) {
     const model = this.selectedModel();
     if (!model) return;
     this.router.navigate(['/checklist'], {
