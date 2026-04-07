@@ -1,4 +1,4 @@
-# Drehleiter UVV-Pruefpunkte
+# Drehleiter UVV-Prüfpunkte
 
 Quelle: `UVV-Bericht Drehleiter.pdf`
 
@@ -8,13 +8,13 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Nebenantrieb-Kontrollleuchte
 - Kontrollleuchten Achsverriegelung / Sitz / Korb
 - Kontrollleuchten Fahrerhaus
-- Warnsummer Grundstellung / Geraeteraum
-- Verriegelung / Notbetaetigung PA
+- Warnsummer Grundstellung / Geräteraum
+- Verriegelung / Notbetätigung PA
 - Ladeerhaltung
 - Durchsageanlage
 - Batteriehauptschalter
-- Rueckfahrkamerasystem
-- Lagerung / Sicherung Gegenstaende
+- RÜckfahrkamerasystem
+- Lagerung / Sicherung Gegenstände
 - Beschilderung Masse / Gewichte
 
 ## 2. Fahrerhaus aussen
@@ -23,18 +23,18 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Beleuchtung Chassis / Aufbau
 - Abdeckkappen Ladeerhaltung
 - Beschilderung Fahrerhaus
-- Schaekel (Splint / Beschilderung)
+- Schäkel (Splint / Beschilderung)
 
 ## 3. Fahrzeugaufbau
 
-- Fahrzeug auf Unfallschaeden
-- Kraftstoffbehaelter
-- Einfuellstutzen
+- Fahrzeug auf Unfallschäden
+- Kraftstoffbehälter
+- Einfüllstutzen
 - Tankdeckel
 - Tankklappe
-- AdBlue-Behaelter
+- AdBlue-Behälter
 - Radkeile inkl. Halter und Verriegelung
-- Oelstand Haupthydraulik
+- Ölstand Haupthydraulik
 
 ## 4. Batterien
 
@@ -47,10 +47,10 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Entlüftung
 - Batteriehalter (Befestigung)
 
-## 5. Geraetekaesten
+## 5. Gerätekästen
 
-- Geraetekaesten
-- Ueberwachungseinrichtung
+- Gerätekästen
+- Überwachungseinrichtung
 - Beleuchtung
 - Festigkeit der Anbauteile
 
@@ -59,37 +59,37 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Aufstiege
 - Aufstiegsleitern
 
-## 7. Abstuetzung
+## 7. Abstützung
 
 - Beleuchtungen / Funktionen / Befestigungen / Dichtheit
-- Abstuetzung
+- Abstützung
 - Abstutzbedienpulte
 - Hydraulik Unterwagen
-- Ueberwachung (Sensorik)
+- Überwachung (Sensorik)
 - Bodenkontaktmechanik
-- Abstuetzbalken / Stuetztraeger
-- Schweissnaehte Abstuetztraeger
+- Abstützbalken / Stützträger
+- Schweissnähte Abstützträger
 - Schmierstellen Unterwagen
-- Wartungsdeckel Abstuetztraeger
-- Energiezufuehrungen / Oelharfen
+- Wartungsdeckel Abstützträger
+- Energiezuführungen / Ölharfen
 - Achsverriegelung
 
 ## 8. Notbetriebseinrichtungen
 
 - Notbetriebseinrichtungen Unterwagen
 - Notbetriebspumpen / Notbetriebsmotor
-- Ventile Notbetrieb Abstuetzung
+- Ventile Notbetrieb Abstützung
 - Umschaltvorrichtung Energiefreigabe Korbmotoren
 - Umschaltventil Unterwagen / Oberwagen
 
 ## 9. Podium
 
-- Podium auf Beschaedigungen / Korrosion
+- Podium auf Beschädigungen / Korrosion
 - Beklebung / Warnmarkierungen / Hinweisschilder
 - Safetywalk / Sprossen- und Kantenschutz
-- Podiumsdeckflaeche
+- Podiumsdeckfläche
 - Befestigungsschrauben
-- Zusatzklappen / Verschluesse / Wartungsoeffnungen
+- Zusatzklappen / Verschlüsse / Wartungsöffnungen
 
 ## 10. Fahrzeug von unten
 
@@ -98,12 +98,12 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Flansche
 - Fahrzeugrahmen
 - Hilfsrahmen
-- Schweissnaehte
-- Elektrische Drehdurchfuehrung
+- Schweissnähte
+- Elektrische Drehdurchführung
 - Verschraubungen Fahrzeugrahmen
-- Spritzlappen Energiezufuehrung Abstuetzung
-- Spritzschutzwinkel Abstuetztraeger
-- Oelkuehler
+- Spritzlappen Energiezuführung Abstützung
+- Spritzschutzwinkel Abstützträger
+- Ölkühler
 
 ## 11. Drehgestell
 
@@ -114,7 +114,7 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Hydraulikanlage
 - Drehgetriebe
 - Elektrische Bauteile
-- Sicherungskaesten / Schaltkaesten / Verteilerdosen
+- Sicherungskästen / Schaltkästen / Verteilerdosen
 
 ## 12. Lafette
 
@@ -122,12 +122,12 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Lastmessbolzen
 - Dynamometerbolzen
 - Segmentbogen
-- Messingfuehrungsschienen
+- Messingführungsschienen
 - Aufrichteachse
 
 ## 13. HBST
 
-- Sitz / Sitzschale / Armlehne / Rueckenlehne / Wetterschutzdach
+- Sitz / Sitzschale / Armlehne / RÜckenlehne / Wetterschutzdach
 - Beklebung / Beschilderung
 - Spritzschutzwinkel PLC 2
 - Bedienelemente HBST
@@ -156,14 +156,14 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Designbleche / Schutzgitter / Eingreifschutz
 - Halterungen Leitersatz
 - Beklebung / Beschilderung
-- Leiterteile / Sprossen / K-Verbaende
+- Leiterteile / Sprossen / K-Verbände
 - Ober- und Untergurt
-- Sprossenbelaege
+- Sprossenbeläge
 - Drahtseile Spannung
 - Drahtseile Zustand
 - Umlenkrollen Drahtseile
-- Kopfrollen / Fuehrungsrollen
-- Messingfuehrungen / Kunststoffgleitkloetze
+- Kopfrollen / FÜhrungsrollen
+- Messingführungen / Kunststoffgleitklötze
 - Ausschubzylinder
 - Leitersatzverriegelung
 - Hauptsteuerkabel / 400V-Kabel / Neigekabel
@@ -171,7 +171,7 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Atemluftanlage Leitersatz
 - Hydrauliksystem Korbsteuerung
 - Wasserabweiser Gelenkarmzylinder
-- Lastoesen
+- Lastösen
 - Kabel / Kabelführungen
 - Sensoren
 - Oberleiterkasten
@@ -190,17 +190,17 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 - Freigabetaster
 - 230 / 400 Volt Anlage
 - Wasserverrohrung
-- Multifunktionssaeule / Verriegelungen / Markierungen
+- Multifunktionssäule / Verriegelungen / Markierungen
 - Beleuchtung Korb
 - Korbdisplay / Bedienelemente
 - Funktionen Bedienstand Korb
 - Sprechanlage
 - Hydraulische Anlage Korb
-- Geraetekasten Korb
-- Spruehduesen / Selbstschutzeinrichtungen
+- Gerätekasten Korb
+- Sprühdüsen / Selbstschutzeinrichtungen
 - Beklebung / Beschilderung
 - Windmesser
-- Anschlag- / Rueckhaltepunkte
+- Anschlag- / RÜckhaltepunkte
 - Fallschutzsystem
 - Hochspannungswarneinrichtung
 
@@ -208,13 +208,13 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 
 - SKL
 - Aufstiegsleiter
-- Einhaengevorrichtung / Rollglisshalter
+- Einhängevorrichtung / Rollglisshalter
 - Monitor
 - Verbindungsschlauch Monitor
 - Multifunktionshalter
-- Zusaetzlicher Handlauf
+- Zusätzlicher Handlauf
 - Multifunktionslagerung
-- Luefterhalterung
+- LÜfterhalterung
 - Kaminfegerwerkzeug
 - Steckzapfen
 - Rollstuhlrampe
@@ -226,14 +226,14 @@ Quelle: `UVV-Bericht Drehleiter.pdf`
 
 ## 18. Allgemein
 
-- Ueberlastsicherung / Lasthupe
-- Ueberlastpruefung / Hysterese
+- Überlastsicherung / Lasthupe
+- Überlastprüfung / Hysterese
 - Sicherheitseinrichtungen
 - Filtereinsatz Haupthydraulik
-- Eintrag Pruefbuch
+- Eintrag Prüfbuch
 
-## 19. Einsatzfaehigkeit
+## 19. Einsatzfähigkeit
 
-- DL voll einsatzfaehig
-- DL nicht einsatzfaehig
-- DL voll einsatzfaehig, Gebrauchstauglichkeit eingeschraenkt
+- DL voll einsatzfähig
+- DL nicht einsatzfähig
+- DL voll einsatzfähig, Gebrauchstauglichkeit eingeschränkt
