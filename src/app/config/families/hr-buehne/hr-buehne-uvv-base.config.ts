@@ -1,6 +1,7 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection } from '../../build/section-factories';
 import { createBatteryCheckSection, SPEED_CHECK_SECTION } from '../shared.sections';
+import { OPERATONAL_STATUS_ITEM_KEY } from '@app/features/operational-status/operational-status';
 
 export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-hr-1', 'Grundprüfungen und Vorprüfung', 'hr-1', [
@@ -119,6 +120,6 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     total: 1,
     completed: 0,
     items: [],
-    customStateKey: 'operational-status'
+    customStateKey: OPERATONAL_STATUS_ITEM_KEY
   }
 ];

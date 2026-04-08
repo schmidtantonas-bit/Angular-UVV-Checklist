@@ -1,6 +1,7 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection } from '../../build/section-factories';
 import { createBatteryCheckSection, SPEED_CHECK_SECTION } from '../shared.sections';
+import { OPERATONAL_STATUS_ITEM_KEY } from '@app/features/operational-status/operational-status';
 
 export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-dl-1', '1. Fahrerhaus innen', 'dl-1', [
@@ -210,6 +211,6 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     total: 1,
     completed: 0,
     items: [],
-    customStateKey: 'operational-status'
+    customStateKey: OPERATONAL_STATUS_ITEM_KEY
   }
 ];
