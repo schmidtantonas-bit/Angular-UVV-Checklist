@@ -105,7 +105,7 @@ export class DocGenerationModel {
 
     // add the section items
     for (const value of c.sections) {
-      const secout = { id: value.id, title: value.title, items: [] as any[] };
+      const secout = { id: value.id, title: value.pdfTitle ?? value.title, items: [] as any[] };
       out.sections.push(secout);
 
       for (const item of value.items) {
