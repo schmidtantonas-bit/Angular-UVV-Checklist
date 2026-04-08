@@ -154,12 +154,35 @@
   &__note {
     color: var(--color-text-muted, #666);
     font-size: var(--text-caption);
+
+    &--success {
+      color: var(--ok, #22c55e);
+      font-weight: 600;
+    }
+  }
+
+  &__delete {
+    &--active {
+      background: color-mix(in srgb, var(--def, #ef4444) 12%, transparent);
+      border-color: color-mix(in srgb, var(--def, #ef4444) 40%, transparent);
+      color: var(--def, #ef4444);
+
+      &:hover {
+        background: color-mix(in srgb, var(--def, #ef4444) 20%, transparent);
+        border-color: var(--def, #ef4444);
+      }
+    }
   }
 
   &__save {
     --state-ok-bg: var(--speed-save-bg);
     --state-ok-text: var(--speed-save-text);
     --state-ok-border: var(--speed-save-border);
+
+    &--saved {
+      opacity: 0.6;
+      cursor: default;
+    }
   }
 }
 

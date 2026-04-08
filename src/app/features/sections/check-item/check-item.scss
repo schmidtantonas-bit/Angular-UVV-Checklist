@@ -78,6 +78,33 @@
     margin-left: auto;
   }
 
+  &__save {
+    &--saved {
+      background: var(--surface-alt, #e5e5e5);
+      color: var(--text-secondary, #666);
+      border: none;
+      opacity: 0.7;
+      cursor: default;
+
+      &:hover {
+        background: var(--surface-alt, #e5e5e5);
+      }
+    }
+  }
+
+  &__delete {
+    &--active {
+      background: color-mix(in srgb, var(--def, #ef4444) 12%, transparent);
+      border-color: color-mix(in srgb, var(--def, #ef4444) 40%, transparent);
+      color: var(--def, #ef4444);
+
+      &:hover {
+        background: color-mix(in srgb, var(--def, #ef4444) 20%, transparent);
+        border-color: var(--def, #ef4444);
+      }
+    }
+  }
+
   &__acc {
     display: none;
 

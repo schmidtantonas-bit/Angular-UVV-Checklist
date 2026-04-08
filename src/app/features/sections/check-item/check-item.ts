@@ -1,6 +1,7 @@
 import {
   booleanAttribute,
   Component,
+  computed,
   EventEmitter,
   Injector,
   OnInit,
@@ -51,6 +52,11 @@ export class CheckItemComponent implements OnInit {
   readonly photos = signal<File[]>([]);
   readonly note = signal('');
   readonly dirty = signal(false);
+
+  readonly isSaved = computed(() => {
+    const hasContent = this.note().trim() !== '' || this.photos().length > 0;
+    return !this.dirty() && hasContent;
+  });
 
   private currentStateKey: string | null = null;
   private readonly checklistState = inject(ChecklistState, { optional: true });

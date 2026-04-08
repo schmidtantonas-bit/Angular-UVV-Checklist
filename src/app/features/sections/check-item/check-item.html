@@ -94,17 +94,21 @@
           <div class="check-item__footer-actions">
             <button
               uibutton
-              kind="success"
+              class="check-item__save"
+              [class.check-item__save--saved]="isSaved()"
               size="s"
               type="button"
-              [disabled]="!dirty()"
+              [attr.kind]="isSaved() ? null : 'success'"
+              [disabled]="isSaved()"
               (click)="save()"
               data-ui="check-item-save"
             >
-              Speichern
+              {{ isSaved() ? 'Gespeichert' : 'Speichern' }}
             </button>
             <button
               uibutton
+              class="check-item__delete"
+              [class.check-item__delete--active]="isSaved()"
               kind="ghost"
               size="s"
               type="button"
