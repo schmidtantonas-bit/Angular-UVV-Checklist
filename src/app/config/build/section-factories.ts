@@ -17,21 +17,24 @@ export function createCheckSection(
   id: string,
   title: string,
   prefix: string,
-  itemTitles: readonly string[]
+  itemTitles: readonly string[],
+  pdfTitle?: string
 ): CheckSectionModel {
   return {
     id,
     title,
+    pdfTitle,
     total: itemTitles.length,
     completed: 0,
     items: createCheckItems(prefix, itemTitles)
   };
 }
 
-export function createEmptySection(id: string, title: string): CheckSectionModel {
+export function createEmptySection(id: string, title: string, pdfTitle?: string): CheckSectionModel {
   return {
     id,
     title,
+    pdfTitle,
     total: 0,
     completed: 0,
     items: []
