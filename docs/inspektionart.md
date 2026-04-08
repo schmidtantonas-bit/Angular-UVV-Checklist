@@ -1,34 +1,20 @@
 # Inspektionart
 
-Folgende Serviceleistungen sind in diesem Paket enthalten.
+Folgende Serviceleistungen sind in diesem Paket zusätzlich enthalten.
 
-## Inspektion BASIC (4h)
+## Inspektion BASIC
 
-- Erinnerung Sicherheitsüberprüfung
-- Anfahrt inkl. Tag- und Nachtspesen
-- Jährliche Sicherheitsüberprüfung nach DGUV 305-002
-- Überlastprüfung nach Herstellervorgaben
-- Sichtprüfung Aufbau inkl. Notbetrieb
-- Funktionsprüfung Aufbau
 - Inspektionsbericht mit Übergabe
 - Eintrag ins Prüfbuch
-- Infoangebot bei Bedarf
-- Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh
-- Reparaturen zzgl. Arbeitszeit und Material
+- Angebotserstellung für Bearbeitung festgestellter Mängel
+- Wechsel Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Betriebsstunden
 
-## Service PLUS (6h)
+## Service PLUS
 
-- Erinnerung Sicherheitsüberprüfung
-- Anfahrt inkl. Tag- und Nachtspesen
-- Jährliche Sicherheitsüberprüfung nach DGUV 305-002
-- Überlastprüfung nach Herstellervorgaben
-- Sichtprüfung Aufbau inkl. Notbetrieb
-- Funktionsprüfung Aufbau
 - Inspektionsbericht mit Übergabe
 - Eintrag ins Prüfbuch
-- Infoangebot bei Bedarf
-- Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh
-- Reparaturen zzgl. Arbeitszeit und Material
+- Angebotserstellung für Bearbeitung festgestellter Mängel
+- Wechsel Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Betriebsstunden
 - Elektrische Kästen und Deckel kontrollieren
 - Elektrische Drehdurchführung prüfen/reinigen
 - Aus- und Einzugsseile prüfen/einstellen
@@ -36,23 +22,15 @@ Folgende Serviceleistungen sind in diesem Paket enthalten.
 - Fehlerspeicher / Service 4 Fire auslesen
 - Performance prüfen / Bewegungen optimieren
 - Wassermonitor prüfen
-- Krankentragelagerung prüfen
+- Lagerung Krankentrage prüfen
 - Notstromgenerator mit 400V Notbetrieb prüfen
-- Reparaturen zzgl. Arbeitszeit und Material
 
-## Service PRO (10h)
+## Service PRO
 
-- Erinnerung Sicherheitsüberprüfung
-- Anfahrt inkl. Tag- und Nachtspesen
-- Jährliche Sicherheitsüberprüfung nach DGUV 305-002
-- Überlastprüfung nach Herstellervorgaben
-- Sichtprüfung Aufbau inkl. Notbetrieb
-- Funktionsprüfung Aufbau
 - Inspektionsbericht mit Übergabe
 - Eintrag ins Prüfbuch
-- Infoangebot bei Bedarf
-- Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh
-- Reparaturen zzgl. Arbeitszeit und Material
+- Angebotserstellung für Bearbeitung festgestellter Mängel
+- Wechsel Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Betriebsstunden
 - Elektrische Kästen und Deckel kontrollieren
 - Elektrische Drehdurchführung prüfen/reinigen
 - Aus- und Einzugsseile prüfen/einstellen
@@ -60,9 +38,8 @@ Folgende Serviceleistungen sind in diesem Paket enthalten.
 - Fehlerspeicher / Service 4 Fire auslesen
 - Performance prüfen / Bewegungen optimieren
 - Wassermonitor prüfen
-- Krankentragelagerung prüfen
+- Lagerung Krankentrage prüfen
 - Notstromgenerator mit 400V Notbetrieb prüfen
 - Softwareupdates prüfen
 - Sensorik / Geber prüfen und kalibrieren
 - Schmierstellen reinigen und abschmieren
-- Reparaturen zzgl. Arbeitszeit und Material

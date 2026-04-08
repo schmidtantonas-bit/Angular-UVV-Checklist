@@ -2,17 +2,10 @@ import { createCheckSection } from '../build/section-factories';
 import type { InspectionPackageConfig } from './types';
 
 const PLUS_ITEMS = [
-  'Erinnerung Sicherheitsueberpruefung',
-  'Anfahrt inkl. Tag- und Nachtspesen',
-  'Jaehrliche Sicherheitsueberpruefung nach DGUV 305-002',
-  'Ueberlastpruefung nach Herstellervorgaben',
-  'Sichtpruefung Aufbau inkl. Notbetrieb',
-  'Funktionspruefung Aufbau',
   'Inspektionsbericht mit Uebergabe',
   'Eintrag ins Pruefbuch',
-  'Infoangebot bei Bedarf',
-  'Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Bh',
-  'Reparaturen zzgl. Arbeitszeit und Material',
+  'Angebotserstellung fuer Bearbeitung festgestellter Maengel',
+  'Wechsel Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Betriebsstunden',
   'Elektrische Kaesten und Deckel kontrollieren',
   'Elektrische Drehdurchfuehrung pruefen/reinigen',
   'Aus- und Einzugsseile pruefen/einstellen',
@@ -20,15 +13,14 @@ const PLUS_ITEMS = [
   'Fehlerspeicher / Service 4 Fire auslesen',
   'Performance pruefen / Bewegungen optimieren',
   'Wassermonitor pruefen',
-  'Krankentragelagerung pruefen',
-  'Notstromgenerator mit 400V Notbetrieb pruefen',
-  'Reparaturen zzgl. Arbeitszeit und Material'
+  'Lagerung Krankentrage pruefen',
+  'Notstromgenerator mit 400V Notbetrieb pruefen'
 ] as const;
 
 export const PLUS_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {
   type: 'plus',
-  label: 'Service PLUS (6h)',
+  label: 'Service PLUS',
   extraSections: [
-    createCheckSection('sec-package-1', 'Service PLUS (6h)', 'pkg-plus', PLUS_ITEMS)
+    createCheckSection('sec-package-1', 'Service PLUS', 'pkg-plus', PLUS_ITEMS)
   ]
 };
