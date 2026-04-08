@@ -116,6 +116,7 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   {
     id: 'sec-operational-status-1',
     title: '10. Einsatzfähigkeit',
+    pdfTitle: 'Einsatzfähigkeit',
     total: 1,
     completed: 0,
     items: [],
