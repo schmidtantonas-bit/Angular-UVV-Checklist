@@ -25,8 +25,8 @@ describe('HomePage', () => {
 
   it('should expose all configured models in the wizard', () => {
     expect(component.modelsByFamily.drehleiter.map((model) => model.id)).toEqual([
-      'l32',
       'l32a',
+      'l32',
       'l27',
       'l39',
       'l39_lift',

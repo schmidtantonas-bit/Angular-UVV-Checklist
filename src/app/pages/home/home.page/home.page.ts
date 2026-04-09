@@ -34,7 +34,7 @@ const WIZARD_FAMILY_BY_DEVICE_FAMILY = {
   hr_buehne: 'buhne'
 } as const;
 
-const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32', 'l32a', 'l27', 'l39', 'l39_lift', 'plc'];
+const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32a', 'l32', 'l27', 'l39', 'l39_lift', 'plc'];
 
 const WIZARD_MODELS: WizardModel[] = DEVICE_TYPE_OPTIONS.filter((option): option is { value: DeviceType; label: string } =>
   isDeviceType(option.value)
@@ -132,7 +132,7 @@ export class HomePageComponent {
     imageSrc: string;
     imageAlt: string;
   }> = [
-    { id: 'drehleiter', title: 'Drehleiter', imageSrc: '/assets/images/L32.png', imageAlt: 'Drehleiter' },
+    { id: 'drehleiter', title: 'Drehleiter', imageSrc: '/assets/images/L32A-XS.png', imageAlt: 'Drehleiter' },
     { id: 'buhne', title: 'HR Bühne', imageSrc: '/assets/images/B32.png', imageAlt: 'HR Bühne' }
   ];
 
