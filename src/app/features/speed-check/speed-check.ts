@@ -65,7 +65,9 @@ export class SpeedCheckComponent {
     return Object.values(this.initialMeasurements).some(v => v !== null);
   }
 
-  readonly results = computed(() => evaluateSpeedCheck(this.values(), this.speedCheckTable));
+  readonly results = computed(() =>
+    evaluateSpeedCheck(this.values(), this.speedCheckTable)
+  );
 
   readonly okCount = computed(() => this.results().filter((row) => row.withinTolerance === true).length);
   readonly filledCount = computed(() => this.results().filter((row) => row.measuredSec != null).length);

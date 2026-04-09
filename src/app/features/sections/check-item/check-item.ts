@@ -58,6 +58,12 @@ export class CheckItemComponent implements OnInit {
     return !this.dirty() && hasContent;
   });
 
+  readonly displayNumber = computed(() => {
+    const id = this.model().id;
+    const lastDash = id.lastIndexOf('-');
+    return lastDash !== -1 ? id.substring(lastDash + 1) : id;
+  });
+
   private currentStateKey: string | null = null;
   private readonly checklistState = inject(ChecklistState, { optional: true });
   private readonly injector = inject(Injector);

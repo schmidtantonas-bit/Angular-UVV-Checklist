@@ -14,7 +14,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Ladeerhaltung',
     'Durchsageanlage',
     'Batteriehauptschalter',
-    'RÜckfahrkamerasystem',
+    'Rückfahrkamerasystem',
     'Lagerung / Sicherung Gegenstände',
     'Beschilderung Masse / Gewichte'
   ], 'Fahrerhaus innen'),
@@ -46,12 +46,12 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-dl-7', '7. Abstützung', 'dl-7', [
     'Beleuchtungen / Funktionen / Befestigungen / Dichtheit',
     'Abstützung',
-    'Abstutzbedienpulte',
+    'Abstützbedienpulte',
     'Hydraulik Unterwagen',
     'Überwachung (Sensorik)',
     'Bodenkontaktmechanik',
-    'Abstützbalken / Stützträger',
-    'Schweissnähte Abstützträger',
+    'Abstützbalken / Stütztrtäger',
+    'Schweißnähte Abstützträger',
     'Schmierstellen Unterwagen',
     'Wartungsdeckel Abstützträger',
     'Energiezuführungen / Ölharfen',
@@ -60,7 +60,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-dl-8', '8. Notbetriebseinrichtungen', 'dl-8', [
     'Notbetriebseinrichtungen Unterwagen',
     'Notbetriebspumpen / Notbetriebsmotor',
-    'Ventile Notbetrieb Abstützung',
+    'Ventile Notbetrieb Abstuetzung',
     'Umschaltvorrichtung Energiefreigabe Korbmotoren',
     'Umschaltventil Unterwagen / Oberwagen'
   ], 'Notbetriebseinrichtungen'),
@@ -78,7 +78,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Flansche',
     'Fahrzeugrahmen',
     'Hilfsrahmen',
-    'Schweissnähte',
+    'Schweißnähte',
     'Elektrische Drehdurchführung',
     'Verschraubungen Fahrzeugrahmen',
     'Spritzlappen Energiezuführung Abstützung',
@@ -104,7 +104,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Aufrichteachse'
   ], 'Lafette'),
   createCheckSection('sec-dl-13', '13. HBST', 'dl-13', [
-    'Sitz / Sitzschale / Armlehne / RÜckenlehne / Wetterschutzdach',
+    'Sitz / Sitzschale / Armlehne / Rückenlehne / Wetterschutzdach',
     'Beklebung / Beschilderung',
     'Spritzschutzwinkel PLC 2',
     'Bedienelemente HBST',
@@ -115,7 +115,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Gradbogen',
     'Beleuchtung HBST',
     'Sprechanlage',
-    'Fusstaster',
+    'Fußtaster',
     'Verstellung Scheinwerfer Unterleiter'
   ], 'HBST'),
   createCheckSection('sec-dl-14', '14. Generatorplattform', 'dl-14', [
@@ -138,7 +138,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Drahtseile Spannung',
     'Drahtseile Zustand',
     'Umlenkrollen Drahtseile',
-    'Kopfrollen / FÜhrungsrollen',
+    'Kopfrollen / Führungsrollen',
     'Messingführungen / Kunststoffgleitklötze',
     'Ausschubzylinder',
     'Leitersatzverriegelung',
@@ -175,7 +175,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Sprühdüsen / Selbstschutzeinrichtungen',
     'Beklebung / Beschilderung',
     'Windmesser',
-    'Anschlag- / RÜckhaltepunkte',
+    'Anschlag- / Rückhaltepunkte',
     'Fallschutzsystem',
     'Hochspannungswarneinrichtung'
   ], 'Korb'),
@@ -188,7 +188,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Multifunktionshalter',
     'Zusätzlicher Handlauf',
     'Multifunktionslagerung',
-    'LÜfterhalterung',
+    'Lüfterhalterung',
     'Kaminfegerwerkzeug',
     'Steckzapfen',
     'Rollstuhlrampe',
