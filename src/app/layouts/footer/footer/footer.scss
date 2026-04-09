@@ -11,20 +11,20 @@
     flex-direction: column;
     gap: var(--space-m);
   }
+
+  &__actions {
+    display: flex;
+    gap: var(--space-m);
+
+    > * {
+      width: 100%;
+    }
+  }
 }
 
 @media (max-width: 767px) {
-  .layout-footer__container {
-    align-items: flex-start;
-  }
-
   .layout-footer__actions {
-    width: 100%;
-    align-self: stretch;
-  }
-
-  .layout-footer__action-print {
-    width: 100%;
+    flex-direction: column;
   }
 }
 

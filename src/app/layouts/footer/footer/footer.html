@@ -1,34 +1,20 @@
 <!-- htmlhint doctype-first:false -->
 <footer class="layout-footer" data-ui="footer">
   <div class="container layout-footer__container" data-ui="footer-container">
+    <signature></signature>
     <div class="layout-footer__actions" data-ui="footer-actions">
-      <signature></signature>
-    </div>
-  </div>
-  <div class="container layout-footer__container" data-ui="footer-container">
-    <div class="layout-footer__actions" data-ui="footer-actions">
-      <button
-        uibutton
-        type="button"
-        kind="primary"
-        class="layout-footer__action-print"
-        data-ui="footer-action-pdf4show"
-        (click)="print()"
-      >
-        PDF runterladen
-      </button>
-      &nbsp;
-      <button
-        uibutton
-        type="button"
-        kind="primary"
-        class="layout-footer__action-print"
-        data-ui="footer-action-pdf4show"
-        (click)="print('docx')"
-      >
-        DOCX (Word) runterladen
-      </button>
+      <button uibutton (click)="print()">PDF runterladen</button>
+      <button uibutton (click)="print('docx')">DOCX (Word) runterladen</button>
       <a style="display: none;" #download></a>
+    </div>
+    <div class="layout-footer__actions" data-ui="footer-actions">
+      <select>
+        <option disabled selected>Senden an...</option>
+        <option>Service Karlsruhe</option>
+        <option>Service Luckenwalde</option>
+        <option>Service ...</option>
+      </select>
+      <button uiButton>E-Mail senden</button>
     </div>
   </div>
 </footer>
