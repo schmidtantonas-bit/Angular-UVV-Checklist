@@ -4,7 +4,6 @@ import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { TimerStopwatchModalComponent } from '@ui/timer-stopwatch-modal/timer-stopwatch-modal';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
-import { toDisplayText } from '@shared/text';
 import {
   DEFAULT_SPEED_CHECK_TABLE,
   evaluateSpeedCheck,
@@ -67,10 +66,7 @@ export class SpeedCheckComponent {
   }
 
   readonly results = computed(() =>
-    evaluateSpeedCheck(this.values(), this.speedCheckTable).map((row) => ({
-      ...row,
-      label: toDisplayText(row.label)
-    }))
+    evaluateSpeedCheck(this.values(), this.speedCheckTable)
   );
 
   readonly okCount = computed(() => this.results().filter((row) => row.withinTolerance === true).length);

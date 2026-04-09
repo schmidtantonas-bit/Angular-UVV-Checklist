@@ -6,10 +6,10 @@ export interface OverloadFieldUiConfig {
 }
 
 export const OVERLOAD_FIELD_UI: Record<OverloadField, OverloadFieldUiConfig> = {
-  preloadMm: { title: 'Nach der Vorbelastung', label: 'Hoehe' },
-  loadStartMm: { title: 'Belastet - Beginn', label: 'Hoehe' },
-  load10MinMm: { title: 'Belastet - nach 10 Minuten', label: 'Hoehe' },
-  afterLoadMm: { title: 'Nach Belastung', label: 'Hoehe' }
+  preloadMm: { title: 'Nach der Vorbelastung', label: 'Höhe' },
+  loadStartMm: { title: 'Belastet - Beginn', label: 'Höhe' },
+  load10MinMm: { title: 'Belastet - nach 10 Minuten', label: 'Höhe' },
+  afterLoadMm: { title: 'Nach Belastung', label: 'Höhe' }
 };
 
 export type OverloadResultId = 'diffPreloadAfter' | 'diffLoadStart10';

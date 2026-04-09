@@ -5,32 +5,32 @@ export function createOverloadInspectionConfig(family: DeviceFamily): Inspection
   const items =
     family === 'hr_buehne'
       ? [
-          { id: 'ol-01', title: 'Ueberlastsicherung', status: null },
-          { id: 'ol-02', title: 'Ueberlastpruefung', status: null },
+          { id: 'ol-01', title: 'Überlastsicherung', status: null },
+          { id: 'ol-02', title: 'Überlastprüfung', status: null },
           { id: 'ol-03', title: 'Variable Freistandsgrenze', status: null },
           { id: 'ol-04', title: 'Variable Benutzungsgrenze', status: null }
         ]
       : [
-          { id: 'ol-01', title: 'Ueberlastwarneinrichtung (Lasthupe)', status: null },
-          { id: 'ol-02', title: 'Ueberlastpruefung (Hysterese)', status: null },
+          { id: 'ol-01', title: 'Überlastwarneinrichtung (Lasthupe)', status: null },
+          { id: 'ol-02', title: 'Überlastprüfung (Hysterese)', status: null },
           { id: 'ol-03', title: 'Sicherheitseinrichtungen', status: null },
           { id: 'ol-04', title: 'Gebrauchstauglichkeit', status: null }
         ];
 
   return {
     type: 'overload',
-    label: 'Ueberlastpruefung',
+    label: 'Überlastprüfung',
     overview: {
-      title: 'Ueberlastpruefung',
+      title: 'Überlastprüfung',
       subtitle: '',
       imageSrc: '/assets/images/overload-bild.png',
-      imageAlt: 'Ueberlastpruefung'
+      imageAlt: 'Überlastprüfung'
     },
     sectionMode: 'replace',
     extraSections: [
       {
         id: 'sec-overload-1',
-        title: family === 'hr_buehne' ? 'Ueberlastpruefung HR Buehne' : 'Ueberlastpruefung Drehleiter',
+        title: family === 'hr_buehne' ? 'Überlastprüfung HR Bühne' : 'Überlastprüfung Drehleiter',
         total: items.length,
         completed: 0,
         items

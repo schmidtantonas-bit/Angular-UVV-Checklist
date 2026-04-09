@@ -9,7 +9,7 @@ export const NONE_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {
       'sec-package-1',
       'Keine Zusatzinspektion',
       'pkg-none',
-      ['Keine Zusatzinspektion ausgewaehlt']
+      ['Keine Zusatzinspektion ausgewählt']
     )
   ]
 };

@@ -5,10 +5,10 @@ export const B42_DEVICE_CONFIG: DeviceConfig = {
   family: 'hr_buehne',
   label: 'B42',
   overview: {
-    title: 'UVV-HR Buehne',
+    title: 'UVV-HR Bühne',
     subtitle: 'B42',
     imageSrc: '/assets/images/B42.png',
-    imageAlt: 'HR Buehne B42'
+    imageAlt: 'HR Bühne B42'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 30, toleranceSec: 3 },

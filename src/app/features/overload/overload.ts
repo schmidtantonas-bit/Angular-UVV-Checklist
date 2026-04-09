@@ -16,7 +16,6 @@ import { OVERLOAD_UI_LAYOUTS } from '@config/overload/overload-layout';
 import { OVERLOAD_FIELD_UI, OVERLOAD_RESULTS_UI, type OverloadResultId } from '@config/overload/overload-ui';
 import { TimerCountdownComponent } from '@ui/timer-countdown/timer-countdown';
 import type { OverloadField, OverloadValues } from './overload.types';
-import { toDisplayText } from '@shared/text';
 
 const OVERLOAD_ITEM_KEY = 'overload';
 const OVERLOAD_VALUES_KEY = 'measurements';
@@ -123,8 +122,8 @@ export class OverloadComponent {
           kind: 'step',
           field: block.field,
           stepNumber: stepNumber++,
-          title: toDisplayText(meta.title),
-          label: toDisplayText(meta.label)
+          title: meta.title,
+          label: meta.label
         });
 
         return blocks;
@@ -138,7 +137,7 @@ export class OverloadComponent {
         id: `result-${block.result}`,
         kind: 'result',
         result: block.result,
-        title: toDisplayText(meta.title)
+        title: meta.title
       });
 
       return blocks;
