@@ -3,11 +3,12 @@ import { ConfigChecklistService } from '@app/config/service/config-service';
 import { DocGenerationModel } from '@app/features/doc/doc';
 import { ChecklistState } from '@app/pages/checklist/state/checklist.state';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
+import { SignatureComponent } from "@app/shared/components/ui/signature/signature";
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [UiButtonDirective],
+  imports: [UiButtonDirective, SignatureComponent],
   templateUrl: './footer.html',
   styleUrl: './footer.scss'
 })

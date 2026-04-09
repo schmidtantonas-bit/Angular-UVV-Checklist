@@ -6,6 +6,7 @@ import { OverloadField, OverloadValues } from '@app/features/overload/overload.t
 import { CheckStatus } from '@app/features/sections/check-item/check-item';
 import { SpeedCheckRowResult } from '@app/features/speed-check/speed-check.domain';
 import { OPERATONAL_STATUS_ITEM_KEY } from '../operational-status/operational-status';
+import { SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_HEIGHT, SIGNATURE_VALUE_KEY_IMG, SIGNATURE_VALUE_KEY_WIDTH } from '@app/shared/components/ui/signature/signature';
 
 export class DocGenerationModel {
   private readonly config: ConfigChecklistService;
@@ -92,12 +93,19 @@ export class DocGenerationModel {
     if (!c || !ch)
       return null;
 
+    const signature = ch[SIGNATURE_ITEM_KEY];
+
     const out = {
       overview: {
         title: c.overview.title,
         subtitle: c.overview.subtitle,
         status: ch[OPERATONAL_STATUS_ITEM_KEY]?.values['status'],
         statusLabel: ch[OPERATONAL_STATUS_ITEM_KEY]?.results['label']
+      },
+      signature: {
+        img: signature?.values[SIGNATURE_VALUE_KEY_IMG] ?? null,
+        width: signature?.values[SIGNATURE_VALUE_KEY_WIDTH] ?? null,
+        height: signature?.values[SIGNATURE_VALUE_KEY_HEIGHT] ?? null
       },
       customerData: ch['customerData'].values['fields'],
       sections: [] as any[]
