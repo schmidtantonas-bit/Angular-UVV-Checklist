@@ -9,5 +9,6 @@ import { UiButtonDirective } from "../button/ui-button.directive";
 })
 export class SaveButtonComponent {
     isSaved = input(false);
+    canSave = input(false);
     save = output();
 }

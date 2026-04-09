@@ -20,6 +20,7 @@ export class SignatureComponent {
     w = 100;
     h= 150;
     isSaved = signal(false);
+    canSave = signal(false);
     delete = signal(false);
 
     ngAfterViewInit() {
@@ -47,6 +48,7 @@ export class SignatureComponent {
         this.state.setItemValue(SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_HEIGHT, null);
         this.isSaved.set(false);
         this.delete.set(false);
+        this.canSave.set(false);
         this.drawing = false;
     }
 
@@ -78,6 +80,7 @@ export class SignatureComponent {
         this.ctx?.moveTo(this.normX(event.offsetX), this.normY(event.offsetY));
         this.isSaved.set(false);
         this.delete.set(true);
+        this.canSave.set(true);
     }
 
     public updateDraw(event: PointerEvent) {

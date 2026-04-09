@@ -4,7 +4,7 @@
     size="s"
     type="button"
     kind="success"
-    [disabled]="isSaved()"
+    [disabled]="!canSave() || isSaved()"
     (click)="save.emit()"
 >
     {{ isSaved() ? 'Gespeichert' : 'Speichern' }}

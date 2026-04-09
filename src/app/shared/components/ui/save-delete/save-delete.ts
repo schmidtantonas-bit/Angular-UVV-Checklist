@@ -15,7 +15,7 @@ import { UiButtonDirective } from "../button/ui-button.directive";
         >
             Löschen
         </button>
-        <save-button (save)="save.emit()" [isSaved]="isSaved()"></save-button>
+        <save-button (save)="save.emit()" [isSaved]="isSaved()" [canSave]="canSave()"></save-button>
     `,
     styles: `
         :host {
@@ -30,5 +30,6 @@ export class SaveDeleteComponent {
     delete = output();
     save = output();
     isSaved = input(false);
+    canSave = input(false);
     canDelete = input(false);
 }
