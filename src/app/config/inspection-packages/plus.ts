@@ -2,19 +2,19 @@ import { createCheckSection } from '../build/section-factories';
 import type { InspectionPackageConfig } from './types';
 
 const PLUS_ITEMS = [
-  'Inspektionsbericht mit Uebergabe',
-  'Eintrag ins Pruefbuch',
-  'Angebotserstellung fuer Bearbeitung festgestellter Maengel',
+  'Inspektionsbericht mit Übergabe',
+  'Eintrag ins Prüfbuch',
+  'Angebotserstellung für Bearbeitung festgestellter Mängel',
   'Wechsel Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Betriebsstunden',
-  'Elektrische Kaesten und Deckel kontrollieren',
-  'Elektrische Drehdurchfuehrung pruefen/reinigen',
-  'Aus- und Einzugsseile pruefen/einstellen',
-  'Kabel im Leitersatz pruefen/einstellen',
+  'Elektrische Kästen und Deckel kontrollieren',
+  'Elektrische Drehdurchführung prüfen/reinigen',
+  'Aus- und Einzugsseile prüfen/einstellen',
+  'Kabel im Leitersatz prüfen/einstellen',
   'Fehlerspeicher / Service 4 Fire auslesen',
-  'Performance pruefen / Bewegungen optimieren',
-  'Wassermonitor pruefen',
-  'Lagerung Krankentrage pruefen',
-  'Notstromgenerator mit 400V Notbetrieb pruefen'
+  'Performance prüfen / Bewegungen optimieren',
+  'Wassermonitor prüfen',
+  'Lagerung Krankentrage prüfen',
+  'Notstromgenerator mit 400V Notbetrieb prüfen'
 ] as const;
 
 export const PLUS_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {

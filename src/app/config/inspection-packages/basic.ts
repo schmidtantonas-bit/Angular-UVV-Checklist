@@ -2,9 +2,9 @@ import { createCheckSection } from '../build/section-factories';
 import type { InspectionPackageConfig } from './types';
 
 const BASIC_ITEMS = [
-  'Inspektionsbericht mit Uebergabe',
-  'Eintrag ins Pruefbuch',
-  'Angebotserstellung fuer Bearbeitung festgestellter Maengel',
+  'Inspektionsbericht mit Übergabe',
+  'Eintrag ins Prüfbuch',
+  'Angebotserstellung für Bearbeitung festgestellter Mängel',
   'Wechsel Filtereinsatz Haupthydraulik alle 2 Jahre / 150 Betriebsstunden'
 ] as const;
 

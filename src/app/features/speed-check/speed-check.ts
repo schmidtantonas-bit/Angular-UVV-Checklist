@@ -52,8 +52,22 @@ export class SpeedCheckComponent {
   );
 
   readonly values = signal<SpeedCheckMeasurements>(this.initialMeasurements);
+  private readonly savedValues = signal<SpeedCheckMeasurements | null>(this.hasInitialData() ? this.initialMeasurements : null);
 
-  readonly results = computed(() => evaluateSpeedCheck(this.values(), this.speedCheckTable));
+  readonly isSaved = computed(() => {
+    const saved = this.savedValues();
+    if (saved === null) return false;
+    const current = this.values();
+    return JSON.stringify(saved) === JSON.stringify(current);
+  });
+
+  private hasInitialData(): boolean {
+    return Object.values(this.initialMeasurements).some(v => v !== null);
+  }
+
+  readonly results = computed(() =>
+    evaluateSpeedCheck(this.values(), this.speedCheckTable)
+  );
 
   readonly okCount = computed(() => this.results().filter((row) => row.withinTolerance === true).length);
   readonly filledCount = computed(() => this.results().filter((row) => row.measuredSec != null).length);
@@ -101,10 +115,12 @@ export class SpeedCheckComponent {
       okCount: this.okCount(),
       filledCount: this.filledCount()
     });
+    this.savedValues.set({ ...values });
   }
 
   reset() {
     this.values.set(createEmptyValues(this.speedCheckTable));
+    this.savedValues.set(null);
     this.measuring.set(null);
   }
 }

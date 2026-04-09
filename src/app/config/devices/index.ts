@@ -13,9 +13,9 @@ export type { DeviceConfig, DeviceType } from './types';
 import type { DeviceConfig, DeviceType } from './types';
 
 export const DEVICE_TYPE_OPTIONS: ChecklistCustomerDataDeviceTypeOption[] = [
+  { value: 'l32a', label: 'L32A/XS' },
   { value: 'l27', label: 'L27' },
   { value: 'l32', label: 'L32' },
-  { value: 'l32a', label: 'L32A/XS' },
   { value: 'l39', label: 'L39' },
   { value: 'l39_lift', label: 'L39 Lift' },
   { value: 'plc', label: 'PLC' },
