@@ -71,6 +71,11 @@
   </div>
 
   <footer class="speed-check__footer">
+    @if (!isSaved()) {
+      <span class="speed-check__note">Noch nicht gespeichert – erscheint nicht im Report</span>
+    } @else {
+      <span class="speed-check__note speed-check__note--success">Daten wurden erfolgreich gespeichert.</span>
+    }
     <save-delete-container
       [canSave]="canSave()"
       [isSaved]="isSaved()"
@@ -78,11 +83,6 @@
       (save)="save()"
       (delete)="reset()"
     ></save-delete-container>
-    @if (!isSaved()) {
-      <span class="speed-check__note">Noch nicht gespeichert – erscheint nicht im Report</span>
-    } @else {
-      <span class="speed-check__note speed-check__note--success">Daten wurden erfolgreich gespeichert.</span>
-    }
   </footer>
 </article>
 
