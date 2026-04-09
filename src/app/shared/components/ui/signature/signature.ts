@@ -1,7 +1,6 @@
 import { Component, ElementRef, inject, signal, ViewChild } from "@angular/core";
 import { ChecklistState } from "@app/pages/checklist/state/checklist.state";
-import { UiButtonDirective } from "../button/ui-button.directive";
-import { SaveButtonComponent } from "../save-button/save-button";
+import { SaveDeleteComponent } from "../save-delete/save-delete";
 
 export const SIGNATURE_ITEM_KEY = "technician-signature-1";
 export const SIGNATURE_VALUE_KEY_IMG = "signature";
@@ -12,7 +11,7 @@ export const SIGNATURE_VALUE_KEY_HEIGHT = "signature-height";
     selector: "signature",
     templateUrl: "signature.html",
     styleUrl: "signature.css",
-    imports: [UiButtonDirective, SaveButtonComponent]
+    imports: [SaveDeleteComponent]
 })
 export class SignatureComponent {
     readonly state = inject(ChecklistState);
@@ -20,7 +19,7 @@ export class SignatureComponent {
     ctx?: CanvasRenderingContext2D | null;
     w = 100;
     h= 150;
-    dirty = signal(false);
+    isSaved = signal(false);
     delete = signal(false);
 
     ngAfterViewInit() {
@@ -36,7 +35,8 @@ export class SignatureComponent {
             this.state.setItemValue(SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_WIDTH, this.w);
             this.state.setItemValue(SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_HEIGHT, this.h);
         }
-        this.dirty.set(false);
+        this.isSaved.set(true);
+        this.delete.set(true);
     }
 
     public clearSignature() {
@@ -45,7 +45,7 @@ export class SignatureComponent {
         this.state.setItemValue(SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_IMG, null);
         this.state.setItemValue(SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_WIDTH, null);
         this.state.setItemValue(SIGNATURE_ITEM_KEY, SIGNATURE_VALUE_KEY_HEIGHT, null);
-        this.dirty.set(false);
+        this.isSaved.set(false);
         this.delete.set(false);
         this.drawing = false;
     }
@@ -76,7 +76,7 @@ export class SignatureComponent {
             this.ctx.lineWidth = 2;
         this.ctx?.beginPath();
         this.ctx?.moveTo(this.normX(event.offsetX), this.normY(event.offsetY));
-        this.dirty.set(true);
+        this.isSaved.set(false);
         this.delete.set(true);
     }
 
