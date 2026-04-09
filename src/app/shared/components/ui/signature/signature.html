@@ -28,13 +28,5 @@
     >
         Löschen
     </button>
-    <button
-        (click)="saveSignature()"
-        uibutton
-        kind="success"
-        size="s"
-        [disabled]="!dirty()"
-    >
-        Speichern
-    </button>
+    <save-button (save)="saveSignature()" [isSaved]="!dirty()"></save-button>
 </div>

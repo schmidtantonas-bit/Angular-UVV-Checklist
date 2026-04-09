@@ -1,6 +1,7 @@
 import { Component, ElementRef, inject, signal, ViewChild } from "@angular/core";
 import { ChecklistState } from "@app/pages/checklist/state/checklist.state";
 import { UiButtonDirective } from "../button/ui-button.directive";
+import { SaveButtonComponent } from "../save-button/save-button";
 
 export const SIGNATURE_ITEM_KEY = "technician-signature-1";
 export const SIGNATURE_VALUE_KEY_IMG = "signature";
@@ -11,7 +12,7 @@ export const SIGNATURE_VALUE_KEY_HEIGHT = "signature-height";
     selector: "signature",
     templateUrl: "signature.html",
     styleUrl: "signature.css",
-    imports: [UiButtonDirective]
+    imports: [UiButtonDirective, SaveButtonComponent]
 })
 export class SignatureComponent {
     readonly state = inject(ChecklistState);
