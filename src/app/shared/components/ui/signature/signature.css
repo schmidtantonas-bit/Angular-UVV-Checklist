@@ -12,7 +12,7 @@ canvas {
 
     border: var(--border);
     border-radius: var(--radius);
-    box-shadow: 2px 2px 5px var(--shadow-dark);
+    box-shadow: var(--neo-outset);
 
     margin-bottom: var(--space-s);
 }
