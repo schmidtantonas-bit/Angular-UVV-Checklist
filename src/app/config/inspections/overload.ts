@@ -19,18 +19,18 @@ export function createOverloadInspectionConfig(family: DeviceFamily): Inspection
 
   return {
     type: 'overload',
-    label: 'Überlastprüfung',
+    label: 'Ueberlastpruefung',
     overview: {
-      title: 'Überlastprüfung',
+      title: 'Ueberlastpruefung',
       subtitle: '',
       imageSrc: '/assets/images/overload-bild.png',
-      imageAlt: 'Überlastprüfung'
+      imageAlt: 'Ueberlastpruefung'
     },
     sectionMode: 'replace',
     extraSections: [
       {
         id: 'sec-overload-1',
-        title: family === 'hr_buehne' ? 'Überlastprüfung HR Bühne' : 'Überlastprüfung Drehleiter',
+        title: family === 'hr_buehne' ? 'Ueberlastpruefung HR Buehne' : 'Ueberlastpruefung Drehleiter',
         total: items.length,
         completed: 0,
         items

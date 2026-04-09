@@ -5,10 +5,10 @@ export const B36_DEVICE_CONFIG: DeviceConfig = {
   family: 'hr_buehne',
   label: 'B36',
   overview: {
-    title: 'UVV-HR Bühne',
+    title: 'UVV-HR Buehne',
     subtitle: 'B36',
     imageSrc: '/assets/images/B36.png',
-    imageAlt: 'HR Bühne B36'
+    imageAlt: 'HR Buehne B36'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 30, toleranceSec: 3 },

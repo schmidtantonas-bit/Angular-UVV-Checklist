@@ -9,7 +9,7 @@ export type { InspectionConfig, InspectionType } from './types';
 
 export const INSPECTION_TYPE_OPTIONS: ChecklistCustomerDataInspectionType[] = [
   { value: 'uvv', label: 'UVV' },
-  { value: 'overload', label: 'Überlast' }
+  { value: 'overload', label: 'Ueberlast' }
 ];
 
 const INSPECTION_CONFIGS: Record<InspectionType, InspectionConfig> = {

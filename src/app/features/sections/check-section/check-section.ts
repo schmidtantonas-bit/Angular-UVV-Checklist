@@ -1,6 +1,7 @@
 import { booleanAttribute, Component, ViewEncapsulation, computed, inject, input } from '@angular/core';
 import { CheckItemComponent, CheckItemModel } from '@features/sections/check-item/check-item';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { toDisplayText } from '@shared/text';
 
 export interface CheckSectionModel {
   id: string;
@@ -38,6 +39,8 @@ export class CheckSectionComponent {
   });
 
   readonly totalCount = computed(() => this.model().total);
+
+  readonly displayTitle = computed(() => toDisplayText(this.model().title));
 
   readonly isCompleted = computed(() => {
     const section = this.model();

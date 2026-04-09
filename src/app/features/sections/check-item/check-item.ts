@@ -18,6 +18,7 @@ import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { TextareaComponent } from '@ui/textarea/textarea';
 import { CheckItemMediaComponent } from '@features/sections/check-item-media/check-item-media';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { toDisplayText } from '@shared/text';
 
 export type CheckStatus = 'ok' | 'na' | 'nok' | null;
 
@@ -57,6 +58,14 @@ export class CheckItemComponent implements OnInit {
     const hasContent = this.note().trim() !== '' || this.photos().length > 0;
     return !this.dirty() && hasContent;
   });
+
+  readonly displayNumber = computed(() => {
+    const id = this.model().id;
+    const lastDash = id.lastIndexOf('-');
+    return lastDash !== -1 ? id.substring(lastDash + 1) : id;
+  });
+
+  readonly displayTitle = computed(() => toDisplayText(this.model().title));
 
   private currentStateKey: string | null = null;
   private readonly checklistState = inject(ChecklistState, { optional: true });

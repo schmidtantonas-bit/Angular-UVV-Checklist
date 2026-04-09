@@ -6,11 +6,11 @@ export const VDE_INSPECTION_CONFIG: InspectionConfig = {
   extraSections: [
     {
       id: 'sec-vde-1',
-      title: 'VDE Prüfung',
+      title: 'VDE Pruefung',
       total: 3,
       completed: 0,
       items: [
-        { id: 'VDE-01', title: 'Sichtprüfung Kabel/Stecker', status: null },
+        { id: 'VDE-01', title: 'Sichtpruefung Kabel/Stecker', status: null },
         { id: 'VDE-02', title: 'Schutzleiterwiderstand', status: null },
         { id: 'VDE-03', title: 'Isolationswiderstand', status: null }
       ]

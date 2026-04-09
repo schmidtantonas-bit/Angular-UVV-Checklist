@@ -15,7 +15,7 @@
   }"
 >
   <div class="check-item__row">
-    <div class="check-item__num">{{ item.id }}</div>
+    <div class="check-item__num">{{ displayNumber() }}</div>
     @if (editableTitle()) {
       <input
         class="check-item__title-input"
@@ -27,7 +27,7 @@
       />
     } @else {
       <h3 class="check-item__title" [id]="'check-item-title-' + item.id">
-        {{ item.title }}
+        {{ displayTitle() }}
       </h3>
     }
     <div
