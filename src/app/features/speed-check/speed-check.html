@@ -71,9 +71,32 @@
   </div>
 
   <footer class="speed-check__footer">
-    <button uibutton class="speed-check__save" kind="success" type="button" (click)="save()">Speichern</button>
-    <button uibutton kind="ghost" type="button" (click)="reset()">Löschen</button>
-    <span class="speed-check__note">Noch nicht gespeichert – erscheint nicht im Report</span>
+    <button
+      uibutton
+      class="speed-check__save"
+      [class.speed-check__save--saved]="isSaved()"
+      [attr.kind]="isSaved() ? 'ghost' : 'success'"
+      type="button"
+      [disabled]="isSaved()"
+      (click)="save()"
+    >
+      {{ isSaved() ? 'Gespeichert' : 'Speichern' }}
+    </button>
+    <button
+      uibutton
+      class="speed-check__delete"
+      [class.speed-check__delete--active]="isSaved()"
+      kind="ghost"
+      type="button"
+      (click)="reset()"
+    >
+      Löschen
+    </button>
+    @if (!isSaved()) {
+      <span class="speed-check__note">Noch nicht gespeichert – erscheint nicht im Report</span>
+    } @else {
+      <span class="speed-check__note speed-check__note--success">Daten wurden erfolgreich gespeichert.</span>
+    }
   </footer>
 </article>
 
