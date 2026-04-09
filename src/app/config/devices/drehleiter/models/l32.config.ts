@@ -8,7 +8,7 @@ export const L32_DEVICE_CONFIG: DeviceConfig = {
     title: 'UVV-Drehleiter',
     subtitle: 'L32',
     imageSrc: '/assets/images/L32.png',
-    imageAlt: 'Drehleiter'
+    imageAlt: 'Drehleiter L32'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 20, toleranceSec: 4 },

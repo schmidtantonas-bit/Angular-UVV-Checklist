@@ -7,8 +7,8 @@ export const L39_LIFT_DEVICE_CONFIG: DeviceConfig = {
   overview: {
     title: 'UVV-Drehleiter',
     subtitle: 'L39 Lift',
-    imageSrc: '/assets/images/L32.png',
-    imageAlt: 'Drehleiter'
+    imageSrc: '/assets/images/L39Lift.png',
+    imageAlt: 'Drehleiter L39 Lift'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 20, toleranceSec: 4 },
