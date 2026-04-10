@@ -72,10 +72,12 @@ export class ChecklistPageComponent {
     this.sections = checklistConfig.sections;
     this.customerData = checklistConfig.customerData;
 
-    const totalCount = this.sections.reduce(
+    const sectionItemsCount = this.sections.reduce(
       (sum, section) => sum + (Number.isFinite(section.total) ? section.total : 0),
       0
     );
+    // +1 for technician signature (saved in footer)
+    const totalCount = sectionItemsCount + 1;
     this.checklistState.setTotalCount(totalCount);
     this.configService.setCurrentConfig(checklistConfig);
   }
