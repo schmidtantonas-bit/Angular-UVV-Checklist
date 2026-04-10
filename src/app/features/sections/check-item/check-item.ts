@@ -18,6 +18,7 @@ import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { TextareaComponent } from '@ui/textarea/textarea';
 import { CheckItemMediaComponent } from '@features/sections/check-item-media/check-item-media';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { SaveDeleteComponent } from '@ui/save-delete/save-delete';
 
 export type CheckStatus = 'ok' | 'na' | 'nok' | null;
 
@@ -32,7 +33,7 @@ export interface CheckItemModel {
 @Component({
   selector: 'app-check-item',
   standalone: true,
-  imports: [NgClass, UiButtonDirective, UiCardDirective, TextareaComponent, CheckItemMediaComponent],
+  imports: [NgClass, UiButtonDirective, UiCardDirective, TextareaComponent, CheckItemMediaComponent, SaveDeleteComponent],
   templateUrl: './check-item.html',
   styleUrl: './check-item.scss'
 })
@@ -53,10 +54,21 @@ export class CheckItemComponent implements OnInit {
   readonly note = signal('');
   readonly dirty = signal(false);
 
-  readonly isSaved = computed(() => {
-    const hasContent = this.note().trim() !== '' || this.photos().length > 0;
-    return !this.dirty() && hasContent;
-  });
+  readonly hasContent = computed(() =>
+    this.note().trim() !== '' || this.photos().length > 0
+  );
+
+  readonly canSave = computed(() =>
+    this.dirty() && this.hasContent()
+  );
+
+  readonly canDelete = computed(() =>
+    this.hasContent()
+  );
+
+  readonly isSaved = computed(() =>
+    !this.dirty() && this.hasContent()
+  );
 
   readonly displayNumber = computed(() => {
     const id = this.model().id;
