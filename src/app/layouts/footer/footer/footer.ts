@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, Signal, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, Signal, viewChild } from '@angular/core';
 import { ConfigChecklistService } from '@app/config/service/config-service';
 import { DocGenerationModel } from '@app/features/doc/doc';
 import { ChecklistState } from '@app/pages/checklist/state/checklist.state';
@@ -16,8 +16,20 @@ export class FooterComponent {
   private readonly config = inject(ConfigChecklistService);
   private readonly checklist = inject(ChecklistState);
   private readonly download = viewChild.required("download") as any as Signal<ElementRef<HTMLAnchorElement>>;
+  public addresses = signal<string[]>([]);
 
-  print(type = 'pdf') {
+  constructor() {
+    fetch("/api/mail")
+      .then(r => {
+        if (r.ok)
+          return r.json();
+        else
+          return new Promise(() => []);
+      })
+      .then(r => this.addresses.set(r));
+  }
+
+  print(type = 'pdf', download = true) {
     const documentGenerator = new DocGenerationModel(this.config, this.checklist);
     documentGenerator.preparePdf().then(out => {
       if (out) {
@@ -32,20 +44,30 @@ export class FooterComponent {
           // allowed types are pdf and docx (word)
           fetch('/api/' + type, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: outstr })
             .then(r => {
-              this.download().nativeElement.setAttribute("download", decodeURIComponent(r.headers.get("DocumentTitle") ?? ""));
-              return r.blob();
-            })
-            .then(b => {
-              this.download().nativeElement.href = URL.createObjectURL(b);
-              this.download().nativeElement.click();
+              if (download) {
+                this.download().nativeElement.setAttribute("download", decodeURIComponent(r.headers.get("DocumentTitle") ?? ""));
+                r.blob()
+                  .then(b => {
+                    this.download().nativeElement.href = URL.createObjectURL(b);
+                    this.download().nativeElement.click();
+                  })
+                  .catch(c => {
+                    // let the user know something went wrong
+                    console.log(c);
+                  });
+              }
             })
             .catch(c => {
               // let the user know something went wrong
               console.log(c);
-            });
+            });;
         }
       }
       // add some sort of on-screen pop-up telling the user tha something went wrong
     });
+  }
+
+  mail(to: string) {
+    this.print("mail/" + to, false);
   }
 }
