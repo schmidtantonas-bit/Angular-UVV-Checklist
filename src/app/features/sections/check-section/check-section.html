@@ -27,40 +27,42 @@
     </button>
   </h2>
 
-  <div
-    class="check-section__content"
-    [id]="'check-section-panel-' + section.id"
-    role="region"
-    [attr.aria-labelledby]="'check-section-toggle-' + section.id"
-    [attr.aria-hidden]="!isOpen ? 'true' : null"
-    [attr.inert]="!isOpen ? '' : null"
-  >
-    @if (!hideEmptyState()) {
-      @if (section.items.length === 0) {
-        <p class="check-section__empty" aria-live="polite">
-          Keine Einträge vorhanden.
-        </p>
+  <div class="check-section__content_holder">
+    <div
+      class="check-section__content"
+      [id]="'check-section-panel-' + section.id"
+      role="region"
+      [attr.aria-labelledby]="'check-section-toggle-' + section.id"
+      [attr.aria-hidden]="!isOpen ? 'true' : null"
+      [attr.inert]="!isOpen ? '' : null"
+    >
+      @if (!hideEmptyState()) {
+        @if (section.items.length === 0) {
+          <p class="check-section__empty" aria-live="polite">
+            Keine Einträge vorhanden.
+          </p>
+        } @else {
+          <ul class="check-section__items">
+            @for (item of section.items; track item.id) {
+              <li>
+                <app-check-item [model]="item" [stateKey]="section.id + ':' + item.id"></app-check-item>
+              </li>
+            }
+          </ul>
+        }
       } @else {
-        <ul class="check-section__items">
-          @for (item of section.items; track item.id) {
-            <li>
-              <app-check-item [model]="item" [stateKey]="section.id + ':' + item.id"></app-check-item>
-            </li>
-          }
-        </ul>
+        @if (section.items.length > 0) {
+          <ul class="check-section__items">
+            @for (item of section.items; track item.id) {
+              <li>
+                <app-check-item [model]="item" [stateKey]="section.id + ':' + item.id"></app-check-item>
+              </li>
+            }
+          </ul>
+        }
       }
-    } @else {
-      @if (section.items.length > 0) {
-        <ul class="check-section__items">
-          @for (item of section.items; track item.id) {
-            <li>
-              <app-check-item [model]="item" [stateKey]="section.id + ':' + item.id"></app-check-item>
-            </li>
-          }
-        </ul>
-      }
-    }
 
-    <ng-content />
+      <ng-content />
+    </div>
   </div>
 </section>
