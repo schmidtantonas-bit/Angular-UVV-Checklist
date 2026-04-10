@@ -91,34 +91,13 @@
         }
 
         @if (showSaveButton()) {
-          <div class="check-item__footer-actions">
-            <button
-              uibutton
-              class="check-item__save"
-              [class.check-item__save--saved]="isSaved()"
-              size="s"
-              type="button"
-              [attr.kind]="isSaved() ? null : 'success'"
-              [disabled]="isSaved()"
-              (click)="save()"
-              data-ui="check-item-save"
-            >
-              {{ isSaved() ? 'Gespeichert' : 'Speichern' }}
-            </button>
-            <button
-              uibutton
-              class="check-item__delete"
-              [class.check-item__delete--active]="isSaved()"
-              kind="ghost"
-              size="s"
-              type="button"
-              [disabled]="note().trim() === '' && photos().length === 0"
-              (click)="clearDefect()"
-              data-ui="check-item-clear"
-            >
-              Löschen
-            </button>
-          </div>
+          <save-delete-container
+            [canSave]="canSave()"
+            [isSaved]="isSaved()"
+            [canDelete]="canDelete()"
+            (save)="save()"
+            (delete)="clearDefect()"
+          ></save-delete-container>
         }
       </div>
     }
