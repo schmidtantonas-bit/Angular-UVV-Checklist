@@ -1,0 +1,83 @@
+/* Select wrapper for custom arrow */
+.select-wrapper {
+  position: relative;
+  display: inline-flex;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--muted, #5a5b5c);
+    pointer-events: none;
+    transition: border-color var(--dur-fast, 150ms) ease;
+  }
+
+  &:hover::after,
+  &:focus-within::after {
+    border-top-color: var(--fg, #141924);
+  }
+}
+
+/* Base select */
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75em;
+  padding: 0.55em 2.5em 0.55em 1.1em;
+  border: 1px solid transparent;
+  border-radius: var(--radius, 8px);
+  background: var(--surface, #fff);
+  color: var(--fg, #141924);
+  font: inherit;
+  font-size: var(--text-xs, 0.875rem);
+  line-height: 1;
+  box-shadow: var(--neo-outset);
+  cursor: pointer;
+  transition:
+    filter var(--dur-fast, 150ms) ease,
+    box-shadow var(--dur-fast, 150ms) ease,
+    background-color var(--dur-fast, 150ms) ease;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.98);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring-shadow-outset);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--disabled-bg, #e0e0e0);
+    color: var(--disabled-text, #999);
+    box-shadow: none;
+  }
+
+  /* Placeholder/disabled option styling */
+  option[disabled] {
+    color: var(--muted, #5a5b5c);
+  }
+}
+
+/* Size variants */
+.select--s {
+  font-size: var(--text-2xs, 0.75rem);
+  min-block-size: 2.4em;
+  padding: 0.45em 2.2em 0.45em 0.9em;
+}
+
+.select--m {
+  font-size: var(--text-xs, 0.875rem);
+}
