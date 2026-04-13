@@ -2,6 +2,7 @@
 .select-wrapper {
   position: relative;
   display: inline-flex;
+  width: 100%;
 
   &::after {
     content: '';
@@ -29,19 +30,19 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  width: 100%;
 
   display: inline-flex;
   align-items: center;
   min-block-size: 2.75em;
   padding: 0.55em 2.5em 0.55em 1.1em;
-  border: 1px solid transparent;
+  border: var(--border, 1px solid rgba(0, 0, 0, 0.08));
   border-radius: var(--radius, 8px);
   background: var(--surface, #fff);
   color: var(--fg, #141924);
   font: inherit;
   font-size: var(--text-xs, 0.875rem);
   line-height: 1;
-  box-shadow: var(--neo-outset);
   cursor: pointer;
   transition:
     filter var(--dur-fast, 150ms) ease,
