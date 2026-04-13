@@ -19,6 +19,7 @@ export class FooterComponent {
   private readonly loader = inject(LoaderService);
   private readonly download = viewChild.required("download") as any as Signal<ElementRef<HTMLAnchorElement>>;
   public addresses = signal<string[]>([]);
+  public mailadr = signal("");
 
   constructor() {
     fetch("/api/mail")
@@ -31,8 +32,15 @@ export class FooterComponent {
       .then(r => this.addresses.set(r));
   }
 
+  setMail(event: Event) {
+    var mail = event.target as HTMLSelectElement;
+    if (mail && mail.value) {
+      this.mailadr.set(mail.value);
+    }
+  }
+
   async print(type = 'pdf', download = true) {
-    const typeLabel = type === 'pdf' ? 'PDF' : 'Word-Dokument';
+    const typeLabel = download ? type === 'pdf' ? 'PDF' : 'Word-Dokument' : "E-Mail";
     this.loader.start(`${typeLabel} wird erstellt...`);
 
     try {
@@ -40,7 +48,7 @@ export class FooterComponent {
       const out = await documentGenerator.preparePdf();
 
       if (!out) {
-        this.loader.error('Dokument konnte nicht erstellt werden');
+        this.loader.error('Dokument konnte nicht erstellt werden.');
         return;
       }
 
@@ -48,7 +56,7 @@ export class FooterComponent {
       console.log('request size:', outstr.length);
 
       if (outstr.length > 10000000) {
-        this.loader.error('Dokument ist zu groß (max. 10 MB)');
+        this.loader.error('Dokument ist zu groß (max. 10 MB). Löschen Sie Photos, um die Dateigröße zu minimieren.');
         return;
       }
 
@@ -59,15 +67,12 @@ export class FooterComponent {
       });
 
       if (!response.ok) {
-        throw new Error('Server-Fehler');
+        throw new Error('Ein Server-Fehler ist aufgetreten. Versuchen Sie es später erneut.');
       }
 
       if (download) {
         const blob = await response.blob();
-        this.download().nativeElement.setAttribute(
-          "download",
-          decodeURIComponent(response.headers.get("DocumentTitle") ?? "")
-        );
+        this.download().nativeElement.download = decodeURIComponent(response.headers.get("DocumentTitle") ?? "");
         this.download().nativeElement.href = URL.createObjectURL(blob);
         this.download().nativeElement.click();
         this.loader.success(`${typeLabel} heruntergeladen!`);
@@ -76,7 +81,7 @@ export class FooterComponent {
       }
     } catch (error) {
       console.error(error);
-      this.loader.error(download ? `${typeLabel} konnte nicht erstellt werden` : 'E-Mail konnte nicht gesendet werden');
+      this.loader.error(download ? `${typeLabel} konnte nicht erstellt werden.` : 'E-Mail konnte nicht gesendet werden.');
     }
   }
 
