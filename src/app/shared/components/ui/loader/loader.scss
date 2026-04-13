@@ -1,0 +1,135 @@
+/* Loader Overlay */
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--dur-normal, 200ms) ease,
+    visibility var(--dur-normal, 200ms) ease;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Backdrop */
+.loader__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+/* Content Container */
+.loader__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-s, 0.75rem);
+  padding: var(--space-l, 1.5rem);
+  background: var(--surface, #fff);
+  border-radius: var(--radius, 8px);
+  box-shadow: var(--neo-outset);
+  min-width: 140px;
+  animation: loader-pop-in 0.25s ease-out;
+}
+
+@keyframes loader-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Neumorphic Spinner Ring */
+.loader__spinner {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader__ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid var(--surface, #f0f0f0);
+  border-top-color: var(--primary, #ff4545);
+  box-shadow:
+    var(--neo-outset),
+    inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  animation: loader-spin 0.9s linear infinite;
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success/Error Icons */
+.loader__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--neo-outset);
+  animation: loader-icon-in 0.3s ease-out;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  &--success {
+    background: var(--ok, #2fbf71);
+    color: var(--light, #fff);
+  }
+
+  &--error {
+    background: var(--def, #ea4c4c);
+    color: var(--light, #fff);
+  }
+}
+
+@keyframes loader-icon-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Message */
+.loader__message {
+  margin: 0;
+  font-size: var(--text-s, 1rem);
+  color: var(--fg, #141924);
+  text-align: center;
+  max-width: 200px;
+}
+
+/* Focus ring for accessibility when interacting via keyboard */
+:host:focus-visible .loader__content {
+  box-shadow: var(--focus-ring-shadow-outset);
+}

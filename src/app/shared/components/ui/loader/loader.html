@@ -1,0 +1,35 @@
+<!-- htmlhint doctype-first:false -->
+<div class="loader__backdrop"></div>
+
+<div class="loader__content">
+  <!-- Spinner (Loading State) -->
+  @if (loader.status() === 'loading') {
+    <div class="loader__spinner" aria-label="Lädt...">
+      <div class="loader__ring"></div>
+    </div>
+  }
+
+  <!-- Success Icon -->
+  @if (loader.status() === 'success') {
+    <div class="loader__icon loader__icon--success" aria-label="Erfolgreich">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <polyline points="4 12 10 18 20 6"></polyline>
+      </svg>
+    </div>
+  }
+
+  <!-- Error Icon -->
+  @if (loader.status() === 'error') {
+    <div class="loader__icon loader__icon--error" aria-label="Fehler">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </div>
+  }
+
+  <!-- Message -->
+  @if (loader.message(); as message) {
+    <p class="loader__message">{{ message }}</p>
+  }
+</div>
