@@ -8,7 +8,7 @@
       <a style="display: none;" #download></a>
     </div>
     <div class="layout-footer__actions" data-ui="footer-actions">
-      <select (click)="setMail($event)">
+      <select (change)="setMail($event)">
         <option disabled selected value="">Senden an...</option>
         @for (f of addresses(); track f) {
           <option [value]="f">{{f}}</option>
