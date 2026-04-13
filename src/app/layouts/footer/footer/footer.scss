@@ -13,18 +13,15 @@
   }
 
   &__actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-m);
-
-    > * {
-      width: 100%;
-    }
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 576px) {
   .layout-footer__actions {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
 
