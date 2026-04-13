@@ -8,12 +8,14 @@
       <a style="display: none;" #download></a>
     </div>
     <div class="layout-footer__actions" data-ui="footer-actions">
-      <select (change)="setMail($event)">
-        <option disabled selected value="">Senden an...</option>
-        @for (f of addresses(); track f) {
-          <option [value]="f">{{f}}</option>
-        }
-      </select>
+      <div class="select-wrapper">
+        <select (change)="setMail($event)" class="select">
+          <option disabled selected value="">Senden an...</option>
+          @for (f of addresses(); track f) {
+            <option [value]="f">{{f}}</option>
+          }
+        </select>
+      </div>
       <button uiButton (click)="mail(mailadr())" [disabled]="mailadr().length === 0">E-Mail senden</button>
     </div>
   </div>
