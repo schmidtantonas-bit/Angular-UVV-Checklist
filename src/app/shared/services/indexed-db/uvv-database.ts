@@ -12,7 +12,7 @@ export interface SessionRecord {
   completedAt?: Date;            // Wann abgeschlossen
   deviceType: string;
   inspectionType: string;
-  inspectionPackage: string;
+  inspectionPackage?: string;    // Optional für Überlastprüfung
   totalCount: number;
   completedCount: number;        // Für Progress-Anzeige im Dialog
 }

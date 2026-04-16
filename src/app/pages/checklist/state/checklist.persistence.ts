@@ -80,7 +80,7 @@ export class ChecklistPersistence {
   async startNewSession(config: {
     deviceType: string;
     inspectionType: string;
-    inspectionPackage: string;
+    inspectionPackage?: string;
     totalCount: number;
   }): Promise<string> {
     // Migrate legacy localStorage data if exists
@@ -96,7 +96,7 @@ export class ChecklistPersistence {
   async completeAndStartNew(config: {
     deviceType: string;
     inspectionType: string;
-    inspectionPackage: string;
+    inspectionPackage?: string;
     totalCount: number;
   }): Promise<string> {
     const activeSession = await this.indexedDb.getActiveSession();
@@ -110,7 +110,7 @@ export class ChecklistPersistence {
   async discardAndStartNew(config: {
     deviceType: string;
     inspectionType: string;
-    inspectionPackage: string;
+    inspectionPackage?: string;
     totalCount: number;
   }): Promise<string> {
     const activeSession = await this.indexedDb.getActiveSession();
