@@ -98,3 +98,32 @@
     }
   </div>
 </section>
+
+<!-- Active Session Dialog -->
+@if (showActiveSessionDialog()) {
+  <div class="session-dialog-overlay" (click)="closeDialog()">
+    <div class="session-dialog" (click)="$event.stopPropagation()">
+      <h2 class="session-dialog__title">📋 Aktive Prüfung gefunden</h2>
+      
+      @if (activeSession(); as session) {
+        <div class="session-dialog__info">
+          <p class="session-dialog__device"><strong>{{ session.deviceType }}</strong></p>
+          <p class="session-dialog__inspection">{{ session.inspectionType }} • {{ session.inspectionPackage }}</p>
+          <p class="session-dialog__progress">{{ session.completedCount }} von {{ session.totalCount }} Prüfpunkte ausgefüllt</p>
+        </div>
+      }
+      
+      <div class="session-dialog__actions">
+        <button uibutton kind="primary" class="session-dialog__btn" (click)="resumeActiveSession()">
+          Fortsetzen
+        </button>
+        <button uibutton kind="ghost" class="session-dialog__btn" (click)="completeAndStartNew()">
+          Abschließen & Neu starten
+        </button>
+        <button uibutton kind="danger" class="session-dialog__btn" (click)="discardAndStartNew()">
+          Verwerfen & Neu starten
+        </button>
+      </div>
+    </div>
+  </div>
+}

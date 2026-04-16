@@ -18,5 +18,35 @@
       </div>
       <button uiButton (click)="mail(mailadr())" [disabled]="mailadr().length === 0">E-Mail senden</button>
     </div>
+    
+    <!-- Prüfung abschließen -->
+    <div class="layout-footer__complete" data-ui="footer-complete">
+      <hr class="layout-footer__divider" />
+      <button uibutton kind="success" class="layout-footer__complete-btn" (click)="openCompleteDialog()">
+        ✓ Prüfung abschließen
+      </button>
+    </div>
   </div>
 </footer>
+
+<!-- Confirmation Dialog -->
+@if (showCompleteDialog()) {
+  <div class="complete-dialog-overlay" (click)="closeCompleteDialog()">
+    <div class="complete-dialog" (click)="$event.stopPropagation()">
+      <div class="complete-dialog__icon">⚠️</div>
+      <h3 class="complete-dialog__title">Prüfung abschließen?</h3>
+      <p class="complete-dialog__message">
+        Möchten Sie die Prüfung wirklich abschließen?<br/>
+        <strong>Alle gespeicherten Daten werden gelöscht</strong> und Sie werden zur Startseite weitergeleitet.
+      </p>
+      <div class="complete-dialog__actions">
+        <button uibutton kind="ghost" (click)="closeCompleteDialog()">
+          Abbrechen
+        </button>
+        <button uibutton kind="danger" (click)="confirmComplete()">
+          Ja, Prüfung abschließen
+        </button>
+      </div>
+    </div>
+  </div>
+}

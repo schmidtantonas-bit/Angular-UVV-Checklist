@@ -1,6 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { ChecklistPersistence } from '@pages/checklist/state/checklist.persistence';
+import { UiButtonDirective } from '@ui/button/ui-button.directive';
 
 const CUSTOMER_DATA_ITEM_KEY = 'customerData';
 const CUSTOMER_DATA_VALUES_KEY = 'fields';
@@ -55,12 +58,14 @@ function coerceCustomerFields(value: unknown): Record<string, unknown> {
 @Component({
   selector: 'app-protocol-page',
   standalone: true,
-  imports: [],
+  imports: [UiButtonDirective],
   templateUrl: './protocol.page.html',
   styleUrl: './protocol.page.scss'
 })
 export class ProtocolPageComponent {
   private readonly checklistState = inject(ChecklistState);
+  private readonly persistence = inject(ChecklistPersistence);
+  private readonly router = inject(Router);
   private readonly document = inject<Document>(DOCUMENT);
 
   private readonly customerFieldsRaw = computed(
@@ -82,5 +87,10 @@ export class ProtocolPageComponent {
 
   ngOnDestroy(): void {
     this.document.body.classList.remove('print-protocol');
+  }
+
+  async completeInspection(): Promise<void> {
+    await this.persistence.completeSession();
+    this.router.navigate(['/wizard']);
   }
 }

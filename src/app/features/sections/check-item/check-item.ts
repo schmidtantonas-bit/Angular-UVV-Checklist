@@ -85,9 +85,11 @@ export class CheckItemComponent implements OnInit {
       effect(() => {
         const nextModel = this.model();
         const nextStateKey = this.stateKey() ?? nextModel.id;
+        const stored = this.checklistState?.getItem(nextStateKey);
+        
         if (nextStateKey !== this.currentStateKey) {
+          // State key changed - full reset
           this.currentStateKey = nextStateKey;
-          const stored = this.checklistState?.getItem(nextStateKey);
           this.status.set(stored?.status ?? nextModel.status);
           this.isNokOpen.set((stored?.status ?? nextModel.status) === 'nok');
           this.note.set(stored?.note ?? nextModel.note ?? '');
@@ -96,9 +98,24 @@ export class CheckItemComponent implements OnInit {
           return;
         }
 
-        const storedStatus = this.checklistState?.getItem(nextStateKey).status ?? nextModel.status;
+        // State key same - sync status, note, and photos from state
+        const storedStatus = stored?.status ?? nextModel.status;
         this.status.set(storedStatus);
         this.isNokOpen.set(storedStatus === 'nok');
+        
+        // Also sync note and photos when state changes (e.g., from IndexedDB load)
+        const storedNote = stored?.note ?? '';
+        const storedPhotos = stored?.photos ?? [];
+        
+        // Only update if different to avoid overwriting user edits
+        if (!this.dirty()) {
+          if (storedNote !== this.note()) {
+            this.note.set(storedNote);
+          }
+          if (storedPhotos.length !== this.photos().length) {
+            this.photos.set(storedPhotos);
+          }
+        }
       });
     });
   }

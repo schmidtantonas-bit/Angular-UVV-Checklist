@@ -4,6 +4,14 @@
     <div class="header__logo" data-ui="header-logo">
       <img class="header__logo-img" src="/assets/svg/rosenbauer-logo.svg" alt="Rosenbauer Logo" />
     </div>
+    
+    @if (sessionStatus() === 'active') {
+      <div class="header__session-status header__session-status--active">
+        <span class="header__session-dot"></span>
+        <span class="header__session-label">Aktiv</span>
+      </div>
+    }
+    
     <div class="header__actions" data-ui="header-actions">
       <button uibutton kind="ghost" size="s" class="header__menu-btn" type="button" [routerLink]="['/wizard']">
         Zum Menü

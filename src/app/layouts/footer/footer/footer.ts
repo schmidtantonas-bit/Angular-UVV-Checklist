@@ -1,7 +1,9 @@
 import { Component, ElementRef, inject, signal, Signal, viewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfigChecklistService } from '@app/config/service/config-service';
 import { DocGenerationModel } from '@app/features/doc/doc';
 import { ChecklistState } from '@app/pages/checklist/state/checklist.state';
+import { ChecklistPersistence } from '@app/pages/checklist/state/checklist.persistence';
 import { LoaderService } from '@app/shared/components/ui/loader';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { SignatureComponent } from "@app/shared/components/ui/signature/signature";
@@ -16,10 +18,15 @@ import { SignatureComponent } from "@app/shared/components/ui/signature/signatur
 export class FooterComponent {
   private readonly config = inject(ConfigChecklistService);
   private readonly checklist = inject(ChecklistState);
+  private readonly persistence = inject(ChecklistPersistence);
+  private readonly router = inject(Router);
   private readonly loader = inject(LoaderService);
   private readonly download = viewChild.required("download") as any as Signal<ElementRef<HTMLAnchorElement>>;
   public addresses = signal<string[]>([]);
   public mailadr = signal("");
+  
+  /** Confirmation dialog state */
+  public showCompleteDialog = signal(false);
 
   constructor() {
     fetch("/api/mail")
@@ -87,5 +94,22 @@ export class FooterComponent {
 
   mail(to: string) {
     this.print("mail/" + to, false);
+  }
+
+  /** Opens the confirmation dialog */
+  openCompleteDialog(): void {
+    this.showCompleteDialog.set(true);
+  }
+
+  /** Closes the confirmation dialog */
+  closeCompleteDialog(): void {
+    this.showCompleteDialog.set(false);
+  }
+
+  /** Confirms and completes the inspection */
+  async confirmComplete(): Promise<void> {
+    this.showCompleteDialog.set(false);
+    await this.persistence.completeSession();
+    this.router.navigate(['/wizard']);
   }
 }
