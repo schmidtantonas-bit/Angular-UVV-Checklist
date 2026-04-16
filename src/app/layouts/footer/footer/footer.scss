@@ -8,30 +8,111 @@
 
   &__container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     gap: var(--space-m);
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-m);
+  }
+
+  &__complete {
+    margin-top: var(--space-s);
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    margin: 0 0 var(--space-m);
+  }
+
+  &__complete-btn {
+    width: 100%;
+    padding: var(--space-m);
+    font-size: var(--text-m);
+    font-weight: 600;
+    justify-content: center;
   }
 }
 
-@media (max-width: 767px) {
-  .layout-footer__container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
+@media (max-width: 576px) {
   .layout-footer__actions {
-    width: 100%;
-    align-self: stretch;
-  }
-
-  .layout-footer__action-print {
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 }
 
 @media print {
   .layout-footer__action-print {
     display: none !important;
+  }
+}
+
+// Confirmation Dialog
+.complete-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-m);
+}
+
+.complete-dialog {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--neo-outset), 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: var(--space-l);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  animation: dialog-fade-in 0.2s ease-out;
+
+  &__icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-s);
+  }
+
+  &__title {
+    font-size: var(--text-l);
+    font-weight: 700;
+    margin: 0 0 var(--space-s);
+    color: var(--text-primary);
+  }
+
+  &__message {
+    font-size: var(--text-s);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-l);
+    line-height: 1.5;
+
+    strong {
+      color: var(--danger, #dc3545);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--space-m);
+    justify-content: center;
+
+    button {
+      flex: 1;
+      max-width: 180px;
+    }
+  }
+}
+
+@keyframes dialog-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

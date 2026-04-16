@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CheckSectionComponent, CheckSectionModel } from '@features/sections/check-section/check-section';
 import {
@@ -15,6 +15,7 @@ import { BatteryCheckComponent } from '@features/battery-check/battery-check';
 import { SpeedCheckComponent } from '@features/speed-check/speed-check';
 import { OperationalStatusComponent } from '@features/operational-status/operational-status';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { ChecklistPersistence } from '@pages/checklist/state/checklist.persistence';
 import { isDeviceType, type DeviceType } from '@config-devices';
 import { buildChecklistConfig } from '@config/build/build-checklist-config';
 import { isInspectionType, type InspectionType } from '@config-inspections';
@@ -37,9 +38,10 @@ import { ConfigChecklistService } from '@app/config/service/config-service';
   templateUrl: './checklist.page.html',
   styleUrl: './checklist.page.scss'
 })
-export class ChecklistPageComponent {
+export class ChecklistPageComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly checklistState = inject(ChecklistState);
+  private readonly persistence = inject(ChecklistPersistence);
   private readonly configService = inject(ConfigChecklistService);
 
   readonly deviceType: DeviceType;
@@ -51,6 +53,8 @@ export class ChecklistPageComponent {
   overview: ChecklistOverviewModel;
   customerData: ChecklistCustomerDataModel;
   sections: CheckSectionModel[];
+
+  private totalCount: number = 0;
 
   constructor() {
     const rawDeviceType = this.route.snapshot.queryParamMap.get('deviceType') ?? 'l32';
@@ -72,16 +76,39 @@ export class ChecklistPageComponent {
     this.sections = checklistConfig.sections;
     this.customerData = checklistConfig.customerData;
 
-    const totalCount = this.sections.reduce(
+    const sectionItemsCount = this.sections.reduce(
       (sum, section) => sum + (Number.isFinite(section.total) ? section.total : 0),
       0
     );
-    this.checklistState.setTotalCount(totalCount);
+    // +1 for technician signature (saved in footer)
+    this.totalCount = sectionItemsCount + 1;
+    this.checklistState.setTotalCount(this.totalCount);
     this.configService.setCurrentConfig(checklistConfig);
   }
 
+  async ngOnInit(): Promise<void> {
+    // Initialize session - either resume existing or start new
+    const activeSession = await this.persistence.getActiveSession();
+    
+    if (activeSession && 
+        activeSession.deviceType === this.deviceType &&
+        activeSession.inspectionType === this.inspectionType &&
+        activeSession.inspectionPackage === this.inspectionPackage) {
+      // Resume existing session
+      await this.persistence.resumeSession(activeSession.id);
+    } else {
+      // Start new session
+      await this.persistence.startNewSession({
+        deviceType: this.deviceType,
+        inspectionType: this.inspectionType,
+        inspectionPackage: this.inspectionPackage,
+        totalCount: this.totalCount
+      });
+    }
+  }
+
   ngOnDestroy() {
-    this.checklistState.clear();
+    // Don't clear state on destroy - we want to keep the session
     this.configService.clearCurrentConfig();
   }
 }

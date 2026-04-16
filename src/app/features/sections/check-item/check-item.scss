@@ -69,15 +69,6 @@
     margin-bottom: var(--space-xs);
   }
 
-  &__footer-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-xs);
-    flex: 0 0 auto;
-    margin-left: auto;
-  }
-
   &__acc {
     display: none;
 
@@ -86,7 +77,6 @@
       gap: var(--space-s);
       padding-top: var(--space-xs);
       padding-inline: var(--space-xs);
-      background: var(--surface-alt);
       border-radius: var(--radius);
       margin-top: var(--space-s);
     }

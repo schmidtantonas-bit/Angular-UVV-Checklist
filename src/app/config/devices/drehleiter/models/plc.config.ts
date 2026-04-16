@@ -7,8 +7,8 @@ export const PLC_DEVICE_CONFIG: DeviceConfig = {
   overview: {
     title: 'UVV-Drehleiter',
     subtitle: 'PLC',
-    imageSrc: '/assets/images/L32.png',
-    imageAlt: 'Drehleiter'
+    imageSrc: '/assets/images/PLC.png',
+    imageAlt: 'Drehleiter PLC'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 24, toleranceSec: 3 },

@@ -1,6 +1,7 @@
 import { Component, Injector, ViewEncapsulation, computed, effect, inject, input, signal } from '@angular/core';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
+import { SaveDeleteComponent } from '@ui/save-delete/save-delete';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
 import {
   diffEvaluationMm,
@@ -64,7 +65,7 @@ type OverloadBlockView =
 @Component({
   selector: 'app-overload',
   standalone: true,
-  imports: [UiCardDirective, UiButtonDirective, TimerCountdownComponent],
+  imports: [UiCardDirective, UiButtonDirective, TimerCountdownComponent, SaveDeleteComponent],
   templateUrl: './overload.html',
   styleUrl: './overload.scss',
   encapsulation: ViewEncapsulation.None
@@ -95,6 +96,31 @@ export class OverloadComponent {
   );
 
   readonly values = signal<OverloadValues>(this.initialValues);
+  private readonly savedValues = signal<OverloadValues | null>(this.hasInitialData() ? this.initialValues : null);
+
+  readonly hasContent = computed(() => {
+    const v = this.values();
+    return Object.values(v).some(val => val !== null);
+  });
+
+  readonly canSave = computed(() =>
+    this.hasContent() && !this.isSaved()
+  );
+
+  readonly canDelete = computed(() =>
+    this.hasContent()
+  );
+
+  readonly isSaved = computed(() => {
+    const saved = this.savedValues();
+    if (saved === null) return false;
+    const current = this.values();
+    return JSON.stringify(saved) === JSON.stringify(current);
+  });
+
+  private hasInitialData(): boolean {
+    return Object.values(this.initialValues).some(v => v !== null);
+  }
 
   readonly visibleBlocks = computed<OverloadBlockView[]>(() => {
     const fields = new Set(this.activeFields());
@@ -188,6 +214,7 @@ export class OverloadComponent {
       withinThresholdPreloadAfter: withinThresholdMm(diffPreloadAfterMm, this.thresholdMm),
       withinThresholdLoadStart10: withinThresholdMm(diffLoadStart10Mm, this.thresholdMm)
     });
+    this.savedValues.set({ ...values });
   }
 
   reset() {
@@ -197,6 +224,7 @@ export class OverloadComponent {
       load10MinMm: null,
       afterLoadMm: null
     });
+    this.savedValues.set(null);
     this.countdownStarted.set(false);
     this.countdownHidden.set(false);
   }

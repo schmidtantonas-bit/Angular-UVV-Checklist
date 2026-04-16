@@ -7,8 +7,8 @@ export const L27_DEVICE_CONFIG: DeviceConfig = {
   overview: {
     title: 'UVV-Drehleiter',
     subtitle: 'L27',
-    imageSrc: '/assets/images/L32.png',
-    imageAlt: 'Drehleiter'
+    imageSrc: '/assets/images/L27.png',
+    imageAlt: 'Drehleiter L27'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 20, toleranceSec: 4 },

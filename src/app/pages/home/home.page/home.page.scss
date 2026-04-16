@@ -163,3 +163,65 @@
     box-shadow: var(--focus-ring-shadow-outset);
   }
 }
+
+// Active Session Dialog
+.session-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: var(--space-m);
+}
+
+.session-dialog {
+  background: var(--surface);
+  border-radius: var(--radius-l);
+  padding: var(--space-l);
+  max-width: 420px;
+  width: 100%;
+  box-shadow: var(--shadow-elevated);
+
+  &__title {
+    font-size: var(--text-l);
+    font-weight: 700;
+    margin: 0 0 var(--space-m);
+  }
+
+  &__info {
+    background: var(--surface-alt);
+    border-radius: var(--radius);
+    padding: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+
+  &__device {
+    font-size: var(--text-m);
+    margin: 0 0 var(--space-2xs);
+  }
+
+  &__inspection {
+    font-size: var(--text-s);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-s);
+  }
+
+  &__progress {
+    font-size: var(--text-s);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  &__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

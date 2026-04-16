@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, computed, inject, signal } from '@angular/core';
+import { Component, ViewEncapsulation, computed, inject, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
@@ -10,6 +10,7 @@ import {
   isInspectionPackageType,
   type InspectionPackageType
 } from '@app/config/inspection-packages';
+import { IndexedDbService, type SessionRecord } from '@shared/services/indexed-db';
 
 type WizardFamily = 'drehleiter' | 'buhne';
 
@@ -34,7 +35,7 @@ const WIZARD_FAMILY_BY_DEVICE_FAMILY = {
   hr_buehne: 'buhne'
 } as const;
 
-const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32', 'l32a', 'l27', 'l39', 'l39_lift', 'plc'];
+const DREHLEITER_WIZARD_ORDER: readonly DeviceType[] = ['l32a', 'l32', 'l27', 'l39', 'l39_lift', 'plc'];
 
 const WIZARD_MODELS: WizardModel[] = DEVICE_TYPE_OPTIONS.filter((option): option is { value: DeviceType; label: string } =>
   isDeviceType(option.value)
@@ -98,12 +99,18 @@ const WIZARD_INSPECTION_PACKAGES: WizardInspectionPackage[] = WIZARD_INSPECTION_
   styleUrl: './home.page.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   private readonly router = inject(Router);
+  private readonly indexedDb = inject(IndexedDbService);
 
   readonly selectedFamily = signal<WizardFamily | null>(null);
   readonly selectedModel = signal<WizardModel | null>(null);
   readonly selectedInspectionType = signal<InspectionType | null>(null);
+
+  // Session dialog state
+  readonly showActiveSessionDialog = signal(false);
+  readonly activeSession = signal<SessionRecord | null>(null);
+  private pendingConfig: { inspectionType: InspectionType; inspectionPackage?: InspectionPackageType } | null = null;
 
   readonly stepNumber = computed(() => {
     if (this.selectedFamily() === null) return 1;
@@ -125,7 +132,7 @@ export class HomePageComponent {
     imageSrc: string;
     imageAlt: string;
   }> = [
-    { id: 'drehleiter', title: 'Drehleiter', imageSrc: '/assets/images/L32.png', imageAlt: 'Drehleiter' },
+    { id: 'drehleiter', title: 'Drehleiter', imageSrc: '/assets/images/L32A-XS.png', imageAlt: 'Drehleiter' },
     { id: 'buhne', title: 'HR Bühne', imageSrc: '/assets/images/B32.png', imageAlt: 'HR Bühne' }
   ];
 
@@ -184,11 +191,102 @@ export class HomePageComponent {
     this.startChecklist(inspectionType, undefined);
   }
 
-  startChecklist(inspectionType: InspectionType, inspectionPackage?: InspectionPackageType) {
+  async startChecklist(inspectionType: InspectionType, inspectionPackage?: InspectionPackageType) {
     const model = this.selectedModel();
     if (!model) return;
+
+    // Check for active session
+    const activeSession = await this.indexedDb.getActiveSession();
+    
+    if (activeSession) {
+      // Show dialog
+      this.activeSession.set(activeSession);
+      this.pendingConfig = { inspectionType, inspectionPackage };
+      this.showActiveSessionDialog.set(true);
+      return;
+    }
+
+    // No active session - navigate to checklist
     this.router.navigate(['/checklist'], {
       queryParams: { deviceType: model.id, inspectionType, inspectionPackage }
     });
+  }
+
+  // === Active Session Dialog Actions ===
+
+  async ngOnInit(): Promise<void> {
+    // Check for active session on startup
+    const activeSession = await this.indexedDb.getActiveSession();
+    
+    if (activeSession) {
+      // Directly navigate to checklist with saved session params
+      this.router.navigate(['/checklist'], {
+        queryParams: {
+          deviceType: activeSession.deviceType,
+          inspectionType: activeSession.inspectionType,
+          inspectionPackage: activeSession.inspectionPackage
+        }
+      });
+    }
+  }
+
+  resumeActiveSession() {
+    const session = this.activeSession();
+    if (!session) return;
+
+    this.showActiveSessionDialog.set(false);
+    this.router.navigate(['/checklist'], {
+      queryParams: {
+        deviceType: session.deviceType,
+        inspectionType: session.inspectionType,
+        inspectionPackage: session.inspectionPackage
+      }
+    });
+  }
+
+  async completeAndStartNew() {
+    const session = this.activeSession();
+    const model = this.selectedModel();
+    const config = this.pendingConfig;
+    
+    if (!session || !model || !config) return;
+
+    // Complete the active session
+    await this.indexedDb.completeSession(session.id);
+    
+    this.showActiveSessionDialog.set(false);
+    this.activeSession.set(null);
+    this.pendingConfig = null;
+
+    // Navigate to new checklist
+    this.router.navigate(['/checklist'], {
+      queryParams: { deviceType: model.id, inspectionType: config.inspectionType, inspectionPackage: config.inspectionPackage }
+    });
+  }
+
+  async discardAndStartNew() {
+    const session = this.activeSession();
+    const model = this.selectedModel();
+    const config = this.pendingConfig;
+    
+    if (!session || !model || !config) return;
+
+    // Delete the active session
+    await this.indexedDb.deleteSession(session.id);
+    
+    this.showActiveSessionDialog.set(false);
+    this.activeSession.set(null);
+    this.pendingConfig = null;
+
+    // Navigate to new checklist
+    this.router.navigate(['/checklist'], {
+      queryParams: { deviceType: model.id, inspectionType: config.inspectionType, inspectionPackage: config.inspectionPackage }
+    });
+  }
+
+  closeDialog() {
+    this.showActiveSessionDialog.set(false);
+    this.activeSession.set(null);
+    this.pendingConfig = null;
   }
 }

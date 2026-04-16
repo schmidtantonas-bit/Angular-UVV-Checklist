@@ -11,8 +11,8 @@ export const BATTERY_CHECK_ITEMS = [
   'Batteriehalter (Befestigung)'
 ] as const;
 
-export function createBatteryCheckSection(title: string, items: readonly string[] = BATTERY_CHECK_ITEMS): CheckSectionModel {
-  return createCheckSection('sec-battery-1', title, 'battery', items);
+export function createBatteryCheckSection(title: string, pdfTitle?: string, items: readonly string[] = BATTERY_CHECK_ITEMS): CheckSectionModel {
+  return createCheckSection('sec-battery-1', title, 'battery', items, pdfTitle);
 }
 
 export const BATTERY_CHECK_SECTION: CheckSectionModel = createBatteryCheckSection('Batterien');

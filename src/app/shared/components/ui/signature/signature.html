@@ -1,0 +1,20 @@
+<h3>Ihre Unterschrift</h3>
+<div class="canvas-container">
+    <canvas
+        width="800"
+        height="300"
+
+        #canvas
+
+        (pointerdown)="startDraw($event)"
+        (pointermove)="updateDraw($event)"
+        (pointerup)="stopDrawing($event)"
+        (pointercancel)="stopDrawing($event)"
+        (pointerleave)="stopDrawing($event)"
+        (pointerout)="stopDrawing($event)"
+
+        (window:resize)="updateContainer()"
+    >
+    </canvas>
+</div>
+<save-delete-container [canDelete]="delete()" [isSaved]="isSaved()" [canSave]="canSave()" (save)="saveSignature()" (delete)="clearSignature()"></save-delete-container>

@@ -1,6 +1,7 @@
 import {
   booleanAttribute,
   Component,
+  computed,
   EventEmitter,
   Injector,
   OnInit,
@@ -17,6 +18,7 @@ import { UiCardDirective } from '@ui/card/ui-card.directive';
 import { TextareaComponent } from '@ui/textarea/textarea';
 import { CheckItemMediaComponent } from '@features/sections/check-item-media/check-item-media';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
+import { SaveDeleteComponent } from '@ui/save-delete/save-delete';
 
 export type CheckStatus = 'ok' | 'na' | 'nok' | null;
 
@@ -31,7 +33,7 @@ export interface CheckItemModel {
 @Component({
   selector: 'app-check-item',
   standalone: true,
-  imports: [NgClass, UiButtonDirective, UiCardDirective, TextareaComponent, CheckItemMediaComponent],
+  imports: [NgClass, UiButtonDirective, UiCardDirective, TextareaComponent, CheckItemMediaComponent, SaveDeleteComponent],
   templateUrl: './check-item.html',
   styleUrl: './check-item.scss'
 })
@@ -52,6 +54,28 @@ export class CheckItemComponent implements OnInit {
   readonly note = signal('');
   readonly dirty = signal(false);
 
+  readonly hasContent = computed(() =>
+    this.note().trim() !== '' || this.photos().length > 0
+  );
+
+  readonly canSave = computed(() =>
+    this.dirty() && this.hasContent()
+  );
+
+  readonly canDelete = computed(() =>
+    this.hasContent()
+  );
+
+  readonly isSaved = computed(() =>
+    !this.dirty() && this.hasContent()
+  );
+
+  readonly displayNumber = computed(() => {
+    const id = this.model().id;
+    const lastDash = id.lastIndexOf('-');
+    return lastDash !== -1 ? id.substring(lastDash + 1) : id;
+  });
+
   private currentStateKey: string | null = null;
   private readonly checklistState = inject(ChecklistState, { optional: true });
   private readonly injector = inject(Injector);
@@ -61,9 +85,11 @@ export class CheckItemComponent implements OnInit {
       effect(() => {
         const nextModel = this.model();
         const nextStateKey = this.stateKey() ?? nextModel.id;
+        const stored = this.checklistState?.getItem(nextStateKey);
+        
         if (nextStateKey !== this.currentStateKey) {
+          // State key changed - full reset
           this.currentStateKey = nextStateKey;
-          const stored = this.checklistState?.getItem(nextStateKey);
           this.status.set(stored?.status ?? nextModel.status);
           this.isNokOpen.set((stored?.status ?? nextModel.status) === 'nok');
           this.note.set(stored?.note ?? nextModel.note ?? '');
@@ -72,9 +98,24 @@ export class CheckItemComponent implements OnInit {
           return;
         }
 
-        const storedStatus = this.checklistState?.getItem(nextStateKey).status ?? nextModel.status;
+        // State key same - sync status, note, and photos from state
+        const storedStatus = stored?.status ?? nextModel.status;
         this.status.set(storedStatus);
         this.isNokOpen.set(storedStatus === 'nok');
+        
+        // Also sync note and photos when state changes (e.g., from IndexedDB load)
+        const storedNote = stored?.note ?? '';
+        const storedPhotos = stored?.photos ?? [];
+        
+        // Only update if different to avoid overwriting user edits
+        if (!this.dirty()) {
+          if (storedNote !== this.note()) {
+            this.note.set(storedNote);
+          }
+          if (storedPhotos.length !== this.photos().length) {
+            this.photos.set(storedPhotos);
+          }
+        }
       });
     });
   }

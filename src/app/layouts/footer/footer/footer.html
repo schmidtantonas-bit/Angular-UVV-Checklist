@@ -1,28 +1,52 @@
 <!-- htmlhint doctype-first:false -->
 <footer class="layout-footer" data-ui="footer">
   <div class="container layout-footer__container" data-ui="footer-container">
+    <signature></signature>
     <div class="layout-footer__actions" data-ui="footer-actions">
-      <button
-        uibutton
-        type="button"
-        kind="primary"
-        class="layout-footer__action-print"
-        data-ui="footer-action-pdf4show"
-        (click)="print()"
-      >
-        PDF anzeigen
-      </button>
-      &nbsp;
-      <button
-        uibutton
-        type="button"
-        kind="primary"
-        class="layout-footer__action-print"
-        data-ui="footer-action-pdf4show"
-        (click)="print('docx')"
-      >
-        DOCX (Word) runterladen
+      <button uibutton (click)="print()">PDF runterladen</button>
+      <button uibutton (click)="print('docx')">DOCX (Word) runterladen</button>
+      <a style="display: none;" #download></a>
+    </div>
+    <div class="layout-footer__actions" data-ui="footer-actions">
+      <div class="select-wrapper">
+        <select (change)="setMail($event)" class="select">
+          <option disabled selected value="">Senden an...</option>
+          @for (f of addresses(); track f) {
+            <option [value]="f">{{f}}</option>
+          }
+        </select>
+      </div>
+      <button uiButton (click)="mail(mailadr())" [disabled]="mailadr().length === 0">E-Mail senden</button>
+    </div>
+    
+    <!-- Prüfung abschließen -->
+    <div class="layout-footer__complete" data-ui="footer-complete">
+      <hr class="layout-footer__divider" />
+      <button uibutton kind="success" class="layout-footer__complete-btn" (click)="openCompleteDialog()">
+        ✓ Prüfung abschließen
       </button>
     </div>
   </div>
 </footer>
+
+<!-- Confirmation Dialog -->
+@if (showCompleteDialog()) {
+  <div class="complete-dialog-overlay" (click)="closeCompleteDialog()">
+    <div class="complete-dialog" (click)="$event.stopPropagation()">
+      <div class="complete-dialog__icon">⚠️</div>
+      <h3 class="complete-dialog__title">Prüfung abschließen?</h3>
+      <p class="complete-dialog__message">
+        Möchten Sie die Prüfung wirklich abschließen?<br/>
+        <strong>Alle gespeicherten Daten werden gelöscht</strong> und Sie werden zur Startseite weitergeleitet.
+      </p>
+      <div class="complete-dialog__actions">
+        <button uibutton kind="ghost" (click)="closeCompleteDialog()">
+          Abbrechen
+        </button>
+        <button uibutton kind="danger" (click)="confirmComplete()">
+          Ja, Prüfung abschließen
+        </button>
+      </div>
+    </div>
+  </div>
+}

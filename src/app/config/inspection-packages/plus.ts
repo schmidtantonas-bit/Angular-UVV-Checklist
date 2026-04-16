@@ -19,8 +19,8 @@ const PLUS_ITEMS = [
 
 export const PLUS_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {
   type: 'plus',
-  label: 'Service PLUS (6h)',
+  label: 'Service PLUS',
   extraSections: [
-    createCheckSection('sec-package-1', 'Service PLUS (6h)', 'pkg-plus', PLUS_ITEMS)
+    createCheckSection('sec-package-1', 'Service PLUS', 'pkg-plus', PLUS_ITEMS)
   ]
 };

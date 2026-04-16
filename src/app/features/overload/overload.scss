@@ -1,7 +1,4 @@
 .overload {
-  --overload-save-bg: var(--ok);
-  --overload-save-text: #fff;
-  --overload-save-border: color-mix(in srgb, var(--ok) 70%, black);
   --overload-columns: 2;
   --overload-result-ok-border: color-mix(in srgb, var(--ok) 70%, black);
   --overload-result-warning-border: color-mix(in srgb, var(--na) 72%, black);
@@ -190,6 +187,7 @@
   &__footer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
     margin-top: 16px;
   }
@@ -197,12 +195,11 @@
   &__note {
     color: var(--color-text-muted, #666);
     font-size: 12px;
-  }
 
-  &__save {
-    --state-ok-bg: var(--overload-save-bg);
-    --state-ok-text: var(--overload-save-text);
-    --state-ok-border: var(--overload-save-border);
+    &--success {
+      color: var(--ok, #22c55e);
+      font-weight: 600;
+    }
   }
 }
 

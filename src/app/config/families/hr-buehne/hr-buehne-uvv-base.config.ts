@@ -1,6 +1,7 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection } from '../../build/section-factories';
 import { createBatteryCheckSection, SPEED_CHECK_SECTION } from '../shared.sections';
+import { OPERATONAL_STATUS_ITEM_KEY } from '@app/features/operational-status/operational-status';
 
 export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-hr-1', 'Grundprüfungen und Vorprüfung', 'hr-1', [
@@ -15,10 +16,10 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Dichtigkeit Unterbau allgemein',
     'Federfeststellvorrichtung',
     'Schraubverbindung zwischen Fahrgestell und Grundrahmen',
-    'Schweissnähte am Grundrahmen',
+    'Schweißnähte am Grundrahmen',
     'Schrauben am Drehkranz',
     'Schraubverbindung am Drehgestell',
-    'Schweissnähte am Drehgestell',
+    'Schweißnähte am Drehgestell',
     'Prüfung der Autonivellierung',
     'Befestigung der Bodenteller prüfen',
     'Prüfung Hydraulikölstand',
@@ -44,7 +45,7 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Bewegungsansteuerung (stufenlos)',
     'Rettungskorbbewegungen',
     'Endverlangsamungen',
-    'Neige- und Anstosssicherungen (Korb)',
+    'Neige- und Anstoßsicherungen (Korb)',
     'Hand- und Notbetrieb (Elektromotor)',
     'Gegensprechanlage'
   ]),
@@ -52,7 +53,7 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Abstützung in Fahrstellung',
     'Abstützung im Zwischenstand',
     'Abstützung in Arbeitsstellung',
-    'Ruhestand der BÜhne',
+    'Ruhestand der Bühne',
     'Stillstandsüberwachung',
     'Optische und akustische Betriebsüberwachungseinrichtungen',
     'Variable Freistand- und Benutzungsgrenze'
@@ -116,9 +117,10 @@ export const HR_BUEHNE_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   {
     id: 'sec-operational-status-1',
     title: '10. Einsatzfähigkeit',
+    pdfTitle: 'Einsatzfähigkeit',
     total: 1,
     completed: 0,
     items: [],
-    customStateKey: 'operational-status'
+    customStateKey: OPERATONAL_STATUS_ITEM_KEY
   }
 ];

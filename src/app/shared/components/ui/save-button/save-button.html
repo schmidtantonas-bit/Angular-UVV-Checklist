@@ -1,0 +1,11 @@
+<button
+    uiButton
+    [class.--saved]="isSaved()"
+    size="s"
+    type="button"
+    kind="success"
+    [disabled]="!canSave() || isSaved()"
+    (click)="save.emit()"
+>
+    {{ isSaved() ? 'Gespeichert' : 'Speichern' }}
+</button>

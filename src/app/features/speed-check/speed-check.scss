@@ -1,8 +1,4 @@
 .speed-check {
-  --speed-save-bg: var(--ok);
-  --speed-save-text: #fff;
-  --speed-save-border: color-mix(in srgb, var(--ok) 70%, black);
-
   padding: 0;
 
   &__header {
@@ -147,6 +143,7 @@
   &__footer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--space-s);
     margin-top: var(--space-m);
   }
@@ -154,12 +151,11 @@
   &__note {
     color: var(--color-text-muted, #666);
     font-size: var(--text-caption);
-  }
 
-  &__save {
-    --state-ok-bg: var(--speed-save-bg);
-    --state-ok-text: var(--speed-save-text);
-    --state-ok-border: var(--speed-save-border);
+    &--success {
+      color: var(--ok, #22c55e);
+      font-weight: 600;
+    }
   }
 }
 

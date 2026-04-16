@@ -6,8 +6,8 @@ export const L32A_DEVICE_CONFIG: DeviceConfig = {
   overview: {
     title: 'UVV-Drehleiter',
     subtitle: 'L32A/XS',
-    imageSrc: '/assets/images/L32.png',
-    imageAlt: 'Drehleiter'
+    imageSrc: '/assets/images/L32A-XS.png',
+    imageAlt: 'Drehleiter L32A/XS'
   },
   speedCheckTable: [
     { key: 'rotateRight', label: 'Drehen rechts', referenceSec: 20, toleranceSec: 4 },

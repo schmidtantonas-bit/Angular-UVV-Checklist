@@ -1,0 +1,18 @@
+canvas {
+    width: 100%;
+    height: 100%;
+
+    /* disables touch interaction with browser, allowing for uninterrupted pointer events */
+    touch-action: none;
+}
+
+.canvas-container {
+    width: 100%;
+    height: 150px;
+
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--neo-outset);
+
+    margin-bottom: var(--space-s);
+}

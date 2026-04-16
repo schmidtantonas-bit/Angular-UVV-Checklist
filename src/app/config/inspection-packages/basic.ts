@@ -10,8 +10,8 @@ const BASIC_ITEMS = [
 
 export const BASIC_INSPECTION_PACKAGE_CONFIG: InspectionPackageConfig = {
   type: 'basic',
-  label: 'Inspektion BASIC (4h)',
+  label: 'Inspektion BASIC',
   extraSections: [
-    createCheckSection('sec-package-1', 'Inspektion BASIC (4h)', 'pkg-basic', BASIC_ITEMS)
+    createCheckSection('sec-package-1', 'Inspektion BASIC', 'pkg-basic', BASIC_ITEMS)
   ]
 };

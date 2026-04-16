@@ -39,7 +39,14 @@
     font-weight: 600;
   }
 
+  &__content_holder {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--dur-slow);
+  }
+
   &__content {
+    overflow: hidden;
     display: grid;
     gap: var(--space-s);
   }
@@ -49,7 +56,7 @@
     gap: var(--space-s);
   }
 
-  &:not(.is-open) &__content {
-    display: none;
+  &.is-open &__content_holder {
+    grid-template-rows: 1fr;
   }
 }

@@ -1,6 +1,7 @@
 import type { CheckSectionModel } from '@features/sections/check-section/check-section';
 import { createCheckSection } from '../../build/section-factories';
 import { createBatteryCheckSection, SPEED_CHECK_SECTION } from '../shared.sections';
+import { OPERATONAL_STATUS_ITEM_KEY } from '@app/features/operational-status/operational-status';
 
 export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
   createCheckSection('sec-dl-1', '1. Fahrerhaus innen', 'dl-1', [
@@ -13,17 +14,17 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Ladeerhaltung',
     'Durchsageanlage',
     'Batteriehauptschalter',
-    'RÜckfahrkamerasystem',
+    'Rückfahrkamerasystem',
     'Lagerung / Sicherung Gegenstände',
     'Beschilderung Masse / Gewichte'
-  ]),
+  ], 'Fahrerhaus innen'),
   createCheckSection('sec-dl-2', '2. Fahrerhaus aussen', 'dl-2', [
     'Akustische Warneinrichtung',
     'Beleuchtung Chassis / Aufbau',
     'Abdeckkappen Ladeerhaltung',
     'Beschilderung Fahrerhaus',
     'Schäkel (Splint / Beschilderung)'
-  ]),
+  ], 'Fahrerhaus aussen'),
   createCheckSection('sec-dl-3', '3. Fahrzeugaufbau', 'dl-3', [
     'Fahrzeug auf Unfallschäden',
     'Kraftstoffbehälter',
@@ -33,36 +34,36 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'AdBlue-Behälter',
     'Radkeile inkl. Halter und Verriegelung',
     'Ölstand Haupthydraulik'
-  ]),
-  createBatteryCheckSection('4. Batterien'),
+  ], 'Fahrzeugaufbau'),
+  createBatteryCheckSection('4. Batterien', 'Batterien'),
   createCheckSection('sec-dl-5', '5. Gerätekästen', 'dl-5', [
     'Gerätekästen',
     'Überwachungseinrichtung',
     'Beleuchtung',
     'Festigkeit der Anbauteile'
-  ]),
-  createCheckSection('sec-dl-6', '6. Aufstiege', 'dl-6', ['Aufstiege', 'Aufstiegsleitern']),
+  ], 'Gerätekästen'),
+  createCheckSection('sec-dl-6', '6. Aufstiege', 'dl-6', ['Aufstiege', 'Aufstiegsleitern'], 'Aufstiege'),
   createCheckSection('sec-dl-7', '7. Abstützung', 'dl-7', [
     'Beleuchtungen / Funktionen / Befestigungen / Dichtheit',
     'Abstützung',
-    'Abstutzbedienpulte',
+    'Abstützbedienpulte',
     'Hydraulik Unterwagen',
     'Überwachung (Sensorik)',
     'Bodenkontaktmechanik',
-    'Abstützbalken / Stützträger',
-    'Schweissnähte Abstützträger',
+    'Abstützbalken / Stütztrtäger',
+    'Schweißnähte Abstützträger',
     'Schmierstellen Unterwagen',
     'Wartungsdeckel Abstützträger',
     'Energiezuführungen / Ölharfen',
     'Achsverriegelung'
-  ]),
+  ], 'Abstützung'),
   createCheckSection('sec-dl-8', '8. Notbetriebseinrichtungen', 'dl-8', [
     'Notbetriebseinrichtungen Unterwagen',
     'Notbetriebspumpen / Notbetriebsmotor',
-    'Ventile Notbetrieb Abstützung',
+    'Ventile Notbetrieb Abstuetzung',
     'Umschaltvorrichtung Energiefreigabe Korbmotoren',
     'Umschaltventil Unterwagen / Oberwagen'
-  ]),
+  ], 'Notbetriebseinrichtungen'),
   createCheckSection('sec-dl-9', '9. Podium', 'dl-9', [
     'Podium auf Beschädigungen / Korrosion',
     'Beklebung / Warnmarkierungen / Hinweisschilder',
@@ -70,20 +71,20 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Podiumsdeckfläche',
     'Befestigungsschrauben',
     'Zusatzklappen / Verschlüsse / Wartungsöffnungen'
-  ]),
+  ], 'Podium'),
   createCheckSection('sec-dl-10', '10. Fahrzeug von unten', 'dl-10', [
     'Hydraulikpumpe / Dichtheit / Befestigung',
     'Kardanwelle',
     'Flansche',
     'Fahrzeugrahmen',
     'Hilfsrahmen',
-    'Schweissnähte',
+    'Schweißnähte',
     'Elektrische Drehdurchführung',
     'Verschraubungen Fahrzeugrahmen',
     'Spritzlappen Energiezuführung Abstützung',
     'Spritzschutzwinkel Abstützträger',
     'Ölkühler'
-  ]),
+  ], 'Fahrzeug von unten'),
   createCheckSection('sec-dl-11', '11. Drehgestell', 'dl-11', [
     'Drehkranzschrauben',
     'Verkleidungen / Bleche / Designverkleidungen',
@@ -93,7 +94,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Drehgetriebe',
     'Elektrische Bauteile',
     'Sicherungskästen / Schaltkästen / Verteilerdosen'
-  ]),
+  ], 'Drehgestell'),
   createCheckSection('sec-dl-12', '12. Lafette', 'dl-12', [
     'Dehnschrauben Leitersatz',
     'Lastmessbolzen',
@@ -101,9 +102,9 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Segmentbogen',
     'Messingführungsschienen',
     'Aufrichteachse'
-  ]),
+  ], 'Lafette'),
   createCheckSection('sec-dl-13', '13. HBST', 'dl-13', [
-    'Sitz / Sitzschale / Armlehne / RÜckenlehne / Wetterschutzdach',
+    'Sitz / Sitzschale / Armlehne / Rückenlehne / Wetterschutzdach',
     'Beklebung / Beschilderung',
     'Spritzschutzwinkel PLC 2',
     'Bedienelemente HBST',
@@ -114,16 +115,16 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Gradbogen',
     'Beleuchtung HBST',
     'Sprechanlage',
-    'Fusstaster',
+    'Fußtaster',
     'Verstellung Scheinwerfer Unterleiter'
-  ]),
+  ], 'HBST'),
   createCheckSection('sec-dl-14', '14. Generatorplattform', 'dl-14', [
     'Generatorplattform',
     'Generator',
     '230 / 400 Volt Anlage',
     'Atemluftanlage',
     'Halte- und Umlenkpunkte Absturzsicherung'
-  ]),
+  ], 'Generatorplattform'),
   SPEED_CHECK_SECTION,
   createCheckSection('sec-dl-15', '15. Leitersatz', 'dl-15', [
     'Leiterauflage',
@@ -137,7 +138,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Drahtseile Spannung',
     'Drahtseile Zustand',
     'Umlenkrollen Drahtseile',
-    'Kopfrollen / FÜhrungsrollen',
+    'Kopfrollen / Führungsrollen',
     'Messingführungen / Kunststoffgleitklötze',
     'Ausschubzylinder',
     'Leitersatzverriegelung',
@@ -158,7 +159,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Verbindungen Leiterspitze / Korb',
     'Korbwinkelgeber',
     'Schubstange / Drahtseile / E-Antrieb Korbnivellierung'
-  ]),
+  ], 'Leitersatz'),
   createCheckSection('sec-dl-16', '16. Korb', 'dl-16', [
     'Korb Mechanik',
     'Freigabetaster',
@@ -174,10 +175,10 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Sprühdüsen / Selbstschutzeinrichtungen',
     'Beklebung / Beschilderung',
     'Windmesser',
-    'Anschlag- / RÜckhaltepunkte',
+    'Anschlag- / Rückhaltepunkte',
     'Fallschutzsystem',
     'Hochspannungswarneinrichtung'
-  ]),
+  ], 'Korb'),
   createCheckSection('sec-dl-17', '17. Anbauteile', 'dl-17', [
     'SKL',
     'Aufstiegsleiter',
@@ -187,7 +188,7 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Multifunktionshalter',
     'Zusätzlicher Handlauf',
     'Multifunktionslagerung',
-    'LÜfterhalterung',
+    'Lüfterhalterung',
     'Kaminfegerwerkzeug',
     'Steckzapfen',
     'Rollstuhlrampe',
@@ -196,20 +197,21 @@ export const DREHLEITER_UVV_BASE_SECTIONS: CheckSectionModel[] = [
     'Taucherleiter',
     'Halter Powermoon',
     'Aufstecklagerung Scheinwerfer'
-  ]),
+  ], 'Anbauteile'),
   createCheckSection('sec-dl-18', '18. Allgemein', 'dl-18', [
     'Überlastsicherung / Lasthupe',
     'Überlastprüfung / Hysterese',
     'Sicherheitseinrichtungen',
     'Filtereinsatz Haupthydraulik',
     'Eintrag Prüfbuch'
-  ]),
+  ], 'Allgemein'),
   {
     id: 'sec-operational-status-1',
     title: '19. Einsatzfähigkeit',
+    pdfTitle: 'Einsatzfähigkeit',
     total: 1,
     completed: 0,
     items: [],
-    customStateKey: 'operational-status'
+    customStateKey: OPERATONAL_STATUS_ITEM_KEY
   }
 ];

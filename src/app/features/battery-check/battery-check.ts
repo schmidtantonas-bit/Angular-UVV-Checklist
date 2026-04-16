@@ -24,7 +24,7 @@ export class BatteryCheckComponent {
   private setStatus(key: string, status: BatteryStatus) {
     if (status === "ok") {
       this.checklist.setItemStatus(key, "ok");
-      this.checklist.setItemNote(key, "");
+      this.checklist.setItemNote(key, "Batterie OK");
     }
     else {
       this.checklist.setItemStatus(key, "nok");

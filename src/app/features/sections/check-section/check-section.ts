@@ -5,6 +5,8 @@ import { ChecklistState } from '@pages/checklist/state/checklist.state';
 export interface CheckSectionModel {
   id: string;
   title: string;
+  /** Titel ohne Nummern-Prefix für PDF-Export (z.B. 'Fahrerhaus innen' statt '1. Fahrerhaus innen') */
+  pdfTitle?: string;
   total: number;
   completed: number;
   items: CheckItemModel[];

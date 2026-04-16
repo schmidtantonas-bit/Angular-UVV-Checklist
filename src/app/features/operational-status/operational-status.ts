@@ -13,7 +13,7 @@ interface OperationalStatusOption {
   tone: 'ok' | 'warn' | 'danger';
 }
 
-const OPERATONAL_STATUS_ITEM_KEY = 'operational-status';
+export const OPERATONAL_STATUS_ITEM_KEY = 'operational-status';
 
 const OPTIONS: readonly OperationalStatusOption[] = [
   {

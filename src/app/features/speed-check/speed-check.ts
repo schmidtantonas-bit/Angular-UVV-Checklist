@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, computed, inject, signal } from '@angular
 import { ConfigChecklistService } from '@app/config/service/config-service';
 import { UiButtonDirective } from '@ui/button/ui-button.directive';
 import { UiCardDirective } from '@ui/card/ui-card.directive';
+import { SaveDeleteComponent } from '@ui/save-delete/save-delete';
 import { TimerStopwatchModalComponent } from '@ui/timer-stopwatch-modal/timer-stopwatch-modal';
 import { ChecklistState } from '@pages/checklist/state/checklist.state';
 import {
@@ -35,7 +36,7 @@ function coerceMeasurements(value: unknown, table: readonly SpeedCheckDefinition
 @Component({
   selector: 'app-speed-check',
   standalone: true,
-  imports: [UiCardDirective, UiButtonDirective, TimerStopwatchModalComponent],
+  imports: [UiCardDirective, UiButtonDirective, TimerStopwatchModalComponent, SaveDeleteComponent],
   templateUrl: './speed-check.html',
   styleUrl: './speed-check.scss',
   encapsulation: ViewEncapsulation.None
@@ -52,8 +53,35 @@ export class SpeedCheckComponent {
   );
 
   readonly values = signal<SpeedCheckMeasurements>(this.initialMeasurements);
+  private readonly savedValues = signal<SpeedCheckMeasurements | null>(this.hasInitialData() ? this.initialMeasurements : null);
 
-  readonly results = computed(() => evaluateSpeedCheck(this.values(), this.speedCheckTable));
+  readonly hasContent = computed(() => {
+    const v = this.values();
+    return Object.values(v).some(val => val !== null);
+  });
+
+  readonly canSave = computed(() =>
+    this.hasContent() && !this.isSaved()
+  );
+
+  readonly canDelete = computed(() =>
+    this.hasContent()
+  );
+
+  readonly isSaved = computed(() => {
+    const saved = this.savedValues();
+    if (saved === null) return false;
+    const current = this.values();
+    return JSON.stringify(saved) === JSON.stringify(current);
+  });
+
+  private hasInitialData(): boolean {
+    return Object.values(this.initialMeasurements).some(v => v !== null);
+  }
+
+  readonly results = computed(() =>
+    evaluateSpeedCheck(this.values(), this.speedCheckTable)
+  );
 
   readonly okCount = computed(() => this.results().filter((row) => row.withinTolerance === true).length);
   readonly filledCount = computed(() => this.results().filter((row) => row.measuredSec != null).length);
@@ -101,10 +129,12 @@ export class SpeedCheckComponent {
       okCount: this.okCount(),
       filledCount: this.filledCount()
     });
+    this.savedValues.set({ ...values });
   }
 
   reset() {
     this.values.set(createEmptyValues(this.speedCheckTable));
+    this.savedValues.set(null);
     this.measuring.set(null);
   }
 }
